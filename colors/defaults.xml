@@ -17,14 +17,14 @@
 
 	<!-- Focus hierarchy -->
 	<color name="focus_surface">FFEDEDED</color>
-	<color name="focus_action_surface">CCEDEDED</color>
-	<color name="focus_soft_surface">4DEDEDED</color>
+	<color name="focus_action_surface">40FFFFFF</color>
+	<color name="focus_soft_surface">40FFFFFF</color>
 	<color name="focus_glass_surface">40FFFFFF</color>
 	<color name="focus_foreground">FF181818</color>
 	<color name="focus_foreground_muted">B3181818</color>
 	<color name="focus_media">FFFFFFFF</color>
 	<color name="focus_indicator">FFEDEDED</color>
-	<color name="focus_card_surface">66EDEDED</color>
+	<color name="focus_card_surface">40FFFFFF</color>
 	<color name="focus_card_foreground">FFEDEDED</color>
 	<color name="focus_card_foreground_muted">B3EDEDED</color>
 
