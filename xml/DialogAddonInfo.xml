@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<onload condition="!ListItem.Property(addon.isinstalled) + Window.IsActive(addonbrowser)">SetFocus(6)</onload>
@@ -306,7 +306,7 @@
 					<width>540</width>
 					<height>540</height>
 					<aspectratio>scale</aspectratio>
-					<texture>dialogs/dialog-bg-nobo.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 					<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 					<bordersize>20</bordersize>
 				</control>

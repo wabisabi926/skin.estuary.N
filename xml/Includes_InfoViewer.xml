@@ -44,14 +44,14 @@
 					<top>0</top>
 					<right>0</right>
 					<height>70</height>
-					<texture colordiffuse="surface_dialog_header">colors/white.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 				</control>
 				<control type="image">
 					<left>0</left>
 					<top>70</top>
 					<right>0</right>
 					<bottom>0</bottom>
-					<texture colordiffuse="surface_dialog">colors/white.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 				</control>
 				<control type="label" id="1">
 					<left>40</left>

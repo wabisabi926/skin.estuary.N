@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
@@ -35,7 +35,7 @@
 						<top>5</top>
 						<width>320</width>
 						<height>380</height>
-						<texture>dialogs/dialog-bg-nobo.png</texture>
+						<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 						<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 						<bordersize>20</bordersize>
 					</control>
@@ -87,7 +87,7 @@
 							<top>5</top>
 							<width>320</width>
 							<height>380</height>
-							<texture>dialogs/dialog-bg-nobo.png</texture>
+							<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 							<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 							<bordersize>20</bordersize>
 						</control>
@@ -95,7 +95,7 @@
 							<top>5</top>
 							<width>320</width>
 							<height>380</height>
-							<texture colordiffuse="focus_card_surface">colors/white.png</texture>
+							<texture cornerradius="26" colordiffuse="focus_glass_surface">colors/white.png</texture>
 							<bordersize>20</bordersize>
 							<include>Animation_FocusTextureFade</include>
 						</control>
@@ -198,7 +198,7 @@
 					<control type="image">
 						<right>0</right>
 						<bottom>0</bottom>
-						<texture colordiffuse="focus_surface">lists/focus.png</texture>
+						<texture cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texture>
 						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(9000)">Conditional</animation>
 					</control>
 					<control type="label">

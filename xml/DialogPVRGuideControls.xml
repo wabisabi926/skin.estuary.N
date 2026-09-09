@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <window>
 	<defaultcontrol always="true">602</defaultcontrol>
 	<include>Animation_BottomSlide</include>
@@ -24,7 +24,7 @@
 					<top>0</top>
 					<width>100%</width>
 					<height>100%</height>
-					<texture>dialogs/dialog-bg-nobo.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 				</control>
 				<control type="group">
 					<left>20</left>

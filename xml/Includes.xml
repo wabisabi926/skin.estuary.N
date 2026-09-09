@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	<include file="Defaults.xml" />
 	<include file="Includes_Home.xml" />
@@ -286,7 +286,7 @@
 					<top>0</top>
 					<right>0</right>
 					<bottom>0</bottom>
-					<texture colordiffuse="focus_surface">lists/focus.png</texture>
+					<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 					<animation effect="fade" start="100" end="50" time="0">UnFocus</animation>
 				</control>
 				<control type="group">
@@ -579,7 +579,7 @@
 						<top>0</top>
 						<right>0</right>
 						<bottom>0</bottom>
-						<texture colordiffuse="focus_surface">lists/focus.png</texture>
+						<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 						<animation effect="fade" start="100" end="0" time="0" condition="!Control.HasFocus($PARAM[list_id])">Conditional</animation>
 					</control>
 					<control type="image">
@@ -915,14 +915,14 @@
 				<top>0</top>
 				<right>0</right>
 				<height>70</height>
-				<texture colordiffuse="surface_dialog_header">colors/white.png</texture>
+				<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 			</control>
 			<control type="image">
 				<left>0</left>
 				<top>70</top>
 				<right>0</right>
 				<bottom>0</bottom>
-				<texture colordiffuse="surface_dialog">colors/white.png</texture>
+				<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 			</control>
 			<control type="label" id="$PARAM[header_id]">
 				<left>40</left>
@@ -1303,7 +1303,7 @@
 		<param name="flipx">false</param>
 		<definition>
 			<control type="image">
-				<texture flipx="$PARAM[flipx]" colordiffuse="opacity_strong">lists/panel.png</texture>
+				<texture flipx="$PARAM[flipx]" material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="0.75" glassbordercolor="0CFFFFFF" glasshighlight="0.30" glassrefraction="2.5" glassrefractionwidth="14" glassdispersion="0.12" glassdepth="0.55" glassbackdropbrightness="0.92" cornerradius="27">colors/white.png</texture>
 				<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 				<bordersize>20</bordersize>
 				<width>$PARAM[width]</width>
@@ -1320,7 +1320,7 @@
 				<left>-5</left>
 				<width>410</width>
 				<height>270</height>
-				<texture>dialogs/dialog-bg-nobo.png</texture>
+				<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="0.75" glassbordercolor="0CFFFFFF" glasshighlight="0.30" glassrefraction="2.5" glassrefractionwidth="14" glassdispersion="0.12" glassdepth="0.55" glassbackdropbrightness="0.92" cornerradius="27">colors/white.png</texture>
 				<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 				<bordersize>20</bordersize>
 			</control>
@@ -1355,18 +1355,18 @@
 					<left>-5</left>
 					<width>410</width>
 					<height>270</height>
-					<texture>dialogs/dialog-bg-nobo.png</texture>
+					<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="0.75" glassbordercolor="0CFFFFFF" glasshighlight="0.30" glassrefraction="2.5" glassrefractionwidth="14" glassdispersion="0.12" glassdepth="0.55" glassbackdropbrightness="0.92" cornerradius="27">colors/white.png</texture>
 					<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 					<bordersize>20</bordersize>
 				</control>
 				<control type="image">
-					<left>-5</left>
-					<width>410</width>
-					<height>270</height>
-					<texture colordiffuse="focus_card_surface">colors/white.png</texture>
-					<bordersize>20</bordersize>
-					<include>Animation_FocusTextureFade</include>
-				</control>
+						<left>-5</left>
+						<width>410</width>
+						<height>270</height>
+						<texture cornerradius="26" colordiffuse="focus_glass_surface">colors/white.png</texture>
+						<bordersize>20</bordersize>
+						<include>Animation_FocusTextureFade</include>
+					</control>
 				<control type="image">
 					<centerleft>50%</centerleft>
 					<top>30</top>
@@ -1429,7 +1429,7 @@
 					<top>0</top>
 					<right>0</right>
 					<bottom>0</bottom>
-					<texture colordiffuse="focus_surface">lists/focus.png</texture>
+					<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 					<animation effect="fade" start="100" end="50" time="0">UnFocus</animation>
 				</control>
 				<control type="image">
