@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <window id="1100">
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
@@ -89,7 +89,7 @@
 							<left>0</left>
 							<right>0</right>
 							<bottom>0</bottom>
-							<texture colordiffuse="focus_surface">lists/focus.png</texture>
+							<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 							<animation effect="fade" start="100" end="0" time="0" condition="!Control.HasFocus(9000)">Conditional</animation>
 						</control>
 						<control type="image">

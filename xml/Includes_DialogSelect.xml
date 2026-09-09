@@ -105,7 +105,7 @@
 						<top>0</top>
 						<right>0</right>
 						<bottom>0</bottom>
-						<texture colordiffuse="focus_surface">lists/focus.png</texture>
+						<texture cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texture>
 						<animation effect="fade" start="100" end="50" time="0">UnFocus</animation>
 					</control>
 					<control type="image">
@@ -220,7 +220,7 @@
 					<right>0</right>
 					<top>252</top>
 					<height>166</height>
-					<texture border="40" colordiffuse="4D000000">colors/black.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 					<visible>!Integer.IsGreater(Container(6).NumItems,1)</visible>
 				</control>
 				<control type="image">
@@ -228,7 +228,7 @@
 					<right>0</right>
 					<top>224</top>
 					<height>222</height>
-					<texture border="40" colordiffuse="4D000000">colors/black.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 					<visible>Integer.IsEqual(Container(6).NumItems,2)</visible>
 				</control>
 				<control type="image">
@@ -236,7 +236,7 @@
 					<right>0</right>
 					<top>196</top>
 					<height>278</height>
-					<texture border="40" colordiffuse="4D000000">colors/black.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 					<visible>Integer.IsEqual(Container(6).NumItems,3)</visible>
 				</control>
 				<control type="image">
@@ -244,7 +244,7 @@
 					<right>0</right>
 					<top>168</top>
 					<height>334</height>
-					<texture border="40" colordiffuse="4D000000">colors/black.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 					<visible>Integer.IsEqual(Container(6).NumItems,4)</visible>
 				</control>
 				<control type="image">
@@ -252,7 +252,7 @@
 					<right>0</right>
 					<top>140</top>
 					<height>390</height>
-					<texture border="40" colordiffuse="4D000000">colors/black.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 					<visible>Integer.IsEqual(Container(6).NumItems,5)</visible>
 				</control>
 				<control type="image">
@@ -260,7 +260,7 @@
 					<right>0</right>
 					<top>112</top>
 					<height>446</height>
-					<texture border="40" colordiffuse="4D000000">colors/black.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 					<visible>Integer.IsEqual(Container(6).NumItems,6)</visible>
 				</control>
 				<control type="image">
@@ -268,7 +268,7 @@
 					<right>0</right>
 					<top>84</top>
 					<height>502</height>
-					<texture border="40" colordiffuse="4D000000">colors/black.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 					<visible>Integer.IsEqual(Container(6).NumItems,7)</visible>
 				</control>
 				<control type="image">
@@ -276,7 +276,7 @@
 					<right>0</right>
 					<top>56</top>
 					<height>558</height>
-					<texture border="40" colordiffuse="4D000000">colors/black.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 					<visible>Integer.IsEqual(Container(6).NumItems,8)</visible>
 				</control>
 				<control type="image">
@@ -284,7 +284,7 @@
 					<right>0</right>
 					<top>28</top>
 					<height>614</height>
-					<texture border="40" colordiffuse="4D000000">colors/black.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 					<visible>Integer.IsEqual(Container(6).NumItems,9)</visible>
 				</control>
 				<control type="image">
@@ -292,7 +292,7 @@
 					<right>0</right>
 					<top>0</top>
 					<bottom>0</bottom>
-					<texture border="40" colordiffuse="4D000000">colors/black.png</texture>
+					<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 					<visible>Integer.IsGreater(Container(6).NumItems,9)</visible>
 				</control>
 				<control type="label" id="$PARAM[header_id]">
@@ -431,7 +431,7 @@
 						<top>0</top>
 						<right>0</right>
 						<bottom>0</bottom>
-						<texture colordiffuse="focus_surface">lists/focus.png</texture>
+						<texture cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texture>
 						<animation effect="fade" start="100" end="50" time="0">UnFocus</animation>
 					</control>
 					<control type="image">
@@ -642,7 +642,7 @@
 						<top>0</top>
 						<right>0</right>
 						<bottom>0</bottom>
-						<texture colordiffuse="focus_soft_surface">lists/focus.png</texture>
+						<texture cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texture>
 					</control>
 					<control type="image">
 						<left>0</left>
@@ -857,7 +857,7 @@
 						<top>0</top>
 						<right>0</right>
 						<bottom>0</bottom>
-						<texture colordiffuse="focus_soft_surface">lists/focus.png</texture>
+						<texture cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texture>
 					</control>
 					<control type="image">
 						<left>0</left>

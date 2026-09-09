@@ -323,7 +323,7 @@
 						<right>0</right>
 						<top>0</top>
 						<bottom>0</bottom>
-						<texture colordiffuse="focus_surface">lists/focus.png</texture>
+						<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 						<visible>Control.HasFocus($PARAM[list_id])</visible>
 					</control>
 					<control type="label">

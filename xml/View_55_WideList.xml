@@ -27,7 +27,7 @@
 							<left>0</left>
 							<right>0</right>
 							<bottom>0</bottom>
-							<texture colordiffuse="focus_surface">lists/focus.png</texture>
+							<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 							<visible>Control.HasFocus(55)</visible>
 						</control>
 						<control type="image">
@@ -92,7 +92,7 @@
 							<left>0</left>
 							<right>0</right>
 							<bottom>0</bottom>
-							<texture colordiffuse="focus_surface">lists/focus.png</texture>
+							<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 							<visible>Control.HasFocus(55)</visible>
 						</control>
 						<control type="image">
@@ -157,7 +157,7 @@
 							<left>0</left>
 							<right>0</right>
 							<bottom>0</bottom>
-							<texture colordiffuse="focus_surface">lists/focus.png</texture>
+							<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 							<visible>Control.HasFocus(55)</visible>
 						</control>
 						<control type="image">
@@ -209,7 +209,7 @@
 			<control type="image">
 				<left>0</left>
 				<right>0</right>
-				<texture colordiffuse="focus_surface">lists/focus.png</texture>
+				<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 				<visible>Control.hasFocus(55)</visible>
 			</control>
 			<control type="label">
@@ -253,7 +253,7 @@
 			<control type="image">
 				<left>0</left>
 				<right>0</right>
-				<texture colordiffuse="focus_surface">lists/focus.png</texture>
+				<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 				<visible>Control.hasFocus(55)</visible>
 			</control>
 			<control type="image">

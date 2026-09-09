@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol always="true">11</defaultcontrol>
 	<controls>
@@ -53,7 +53,7 @@
 							<left>0</left>
 							<width>780</width>
 							<bottom>0</bottom>
-							<texture colordiffuse="focus_surface">lists/focus.png</texture>
+							<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 							<visible>Control.HasFocus(11)</visible>
 							<animation effect="fade" start="100" end="0" time="0">UnFocus</animation>
 						</control>

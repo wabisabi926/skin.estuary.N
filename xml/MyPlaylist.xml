@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol always="true">55</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
@@ -42,7 +42,7 @@
 						<height>80</height>
 						<align>left</align>
 						<aligny>center</aligny>
-						<texturefocus colordiffuse="focus_surface">lists/focus.png</texturefocus>
+						<texturefocus cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texturefocus>
 						<texturenofocus />
 						<radioposx>280</radioposx>
 						<textoffsetx>20</textoffsetx>
@@ -52,7 +52,7 @@
 						<height>80</height>
 						<align>left</align>
 						<aligny>center</aligny>
-						<texturefocus colordiffuse="focus_surface">lists/focus.png</texturefocus>
+						<texturefocus cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texturefocus>
 						<texturenofocus />
 						<textoffsetx>20</textoffsetx>
 						<label></label>
@@ -61,7 +61,7 @@
 						<height>80</height>
 						<align>left</align>
 						<aligny>center</aligny>
-						<texturefocus colordiffuse="focus_surface">lists/focus.png</texturefocus>
+						<texturefocus cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texturefocus>
 						<texturenofocus />
 						<textoffsetx>20</textoffsetx>
 						<label>$LOCALIZE[190]</label>
@@ -70,7 +70,7 @@
 						<height>80</height>
 						<align>left</align>
 						<aligny>center</aligny>
-						<texturefocus colordiffuse="focus_surface">lists/focus.png</texturefocus>
+						<texturefocus cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texturefocus>
 						<texturenofocus />
 						<textoffsetx>20</textoffsetx>
 						<label>$LOCALIZE[192]</label>

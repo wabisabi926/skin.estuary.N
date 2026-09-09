@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <includes>
 	<expression name="listitem_has_episode_info">!String.IsEmpty(ListItem.Episode) | !String.IsEmpty(ListItem.EpisodeName) | !String.IsEmpty(ListItem.Season)</expression>
 	<expression name="listitem_has_epg_event_info">!String.IsEmpty(ListItem.EpgEventTitle) | !String.IsEmpty(ListItem.TitleExtraInfo) | $EXP[listitem_has_episode_info]</expression>
@@ -139,7 +139,7 @@
 					<top>0</top>
 					<right>0</right>
 					<animation effect="fade" start="100" end="0" time="0">UnFocus</animation>
-					<texture colordiffuse="focus_surface">lists/focus.png</texture>
+					<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 					<visible>Control.HasFocus($PARAM[list_id])</visible>
 				</control>
 				<control type="progress">
@@ -244,7 +244,7 @@
 					<left>0</left>
 					<right>0</right>
 					<bottom>0</bottom>
-					<texture colordiffuse="focus_surface">lists/focus.png</texture>
+					<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 					<visible>Control.HasFocus($PARAM[list_id])</visible>
 				</control>
 				<control type="image">
@@ -745,7 +745,7 @@
 						<left>2</left>
 						<width>54</width>
 						<height>54</height>
-						<texture colordiffuse="focus_surface">lists/focus.png</texture>
+						<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 						<visible>Control.HasFocus($PARAM[control_id])</visible>
 					</control>
 					<control type="image" id="2">

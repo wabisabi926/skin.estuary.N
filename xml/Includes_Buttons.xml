@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	<include name="OSDButton">
 		<textureradioonfocus colordiffuse="focus_foreground">$PARAM[texture]</textureradioonfocus>
@@ -66,8 +66,8 @@
 				<textoffsetx>16</textoffsetx>
 				<aligny>center</aligny>
 				<font>font12</font>
-				<texturefocus colordiffuse="focus_surface">lists/focus.png</texturefocus>
-				<alttexturefocus colordiffuse="focus_surface">lists/focus.png</alttexturefocus>
+				<texturefocus cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texturefocus>
+				<alttexturefocus cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</alttexturefocus>
 				<texturenofocus />
 				<alttexturenofocus />
 				<onclick>noop</onclick>
@@ -93,8 +93,8 @@
 				<textoffsetx>10</textoffsetx>
 				<aligny>center</aligny>
 				<font>font13</font>
-				<texturefocus colordiffuse="focus_surface">lists/focus.png</texturefocus>
-				<alttexturefocus colordiffuse="focus_surface">lists/focus.png</alttexturefocus>
+				<texturefocus cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texturefocus>
+				<alttexturefocus cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</alttexturefocus>
 				<texturenofocus />
 				<alttexturenofocus />
 				<onclick>noop</onclick>
@@ -120,7 +120,7 @@
 			<aligny>center</aligny>
 			<invalidcolor>status_error</invalidcolor>
 			<selectedcolor>selection_foreground</selectedcolor>
-			<texturefocus colordiffuse="focus_surface">lists/focus.png</texturefocus>
+			<texturefocus cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
 			<texturenofocus />
 		</definition>
 	</include>
@@ -136,8 +136,8 @@
 			<aligny>center</aligny>
 			<invalidcolor>status_error</invalidcolor>
 			<selectedcolor>selection_foreground</selectedcolor>
-			<texturefocus colordiffuse="focus_surface">lists/focus.png</texturefocus>
-			<texturenofocus colordiffuse="surface_dialog">colors/white.png</texturenofocus>
+			<texturefocus cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
+			<texturenofocus />
 		</definition>
 	</include>
 	<include name="DefaultSettingLabel">
@@ -209,7 +209,7 @@
 				<height>110</height>
 				<align>left</align>
 				<aligny>top</aligny>
-				<texturefocus colordiffuse="focus_surface">lists/focus.png</texturefocus>
+				<texturefocus cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texturefocus>
 				<texturenofocus />
 				<textoffsetx>40</textoffsetx>
 				<textoffsety>35</textoffsety>
@@ -413,7 +413,7 @@
 				<top>0</top>
 				<width>600</width>
 				<height>70</height>
-				<texture colordiffuse="focus_surface">lists/focus.png</texture>
+				<texture cornerradius="12" colordiffuse="focus_card_surface">lists/focus.png</texture>
 			</control>
 			<control type="label">
 				<left>0</left>
