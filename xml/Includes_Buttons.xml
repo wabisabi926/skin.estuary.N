@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	<include name="OSDButton">
 		<textureradioonfocus colordiffuse="focus_foreground">$PARAM[texture]</textureradioonfocus>
@@ -118,6 +118,8 @@
 			<top>0</top>
 			<height>$PARAM[height]</height>
 			<aligny>center</aligny>
+			<textcolor>text_primary</textcolor>
+			<focusedcolor>selection_foreground</focusedcolor>
 			<invalidcolor>status_error</invalidcolor>
 			<selectedcolor>selection_foreground</selectedcolor>
 			<texturefocus cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
@@ -134,6 +136,8 @@
 			<width>$PARAM[width]</width>
 			<height>$PARAM[height]</height>
 			<aligny>center</aligny>
+			<textcolor>text_primary</textcolor>
+			<focusedcolor>selection_foreground</focusedcolor>
 			<invalidcolor>status_error</invalidcolor>
 			<selectedcolor>selection_foreground</selectedcolor>
 			<texturefocus cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>

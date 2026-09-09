@@ -103,6 +103,9 @@
 				<textoffsetx>40</textoffsetx>
 				<aligny>center</aligny>
 				<font>font32</font>
+				<textcolor>text_primary</textcolor>
+				<focusedcolor>selection_foreground</focusedcolor>
+				<selectedcolor>selection_foreground</selectedcolor>
 				<texturefocus cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
 				<texturenofocus />
 			</control>
@@ -145,6 +148,9 @@
 				<onclick>SettingsLevelChange</onclick>
 				<textoffsetx>100</textoffsetx>
 				<textoffsety>0</textoffsety>
+				<textcolor>text_primary</textcolor>
+				<focusedcolor>selection_foreground</focusedcolor>
+				<selectedcolor>selection_foreground</selectedcolor>
 				<texturefocus cornerradius="26" colordiffuse="focus_glass_surface">colors/white.png</texturefocus>
 				<texturenofocus />
 				<radioposx>40</radioposx>
