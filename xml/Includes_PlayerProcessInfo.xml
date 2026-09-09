@@ -78,7 +78,6 @@
 					<left>$PARAM[label_width]</left>
 					<width>64</width>
 					<height>30</height>
-					<align>right</align>
 					<aligny>center</aligny>
 					<font>font_nara_process_info</font>
 					<label>$PARAM[value]</label>
