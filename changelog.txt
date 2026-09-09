@@ -1,18 +1,24 @@
 Unreleased
-- Reworked the home screen around a horizontal top bar, contextual full-screen fanart, media-library rows, and capped widgets with dedicated browse-all playlists
-- Added recently updated TV-show shelves, movie and TV library fanart fallbacks, and ten-image library fanart rotation without preloading image data
-- Redesigned video information and movie-set browsing with nested movie details, favourite controls, cast and media layouts, and focused artwork, rating, and refresh actions
-- Refined focus frames, overlays, typography, dialogs, PVR layouts, and list, poster, banner, wall, and info-wall views
-- Added skin-opted-in core handling for hybrid video-version folders and favourite artwork while preserving the native behavior of other skins
-- Added query-aware Android HTTP video-database matching behind the existing Enhanced HTTP setting
+- 设置页毛玻璃效果：系统、播放器、服务、媒体等设置页全面采用与首页一致的高级毛玻璃材质，背景实时模糊，质感与首页统一；主菜单卡片、左侧边栏以及 PVR、媒体、插件等所有侧栏同步毛玻璃效果；聚焦高亮改为圆角玻璃样式
+- 播放窗口风格统一：播放控制条、快进、书签、滑块、通知、倍速、播放信息、字幕下载、OSD 设置、播放列表、上下文菜单等窗口背景统一为半透明黑色圆角面板；插件、音乐、图片、PVR 信息等公共信息对话框同步统一
+- 设置页背景跟随首页背景图，未浏览媒体时保持纯黑底
+- 其他优化：搜索键盘字母键改为小写显示，与实际输入一致，键盘侧栏背景统一；设置页、列表视图、媒体菜单、文件浏览等所有聚焦高亮统一为圆角样式
+
+Estuary N 历史更新
+- 围绕横向顶栏、上下文全屏海报、媒体库行与限量 widget 及专用"浏览全部"播放列表重构了首页
+- 新增最近更新剧集货架、电影与剧集库海报回退，以及十图库海报轮换且不预载图片数据
+- 重新设计视频信息与电影套装浏览，支持嵌套电影详情、收藏、演职人员与媒体布局，聚焦美术、评分与刷新操作
+- 优化聚焦框、浮层、排版、对话框、PVR 布局以及列表、海报、横幅、墙与信息墙视图
+- 新增皮肤内核对混合视频版本文件夹与收藏美术资源的处理，同时保留其他皮肤的原始行为
+- 在现有 Enhanced HTTP 设置之后新增了感知查询的 Android HTTP 视频数据库匹配
 
 4.1.0 (Estuary N initial release)
-- Packaged Estuary N as an independent skin while retaining the original Estuary as a safe fallback
-- Added consistent poster titles and years and tuned the 1080p poster wall for seven columns
-- Added a lightweight high-transparency fallback card for missing poster artwork
-- Replaced the playback OSD information and stream buttons with direct subtitle and audio-track selectors
-- Increased media backdrop visibility consistently across the skin
-- Standardised the skin on the Arial typeface and limited maintained localisations to English and Simplified Chinese
-- Removed skin navigation and presentation for weather, radio and games while retaining compatibility placeholders for external window calls
-- Retained Kodi's system-level game settings entry
-- Removed alternate themes and colours, custom background selection, slideshow and touch options, unused artwork, and inherited screenshots
+- 将 Estuary N 打包为独立皮肤，同时保留原始 Estuary 作为安全回退
+- 增加统一的海报标题与年份，并将 1080p 海报墙调校为七列
+- 为缺失的海报美术资源新增轻量高透明回退卡片
+- 将播放 OSD 信息与流按钮替换为直接的字幕与音轨选择器
+- 全面提升皮肤中媒体背景的可见度
+- 将皮肤统一为 Arial 字体，并将维护的本地化限定为英文与简体中文
+- 移除天气、电台与游戏的皮肤导航与展示，同时保留外部窗口调用的兼容占位
+- 保留 Kodi 的系统级游戏设置入口
+- 移除备用主题与配色、自定义背景选择、幻灯片与触控选项、未使用的美术资源以及继承的截图
