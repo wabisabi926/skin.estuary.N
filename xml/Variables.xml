@@ -630,6 +630,13 @@
 		<value condition="Container.ListItem.Property(emby.library.art) + !String.IsEmpty(Container.ListItem.Art(thumb))">$INFO[Container.ListItem.Art(thumb)]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Art(fanart))">$INFO[Container.ListItem.Art(fanart)]</value>
 	</variable>
+	<variable name="SettingsBackgroundVar">
+		<value condition="!String.IsEmpty(Window(home).Property(Home.LastBackground))">$INFO[Window(home).Property(Home.LastBackground)]</value>
+		<value condition="!String.IsEmpty(Window(home).Property(Home.LastMovieFanart))">$INFO[Window(home).Property(Home.LastMovieFanart)]</value>
+		<value condition="!String.IsEmpty(Window(home).Property(Home.LastTVShowFanart))">$INFO[Window(home).Property(Home.LastTVShowFanart)]</value>
+		<value condition="!String.IsEmpty(Window(home).Property(Home.SharedRandomFanart))">$INFO[Window(home).Property(Home.SharedRandomFanart)]</value>
+		<value></value>
+	</variable>
 	<variable name="MediaFanartVar">
 		<value condition="Skin.HasSetting(no_fanart)"></value>
 		<value condition="Window.IsActive(musicinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo)">$INFO[Window(home).Property(infobackground)]</value>

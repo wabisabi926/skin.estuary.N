@@ -17,6 +17,8 @@
 	<!-- Carry the exact shared fanart used by Search, Favorites and Files into the
 	     standalone file manager. This includes locked and just-unlocked paths. -->
 	<onunload condition="Window.Next(filemanager) + ![String.IsEmpty(Skin.String(Nara.SharedRandomFanart.LockedPath)) + String.IsEmpty(Window(home).Property(Home.SharedRandomFanart.SessionPath)) + String.IsEmpty(Container(16090).ListItem.Art(fanart))]">SetProperty(Home.SharedRandomFanart,$ESCVAR[NaraSharedRandomFanartVar],home)</onunload>
+	<onunload>SetProperty(Home.LastBackground,$ESCVAR[NaraSharedRandomFanartVar],home)</onunload>
+	<onunload>SetProperty(Home.LastBackground,$ESCVAR[HomeFanartVar],home)</onunload>
 	<backgroundcolor>background</backgroundcolor>
 	<controls>
 		<control type="button" id="20001">

@@ -4,6 +4,22 @@
 	<backgroundcolor>background</backgroundcolor>
 	<controls>
 		<include>DefaultBackground</include>
+		<control type="image">
+			<description>settings background fanart</description>
+			<left>0</left>
+			<top>0</top>
+			<right>0</right>
+			<bottom>0</bottom>
+			<texture background="true">$VAR[SettingsBackgroundVar]</texture>
+		</control>
+		<control type="image">
+			<description>settings background readability scrim</description>
+			<left>0</left>
+			<top>0</top>
+			<right>0</right>
+			<bottom>0</bottom>
+			<texture colordiffuse="99000000">colors/black.png</texture>
+		</control>
 		<control type="group">
 			<centerleft>50%</centerleft>
 			<width>1600</width>
