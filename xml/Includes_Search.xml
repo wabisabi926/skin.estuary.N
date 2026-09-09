@@ -101,7 +101,7 @@
 				<top>0</top>
 				<width>42</width>
 				<height>42</height>
-				<texture colordiffuse="focus_surface">lists/focus.png</texture>
+				<texture cornerradius="12" colordiffuse="focus_glass_surface">lists/focus.png</texture>
 				<visible>$PARAM[focused]</visible>
 			</control>
 			<control type="label">
@@ -237,32 +237,32 @@
 				</include>
 			</focusedlayout>
 			<content>
-				<item><label>A</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputA</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>B</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputB</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>C</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputC</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>D</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputD</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>E</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputE</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>F</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputF</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>G</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputG</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>H</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputH</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>I</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputI</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>J</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputJ</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>K</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputK</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>L</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputL</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>M</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputM</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>N</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputN</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>O</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputO</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>P</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputP</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>Q</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputQ</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>R</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputR</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>S</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputS</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>T</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputT</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>U</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputU</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>V</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputV</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>W</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputW</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>X</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputX</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>Y</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputY</include><onclick>SetFocus(16992)</onclick></item>
-				<item><label>Z</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputZ</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>a</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputA</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>b</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputB</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>c</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputC</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>d</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputD</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>e</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputE</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>f</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputF</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>g</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputG</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>h</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputH</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>i</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputI</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>j</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputJ</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>k</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputK</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>l</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputL</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>m</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputM</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>n</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputN</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>o</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputO</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>p</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputP</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>q</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputQ</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>r</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputR</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>s</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputS</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>t</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputT</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>u</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputU</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>v</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputV</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>w</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputW</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>x</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputX</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>y</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputY</include><onclick>SetFocus(16992)</onclick></item>
+				<item><label>z</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputZ</include><onclick>SetFocus(16992)</onclick></item>
 				<item>
 					<label>$VAR[NaraSearchNumber0]</label>
 					<onclick condition="!String.IsEmpty(Window(home).Property(Search.NumbersVisible))">ClearProperty(Search.NumbersVisible,home)</onclick>
@@ -621,7 +621,7 @@
 			<animation effect="fade" start="100" end="0" time="220" reversible="true" condition="$EXP[NaraSearchKeyboardHidden]">Conditional</animation>
 			<control type="image">
 				<width>340</width><height>940</height>
-				<texture colordiffuse="3318171E">colors/white.png</texture>
+				<texture colordiffuse="99000000" cornerradius="27">colors/white.png</texture>
 			</control>
 			<control type="group">
 				<top>-80</top>
