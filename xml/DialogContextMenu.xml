@@ -14,7 +14,7 @@
 			<height>3240</height>
 			<animation effect="fade" start="0" end="100" time="120">WindowOpen</animation>
 			<animation effect="fade" start="100" end="0" time="90">WindowClose</animation>
-			<texture colordiffuse="4D000000">colors/black.png</texture>
+			<texture colordiffuse="overlay_medium">colors/black.png</texture>
 		</control>
 		<control type="button">
 			<left>-1920</left>
@@ -35,7 +35,7 @@
 				<top>0</top>
 				<width>450</width>
 				<height>780</height>
-				<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="0.75" glassbordercolor="0CFFFFFF" glasshighlight="0.30" glassrefraction="2.5" glassrefractionwidth="14" glassdispersion="0.12" glassdepth="0.55" glassbackdropbrightness="0.92" cornerradius="30">colors/white.png</texture>
+				<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="0.75" glassbordercolor="0CFFFFFF" glasshighlight="0.30" glassrefraction="2.5" glassrefractionwidth="14" glassdispersion="0.12" glassdepth="0.55" glassbackdropbrightness="0.92" cornerradius="27">colors/white.png</texture>
 			</control>
 			<control type="grouplist" id="996">
 				<description>grouplist for context buttons</description>
@@ -59,7 +59,7 @@
 			<width>426</width>
 			<height>65</height>
 			<align>center</align>
-			<texturefocus cornerradius="30" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
+			<texturefocus cornerradius="27" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
 			<texturenofocus />
 			<focusedcolor>text_primary</focusedcolor>
 		</control>
