@@ -34,7 +34,7 @@
 					<param name="width" value="880" />
 					<param name="list_id" value="3" />
 					<param name="selectedcolor" value="focus_indicator" />
-					<param name="focusedselectedcolor" value="focus_foreground" />
+					<param name="focusedselectedcolor" value="selection_foreground" />
 					<param name="labelright" value="70" />
 					<param name="showselectedmark" value="true" />
 				</include>

@@ -210,7 +210,7 @@
 							<top>-10</top>
 							<width>595</width>
 							<height>100</height>
-							<texture border="21" colordiffuse="focus_surface">buttons/button-fo.png</texture>
+							<texture border="21" colordiffuse="focus_card_surface">buttons/button-fo.png</texture>
 						</control>
 						<control type="label">
 							<left>40</left>
@@ -221,8 +221,8 @@
 							<aligny>center</aligny>
 							<scroll>true</scroll>
 							<label>$INFO[ListItem.Label,[COLOR focus_foreground_muted], - [/COLOR]]$INFO[ListItem.Label2]</label>
-							<textcolor>focus_foreground</textcolor>
-							<selectedcolor>focus_foreground</selectedcolor>
+								<textcolor>selection_foreground</textcolor>
+								<selectedcolor>selection_foreground</selectedcolor>
 						</control>
 					</focusedlayout>
 					<itemlayout height="72.5" width="595" condition="Container.Content(albums)">
@@ -264,7 +264,7 @@
 								<top>-10</top>
 								<width>595</width>
 								<height>100</height>
-								<texture border="21" colordiffuse="focus_surface">buttons/button-fo.png</texture>
+								<texture border="21" colordiffuse="focus_card_surface">buttons/button-fo.png</texture>
 							</control>
 							<control type="label">
 								<left>40</left>
@@ -275,8 +275,8 @@
 								<aligny>center</aligny>
 								<scroll>true</scroll>
 								<label>$INFO[ListItem.TrackNumber,[COLOR focus_foreground_muted], - [/COLOR]]$INFO[ListItem.Label]</label>
-								<textcolor>focus_foreground</textcolor>
-								<selectedcolor>focus_foreground</selectedcolor>
+								<textcolor>selection_foreground</textcolor>
+								<selectedcolor>selection_foreground</selectedcolor>
 								<visible>![Skin.HasSetting(circle_rating) | Skin.HasSetting(circle_userrating)] | [Skin.HasSetting(circle_userrating) + String.IsEmpty(ListItem.UserRating)] | [Skin.HasSetting(circle_rating) + String.IsEmpty(ListItem.Rating)]</visible>
 							</control>
 							<control type="label">
@@ -288,8 +288,8 @@
 								<aligny>center</aligny>
 								<scroll>true</scroll>
 								<label>$INFO[ListItem.TrackNumber,[COLOR focus_foreground_muted], - [/COLOR]]$INFO[ListItem.Label]</label>
-								<textcolor>focus_foreground</textcolor>
-								<selectedcolor>focus_foreground</selectedcolor>
+								<textcolor>selection_foreground</textcolor>
+								<selectedcolor>selection_foreground</selectedcolor>
 								<visible>[Skin.HasSetting(circle_rating) + !String.IsEmpty(ListItem.Rating)] | [Skin.HasSetting(circle_userrating) + !String.IsEmpty(ListItem.UserRating)]</visible>
 							</control>
 							<control type="group">
@@ -510,10 +510,10 @@
 								<height>30</height>
 								<font>font27_narrow</font>
 								<label>$INFO[ListItem.Label] $INFO[ListItem.Label2]</label>
-								<textcolor>focus_foreground</textcolor>
-								<selectedcolor>focus_foreground</selectedcolor>
+								<textcolor>selection_foreground</textcolor>
+								<selectedcolor>selection_foreground</selectedcolor>
 								<scroll>true</scroll>
-									<visible>Control.HasFocus(41)</visible>
+								<visible>Control.HasFocus(41)</visible>
 								</control>
 								<control type="label">
 									<left>10</left>

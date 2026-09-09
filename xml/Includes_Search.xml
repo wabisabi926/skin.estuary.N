@@ -231,11 +231,11 @@
 				<include content="NaraSearchKeyboardItemLayout" />
 			</itemlayout>
 			<focusedlayout width="46" height="60">
-				<include content="NaraSearchKeyboardItemLayout">
-					<param name="focused" value="true" />
-					<param name="textcolor" value="focus_foreground" />
-				</include>
-			</focusedlayout>
+					<include content="NaraSearchKeyboardItemLayout">
+						<param name="focused" value="true" />
+						<param name="textcolor" value="selection_foreground" />
+					</include>
+				</focusedlayout>
 			<content>
 				<item><label>a</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputA</include><onclick>SetFocus(16992)</onclick></item>
 				<item><label>b</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInputB</include><onclick>SetFocus(16992)</onclick></item>
@@ -293,11 +293,11 @@
 			<visible>!String.IsEmpty(Window(home).Property(Search.NumbersVisible))</visible>
 			<itemlayout width="46" height="60"><include content="NaraSearchKeyboardItemLayout" /></itemlayout>
 			<focusedlayout width="46" height="60">
-				<include content="NaraSearchKeyboardItemLayout">
-					<param name="focused" value="true" />
-					<param name="textcolor" value="focus_foreground" />
-				</include>
-			</focusedlayout>
+					<include content="NaraSearchKeyboardItemLayout">
+						<param name="focused" value="true" />
+						<param name="textcolor" value="selection_foreground" />
+					</include>
+				</focusedlayout>
 			<content>
 				<item><label>$VAR[NaraSearchNumber1]</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInput1</include><onclick>SetFocus(16994)</onclick></item>
 				<item><label>$VAR[NaraSearchNumber2]</label><onclick>SetFocus(16999)</onclick><include>NaraSearchInput2</include><onclick>SetFocus(16994)</onclick></item>

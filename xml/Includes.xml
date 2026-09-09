@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	<include file="Defaults.xml" />
 	<include file="Includes_Home.xml" />
@@ -219,7 +219,7 @@
 		<param name="font">font13</param>
 		<param name="fontcolor">grey</param>
 		<param name="selectedcolor">selection_foreground</param>
-		<param name="focusedselectedcolor">focus_foreground</param>
+		<param name="focusedselectedcolor">selection_foreground</param>
 		<param name="labelright">20</param>
 		<param name="showselectedmark">false</param>
 		<definition>
@@ -315,14 +315,14 @@
 						<align>$PARAM[align]</align>
 						<font>$PARAM[font]</font>
 						<aligny>center</aligny>
-						<textcolor>focus_foreground</textcolor>
-						<selectedcolor>$PARAM[focusedselectedcolor]</selectedcolor>
-						<label>$INFO[ListItem.Label]</label>
-						<scroll>true</scroll>
+							<textcolor>selection_foreground</textcolor>
+							<selectedcolor>$PARAM[focusedselectedcolor]</selectedcolor>
+							<label>$INFO[ListItem.Label]</label>
+							<scroll>true</scroll>
+						</control>
 					</control>
-				</control>
-				<control type="group">
-					<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
+					<control type="group">
+						<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
 					<control type="label">
 						<left>20</left>
 						<top>0</top>
@@ -331,7 +331,7 @@
 						<align>$PARAM[align]</align>
 						<font>$PARAM[font]</font>
 						<aligny>center</aligny>
-						<textcolor>focus_foreground</textcolor>
+						<textcolor>selection_foreground</textcolor>
 						<selectedcolor>$PARAM[focusedselectedcolor]</selectedcolor>
 						<label>$INFO[ListItem.Label]</label>
 						<scroll>true</scroll>
@@ -557,7 +557,7 @@
 	<include name="FileManagerPanel">
 		<param name="width"></param>
 		<param name="right"></param>
-		<param name="focus_color">focus_foreground</param>
+		<param name="focus_color">selection_foreground</param>
 		<definition>
 			<control type="fixedlist" id="$PARAM[list_id]">
 				<left>0</left>
@@ -1447,9 +1447,9 @@
 					<height>60</height>
 					<aligny>center</aligny>
 					<scroll>true</scroll>
-					<label>$VAR[MediaInfoListLabelVar]</label>
-					<textcolor>focus_foreground</textcolor>
-					<selectedcolor>focus_foreground</selectedcolor>
+						<label>$VAR[MediaInfoListLabelVar]</label>
+						<textcolor>selection_foreground</textcolor>
+						<selectedcolor>selection_foreground</selectedcolor>
 				</control>
 				<control type="label">
 					<left>135</left>
@@ -1459,8 +1459,8 @@
 					<font>font10</font>
 					<aligny>center</aligny>
 					<label>$INFO[ListItem.Duration,$LOCALIZE[180]: ][CR]$VAR[MediaInfoListLabel2Var]</label>
-					<textcolor>focus_foreground_muted</textcolor>
-					<selectedcolor>focus_foreground_muted</selectedcolor>
+						<textcolor>text_secondary</textcolor>
+						<selectedcolor>text_secondary</selectedcolor>
 				</control>
 			</focusedlayout>
 		</definition>

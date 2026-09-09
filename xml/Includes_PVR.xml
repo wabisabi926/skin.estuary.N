@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <includes>
 	<expression name="listitem_has_episode_info">!String.IsEmpty(ListItem.Episode) | !String.IsEmpty(ListItem.EpisodeName) | !String.IsEmpty(ListItem.Season)</expression>
 	<expression name="listitem_has_epg_event_info">!String.IsEmpty(ListItem.EpgEventTitle) | !String.IsEmpty(ListItem.TitleExtraInfo) | $EXP[listitem_has_episode_info]</expression>
@@ -108,7 +108,7 @@
 		<param name="has_info_icon">false</param>
 		<param name="has_status_icon">false</param>
 		<param name="info_update">0</param>
-		<param name="focus_textcolor">focus_foreground</param>
+		<param name="focus_textcolor">selection_foreground</param>
 		<definition>
 			<itemlayout height="100" infoupdate="$PARAM[info_update]">
 				<control type="progress">
@@ -167,7 +167,7 @@
 		</definition>
 	</include>
 	<include name="ChannelManagerList">
-		<param name="focus_textcolor">focus_foreground</param>
+		<param name="focus_textcolor">selection_foreground</param>
 		<control type="grouplist">
 			<orientation>horizontal</orientation>
 			<left>0</left>
@@ -622,7 +622,7 @@
 		</definition>
 	</include>
 	<include name="EpgGrid">
-		<param name="focus_textcolor">focus_foreground</param>
+		<param name="focus_textcolor">selection_foreground</param>
 		<definition>
 			<control type="epggrid" id="$PARAM[control_id]">
 				<left>0</left>
