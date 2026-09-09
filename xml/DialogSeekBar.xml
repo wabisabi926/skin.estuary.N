@@ -224,7 +224,7 @@
 				<left>0</left>
 				<width>100%</width>
 				<height>240</height>
-				<texture>dialogs/dialog-bg-nobo.png</texture>
+				<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 			</control>
 			<control type="image">
 				<left>20</left>
@@ -284,7 +284,7 @@
 				<left>0</left>
 				<width>100%</width>
 				<height>330</height>
-				<texture>dialogs/dialog-bg-nobo.png</texture>
+				<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 			</control>
 			<control type="image">
 				<depth>DepthOSD+</depth>

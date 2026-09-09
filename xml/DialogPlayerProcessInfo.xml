@@ -30,7 +30,7 @@
 				<top>0</top>
 				<width>1880</width>
 				<height>610</height>
-				<texture border="40" colordiffuse="99000000">colors/black.png</texture>
+				<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 			</control>
 			<control type="label">
 				<left>28</left>
@@ -392,7 +392,7 @@
 				<top>0</top>
 				<width>1276</width>
 				<height>610</height>
-				<texture border="40" colordiffuse="99000000">colors/black.png</texture>
+				<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
 			</control>
 			<control type="label">
 				<left>28</left>
