@@ -1037,6 +1037,7 @@
 					<aligny>center</aligny>
 					<font>font_home_clock</font>
 					<label>$INFO[System.Time]</label>
+					<visible>!Window.IsVisible(extendedprogressdialog)</visible>
 				</control>
 			</control>
 			<include>BottomBar</include>

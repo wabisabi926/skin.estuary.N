@@ -23,7 +23,8 @@
 					<aligny>center</aligny>
 					<label>$VAR[VideoInfoPlayButtonLabelVar]</label>
 					<textcolor>text_primary</textcolor>
-					<focusedcolor>focus_foreground</focusedcolor>
+					<focusedcolor>selection_foreground</focusedcolor>
+					<selectedcolor>selection_foreground</selectedcolor>
 					<texturefocus cornerradius="35" colordiffuse="focus_action_surface">colors/white.png</texturefocus>
 					<texturenofocus cornerradius="35" colordiffuse="selection_surface">colors/white.png</texturenofocus>
 					<onup>138</onup>

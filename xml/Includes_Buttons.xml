@@ -188,8 +188,11 @@
 				<onclick>$PARAM[onclick]</onclick>
 				<wrapmultiline>$PARAM[wrapmultiline]</wrapmultiline>
 				<align>center</align>
-				<texturefocus border="40" colordiffuse="focus_surface">buttons/dialogbutton-fo.png</texturefocus>
-				<texturenofocus border="40">buttons/dialogbutton-nofo.png</texturenofocus>
+				<textcolor>text_primary</textcolor>
+					<focusedcolor>selection_foreground</focusedcolor>
+					<selectedcolor>selection_foreground</selectedcolor>
+					<texturefocus border="40" colordiffuse="focus_glass_surface">buttons/dialogbutton-fo.png</texturefocus>
+					<texturenofocus border="40">buttons/dialogbutton-nofo.png</texturenofocus>
 				<visible>$PARAM[visible]</visible>
 				<enable>$PARAM[enable]</enable>
 			</control>
@@ -218,9 +221,11 @@
 				<textoffsetx>40</textoffsetx>
 				<textoffsety>35</textoffsety>
 				<label>$PARAM[label]</label>
-				<onclick>$PARAM[onclick]</onclick>
-				<selectedcolor>selection_foreground</selectedcolor>
-			</control>
+					<onclick>$PARAM[onclick]</onclick>
+					<textcolor>text_primary</textcolor>
+					<focusedcolor>selection_foreground</focusedcolor>
+					<selectedcolor>selection_foreground</selectedcolor>
+				</control>
 		</definition>
 	</include>
 	<include name="IconButton">
