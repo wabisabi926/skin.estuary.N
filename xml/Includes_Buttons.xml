@@ -122,7 +122,7 @@
 			<focusedcolor>selection_foreground</focusedcolor>
 			<invalidcolor>status_error</invalidcolor>
 			<selectedcolor>selection_foreground</selectedcolor>
-			<texturefocus cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
+			<texturefocus cornerradius="12" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
 			<texturenofocus />
 		</definition>
 	</include>
@@ -140,7 +140,7 @@
 			<focusedcolor>selection_foreground</focusedcolor>
 			<invalidcolor>status_error</invalidcolor>
 			<selectedcolor>selection_foreground</selectedcolor>
-			<texturefocus cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
+			<texturefocus cornerradius="12" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
 			<texturenofocus />
 		</definition>
 	</include>

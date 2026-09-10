@@ -106,7 +106,7 @@
 				<textcolor>text_primary</textcolor>
 				<focusedcolor>selection_foreground</focusedcolor>
 				<selectedcolor>selection_foreground</selectedcolor>
-				<texturefocus cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
+				<texturefocus cornerradius="12" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
 				<texturenofocus />
 			</control>
 		</control>
@@ -151,7 +151,7 @@
 				<textcolor>text_primary</textcolor>
 				<focusedcolor>selection_foreground</focusedcolor>
 				<selectedcolor>selection_foreground</selectedcolor>
-				<texturefocus cornerradius="26" colordiffuse="focus_glass_surface">colors/white.png</texturefocus>
+				<texturefocus cornerradius="12" colordiffuse="focus_glass_surface">colors/white.png</texturefocus>
 				<texturenofocus />
 				<radioposx>40</radioposx>
 				<radioposy>0</radioposy>

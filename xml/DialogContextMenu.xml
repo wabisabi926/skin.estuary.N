@@ -59,7 +59,7 @@
 			<width>426</width>
 			<height>65</height>
 			<align>center</align>
-			<texturefocus cornerradius="27" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
+			<texturefocus cornerradius="12" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
 			<texturenofocus />
 			<focusedcolor>text_primary</focusedcolor>
 		</control>

@@ -35,13 +35,13 @@
 						<top>5</top>
 						<width>320</width>
 						<height>380</height>
-						<texture border="40" colordiffuse="99000000" cornerradius="27">colors/black.png</texture>
-						<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-						<bordersize>20</bordersize>
-					</control>
-					<control type="image">
-						<left>51</left>
-						<top>38</top>
+						<texture border="40" colordiffuse="40FFFFFF" cornerradius="27">colors/black.png</texture>
+					<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
+					<bordersize>20</bordersize>
+				</control>
+				<control type="image">
+					<left>51</left>
+					<top>38</top>
 						<width>215</width>
 						<height>215</height>
 						<aspectratio>scale</aspectratio>
@@ -198,7 +198,7 @@
 					<control type="image">
 						<right>0</right>
 						<bottom>0</bottom>
-						<texture cornerradius="26" colordiffuse="focus_glass_surface">lists/focus.png</texture>
+						<texture cornerradius="12" colordiffuse="focus_glass_surface">lists/focus.png</texture>
 						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(9000)">Conditional</animation>
 					</control>
 					<control type="label">
