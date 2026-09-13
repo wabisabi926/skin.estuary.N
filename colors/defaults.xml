@@ -2,7 +2,7 @@
 <colors>
 	<!-- Base surfaces -->
 	<color name="background_base">FF000000</color>
-	<color name="surface_main">FF3A3542</color>
+	<color name="surface_main">FF4B5F69</color>
 	<color name="surface_panel">FF131218</color>
 	<color name="surface_dialog">FF18171E</color>
 	<color name="surface_dialog_header">FF201E27</color>
@@ -77,7 +77,7 @@
 	<color name="secondary_background">1FFFFFFF</color>
 	<color name="dialog_tint">FF18171E</color>
 	<color name="dialog_header_tint">FF201E27</color>
-	<color name="background">FF000000</color>
+	<color name="background">FF4B5F69</color>
 	<color name="bg_image">B3FFFFFF</color>
 	<color name="bg_overlay">60FFFFFF</color>
 	<color name="black">FF000000</color>
