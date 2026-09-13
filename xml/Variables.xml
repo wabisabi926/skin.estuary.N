@@ -811,6 +811,19 @@
 		<value condition="!String.IsEmpty(VideoPlayer.HdrType)">$INFO[VideoPlayer.HdrType]</value>
 		<value>SDR</value>
 	</variable>
+	<variable name="NaraChannelLayoutVar">
+		<value condition="[String.IsEqual(VideoPlayer.AudioCodec,eac3_ddp_atmos) | String.IsEqual(VideoPlayer.AudioCodec,truehd_atmos) | String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma_x) | String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma_x_imax)] + String.IsEqual(VideoPlayer.AudioChannels,6)">osd/nara/process-info/channels/5.1.2.png</value>
+		<value condition="[String.IsEqual(VideoPlayer.AudioCodec,eac3_ddp_atmos) | String.IsEqual(VideoPlayer.AudioCodec,truehd_atmos) | String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma_x) | String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma_x_imax)] + String.IsEqual(VideoPlayer.AudioChannels,8)">osd/nara/process-info/channels/7.1.2.png</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,1)">osd/nara/process-info/channels/1.0.png</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,2)">osd/nara/process-info/channels/2.0.png</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,3)">osd/nara/process-info/channels/2.1.png</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,4)">osd/nara/process-info/channels/3.1.png</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,5)">osd/nara/process-info/channels/4.1.png</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,6)">osd/nara/process-info/channels/5.1.png</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,7)">osd/nara/process-info/channels/6.1.png</value>
+		<value condition="String.IsEqual(VideoPlayer.AudioChannels,8)">osd/nara/process-info/channels/7.1.png</value>
+		<value></value>
+	</variable>
 	<variable name="PlayerControlsRepeatImageVar">
 		<value condition="Playlist.IsRepeatOne">osd/fullscreen/buttons/repeat-one.png</value>
 		<value condition="Playlist.IsRepeat">osd/fullscreen/buttons/repeat-all.png</value>
