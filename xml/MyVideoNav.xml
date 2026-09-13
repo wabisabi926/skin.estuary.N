@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol always="true">51</defaultcontrol>
-	<onload condition="!Skin.HasSetting(VideoDefaultViewSet)">Container.SetViewMode(51); Skin.SetBool(VideoDefaultViewSet)</onload>
+	<defaultcontrol always="true">50</defaultcontrol>
 	<onunload>ClearProperty(NaraMediaMenu.Browse)</onunload>
 	<backgroundcolor>background</backgroundcolor>
 	<views>50,51,52,501,500</views>
