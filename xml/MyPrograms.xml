@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol always="true">52</defaultcontrol>
+	<defaultcontrol always="true">55</defaultcontrol>
+	<onload condition="!Skin.HasSetting(ProgramsDefaultViewSet)">Container.SetViewMode(55); Skin.SetBool(ProgramsDefaultViewSet)</onload>
 	<backgroundcolor>background</backgroundcolor>
 	<views>50,52,55,500</views>
 	<menucontrol>9000</menucontrol>
