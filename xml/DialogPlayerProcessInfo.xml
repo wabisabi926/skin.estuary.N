@@ -248,132 +248,178 @@
 				</include>
 			</control>
  
-			<control type="grouplist">
+			<control type="group">
 				<left>1268</left>
 				<top>72</top>
-				<width>584</width>
+				<width>600</width>
 				<height>470</height>
-				<orientation>vertical</orientation>
-				<itemgap>0</itemgap>
 				<control type="grouplist">
-					<width>584</width>
+					<width>600</width>
 					<height>240</height>
 					<orientation>vertical</orientation>
 					<itemgap>0</itemgap>
 					<visible>!String.IsEmpty(Player.Process(doviprofile))</visible>
 				<include content="NaraProcessInfoSection">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="icon" value="osd/nara/process-info/dv-logo.png" />
 					<param name="label" value="$LOCALIZE[31652]" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(doviprofile))" />
 				</include>
 				<include content="NaraProcessInfoRow">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="label" value="$LOCALIZE[31668]" />
 					<param name="value" value="$INFO[Player.Process(dovicmversion)]" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(dovicmversion))" />
 				</include>
 				<include content="NaraProcessInfoRow">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="label" value="$LOCALIZE[31654]" />
 					<param name="value" value="$INFO[Player.Process(doviprofile)]" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(doviprofile))" />
 				</include>
 				<include content="NaraProcessInfoRow">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="label" value="$LOCALIZE[31655]" />
 					<param name="value" value="$INFO[Player.Process(dovilevel)]" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(doviprofile))" />
 				</include>
 				<include content="NaraProcessStatusRow">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="label" value="$LOCALIZE[31656]" />
 					<param name="info" value="Player.Process(dovirpupresent)" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(doviprofile))" />
 				</include>
 				<include content="NaraProcessStatusRow">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="label" value="$LOCALIZE[31657]" />
 					<param name="info" value="Player.Process(doviblpresent)" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(doviprofile))" />
 				</include>
 				<include content="NaraProcessStatusRow">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="label" value="$LOCALIZE[31658]" />
 					<param name="info" value="Player.Process(dovielpresent)" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(doviprofile))" />
 				</include>
 				<include content="NaraProcessInfoRow">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="label" value="$LOCALIZE[31669]" />
 					<param name="label_width" value="255" />
 					<param name="value" value="$INFO[Player.Process(dovieltype)]" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(dovieltype))" />
 				</include>
 				</control>
-				<control type="group">
-					<width>584</width>
-					<height>20</height>
-					<visible>!String.IsEmpty(Player.Process(doviprofile)) + [!String.IsEmpty(Player.Process(hdrmasteringdisplay)) | !String.IsEmpty(Player.Process(hdrcontentlight)) | !String.IsEmpty(Player.Process(dovirpumasteringdisplay)) | !String.IsEmpty(Player.Process(dovirpucontentlight)) | !String.IsEmpty(Player.Process(doviactivearea))]</visible>
-				</control>
+				<control type="grouplist">
+					<visible>String.IsEmpty(Player.Process(doviprofile))</visible>
+					<top>0</top>
+					<width>600</width>
+					<height>210</height>
+					<orientation>vertical</orientation>
+					<itemgap>0</itemgap>
 				<include content="NaraProcessInfoSection">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="icon" value="osd/nara/process-info/layer-group.png" />
 					<param name="label" value="$LOCALIZE[31625]" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(hdrmasteringdisplay)) | !String.IsEmpty(Player.Process(hdrcontentlight)) | !String.IsEmpty(Player.Process(dovirpumasteringdisplay)) | !String.IsEmpty(Player.Process(dovirpucontentlight)) | !String.IsEmpty(Player.Process(doviactivearea))" />
 				</include>
 				<include content="NaraProcessInfoRow">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="label" value="$LOCALIZE[31670]" />
 					<param name="value" value="$INFO[Player.Process(hdrmasteringdisplay)]" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(hdrmasteringdisplay))" />
 				</include>
 				<include content="NaraProcessInfoRow">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="label" value="$LOCALIZE[31671]" />
 					<param name="label_width" value="235" />
 					<param name="value" value="$INFO[Player.Process(hdrcontentlight)]" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(hdrcontentlight))" />
 				</include>
 				<include content="NaraProcessInfoRow">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="label" value="$LOCALIZE[31672]" />
 					<param name="value" value="$INFO[Player.Process(dovirpumasteringdisplay)]" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(dovirpumasteringdisplay))" />
 				</include>
 				<include content="NaraProcessInfoRow">
-					<param name="width" value="584" />
+					<param name="width" value="600" />
 					<param name="label" value="$LOCALIZE[31673]" />
 					<param name="value" value="$INFO[Player.Process(dovirpucontentlight)]" />
 					<param name="visible" value="!String.IsEmpty(Player.Process(dovirpucontentlight))" />
 				</include>
 				<include content="NaraProcessInfoRow">
-				<param name="width" value="584" />
+				<param name="width" value="600" />
 				<param name="label" value="$LOCALIZE[31674]" />
 				<param name="value" value="$INFO[Player.Process(doviactivearea)]" />
 				<param name="visible" value="!String.IsEmpty(Player.Process(doviactivearea))" />
 			</include>
+				</control>
+				<control type="grouplist">
+					<visible>!String.IsEmpty(Player.Process(doviprofile))</visible>
+					<top>260</top>
+					<width>600</width>
+					<height>210</height>
+					<orientation>vertical</orientation>
+					<itemgap>0</itemgap>
+				<include content="NaraProcessInfoSection">
+					<param name="width" value="600" />
+					<param name="icon" value="osd/nara/process-info/layer-group.png" />
+					<param name="label" value="$LOCALIZE[31625]" />
+					<param name="visible" value="!String.IsEmpty(Player.Process(hdrmasteringdisplay)) | !String.IsEmpty(Player.Process(hdrcontentlight)) | !String.IsEmpty(Player.Process(dovirpumasteringdisplay)) | !String.IsEmpty(Player.Process(dovirpucontentlight)) | !String.IsEmpty(Player.Process(doviactivearea))" />
+				</include>
+				<include content="NaraProcessInfoRow">
+					<param name="width" value="600" />
+					<param name="label" value="$LOCALIZE[31670]" />
+					<param name="value" value="$INFO[Player.Process(hdrmasteringdisplay)]" />
+					<param name="visible" value="!String.IsEmpty(Player.Process(hdrmasteringdisplay))" />
+				</include>
+				<include content="NaraProcessInfoRow">
+					<param name="width" value="600" />
+					<param name="label" value="$LOCALIZE[31671]" />
+					<param name="label_width" value="235" />
+					<param name="value" value="$INFO[Player.Process(hdrcontentlight)]" />
+					<param name="visible" value="!String.IsEmpty(Player.Process(hdrcontentlight))" />
+				</include>
+				<include content="NaraProcessInfoRow">
+					<param name="width" value="600" />
+					<param name="label" value="$LOCALIZE[31672]" />
+					<param name="value" value="$INFO[Player.Process(dovirpumasteringdisplay)]" />
+					<param name="visible" value="!String.IsEmpty(Player.Process(dovirpumasteringdisplay))" />
+				</include>
+				<include content="NaraProcessInfoRow">
+					<param name="width" value="600" />
+					<param name="label" value="$LOCALIZE[31673]" />
+					<param name="value" value="$INFO[Player.Process(dovirpucontentlight)]" />
+					<param name="visible" value="!String.IsEmpty(Player.Process(dovirpucontentlight))" />
+				</include>
+				<include content="NaraProcessInfoRow">
+				<param name="width" value="600" />
+				<param name="label" value="$LOCALIZE[31674]" />
+				<param name="value" value="$INFO[Player.Process(doviactivearea)]" />
+				<param name="visible" value="!String.IsEmpty(Player.Process(doviactivearea))" />
+			</include>
+				</control>
 			</control>
 			<control type="group">
-				<left>1420</left>
-				<top>312</top>
-				<width>280</width>
-				<height>169</height>
+				<left>1389</left>
+				<top>260</top>
+				<width>358</width>
+				<height>216</height>
 				<visible>String.IsEmpty(Player.Process(doviprofile)) + [!String.IsEmpty(Player.Process(hdrmasteringdisplay)) | !String.IsEmpty(Player.Process(hdrcontentlight)) | !String.IsEmpty(Player.Process(dovirpumasteringdisplay)) | !String.IsEmpty(Player.Process(dovirpucontentlight)) | !String.IsEmpty(Player.Process(doviactivearea))]</visible>
 				<include content="NaraProcessChannelLayout">
-					<param name="width" value="280" />
-					<param name="height" value="169" />
+					<param name="width" value="358" />
+					<param name="height" value="216" />
 				</include>
 			</control>
 			<control type="group">
-				<left>1420</left>
-				<top>342</top>
-				<width>280</width>
-				<height>169</height>
+				<left>1389</left>
+				<top>340</top>
+				<width>358</width>
+				<height>216</height>
 				<visible>!String.IsEmpty(Player.Process(doviprofile)) + String.IsEmpty(Player.Process(hdrmasteringdisplay)) + String.IsEmpty(Player.Process(hdrcontentlight)) + String.IsEmpty(Player.Process(dovirpumasteringdisplay)) + String.IsEmpty(Player.Process(dovirpucontentlight)) + String.IsEmpty(Player.Process(doviactivearea))</visible>
 				<include content="NaraProcessChannelLayout">
-					<param name="width" value="280" />
-					<param name="height" value="169" />
+					<param name="width" value="358" />
+					<param name="height" value="216" />
 				</include>
 			</control>
  
@@ -402,13 +448,13 @@
 
 		<control type="group">
 			<visible>!String.IsEmpty(Player.Process(doviprofile)) + [!String.IsEmpty(Player.Process(hdrmasteringdisplay)) | !String.IsEmpty(Player.Process(hdrcontentlight)) | !String.IsEmpty(Player.Process(dovirpumasteringdisplay)) | !String.IsEmpty(Player.Process(dovirpucontentlight)) | !String.IsEmpty(Player.Process(doviactivearea))]</visible>
-			<right>30</right>
-			<top>60</top>
-			<width>280</width>
-			<height>169</height>
+			<right>60</right>
+			<top>18</top>
+			<width>358</width>
+			<height>216</height>
 			<include content="NaraProcessChannelLayout">
-				<param name="width" value="280" />
-				<param name="height" value="169" />
+				<param name="width" value="358" />
+				<param name="height" value="216" />
 			</include>
 		</control>
  
@@ -647,11 +693,11 @@
 			<control type="group">
 				<left>1420</left>
 				<top>222</top>
-				<width>280</width>
-				<height>169</height>
+				<width>358</width>
+				<height>216</height>
 				<include content="NaraProcessChannelLayout">
-					<param name="width" value="280" />
-					<param name="height" value="169" />
+					<param name="width" value="358" />
+					<param name="height" value="216" />
 				</include>
 			</control>
  
