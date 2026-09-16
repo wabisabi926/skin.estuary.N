@@ -1125,6 +1125,31 @@ msgctxt "#31695"
 msgid "Lock background"
 msgstr "锁定背景"
 
+#: /xml/MusicVisualisation.xml
+msgctxt "#31700"
+msgid "Loading lyrics…"
+msgstr "正在读取歌词…"
+
+#: /xml/MusicVisualisation.xml
+msgctxt "#31701"
+msgid "No lyrics for this track"
+msgstr "这首歌暂无歌词"
+
+#: /xml/MusicVisualisation.xml
+msgctxt "#31702"
+msgid "Embedded lyrics and .lrc files next to your music are supported."
+msgstr "支持歌曲内嵌歌词，以及与音乐文件同目录、同名的 .lrc 文件。"
+
+#: /xml/Custom_1113_MusicAudioDialog.xml
+msgctxt "#31703"
+msgid "Mute"
+msgstr "静音"
+
+#: /xml/Includes_Settings.xml
+msgctxt "#31704"
+msgid "More"
+msgstr "更多"
+
 #~ msgctxt "#31025"
 #~ msgid "No favourites found. You can add any item from media views to this list by using the context menu."
 #~ msgstr "未找到收藏。你可以从媒体浏览使用上下文菜单添加收藏项目。"

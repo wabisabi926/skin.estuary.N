@@ -82,12 +82,10 @@
 				<height>180</height>
 				<visible>[Integer.IsGreater(Container(59).NumItems,0) | Container(59).IsUpdating] + !Skin.HasSetting(no_fanart) + !String.IsEmpty(ListItem.Art(fanart))</visible>
 				<animation effect="fade" start="0" end="100" time="220">Visible</animation>
-				<!-- Keep a neutral surface visible while the new playback target is
-				     resolving so artwork from the previous TV show can never flash. -->
 				<control type="image">
 					<width>620</width>
 					<height>180</height>
-					<texture cornerradius="4" colordiffuse="selection_surface">colors/white.png</texture>
+					<texture material="glass" glassstyle="regular" glassedge="soft" cornerradius="4">colors/white.png</texture>
 				</control>
 				<!-- The provider intentionally retains its previous item during an
 				     asynchronous refresh. Reveal only the newly completed snapshot. -->
@@ -125,7 +123,7 @@
 							<width>310</width>
 							<height>48</height>
 							<font>font10</font>
-							<textcolor>text_secondary</textcolor>
+							<textcolor>E6FFFFFF</textcolor>
 							<label>$INFO[Container(59).ListItem.Plot]</label>
 						</control>
 						<control type="progress">
@@ -145,7 +143,7 @@
 							<height>30</height>
 							<font>font10</font>
 							<align>right</align>
-							<textcolor>text_secondary</textcolor>
+							<textcolor>E6FFFFFF</textcolor>
 							<label>$INFO[Container(59).ListItem.Duration]</label>
 						</control>
 					</control>

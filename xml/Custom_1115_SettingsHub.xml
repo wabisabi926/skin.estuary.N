@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="1115" type="dialog">
+	<defaultcontrol>101</defaultcontrol>
+	<controls>
+		<include content="NaraSettingsHub">
+			<param name="modal" value="true" />
+		</include>
+	</controls>
+	<include>Animation_DialogPopupOpenClose</include>
+</window>

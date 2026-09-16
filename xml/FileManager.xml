@@ -21,7 +21,7 @@
 			<aspectratio align="right">scale</aspectratio>
 			<fadetime>250</fadetime>
 			<texture background="true" colordiffuse="B3FFFFFF">$VAR[NaraFileManagerRandomFanartVar]</texture>
-			<visible>!Skin.HasSetting(no_fanart) + ![String.IsEmpty(Skin.String(Nara.SharedRandomFanart.LockedPath)) + String.IsEmpty(Window(home).Property(Home.SharedRandomFanart)) + String.IsEmpty(Window(home).Property(Home.SharedRandomFanart.SessionPath)) + String.IsEmpty(Container(16090).ListItem.Art(fanart))] + ![Player.HasVideo | Player.HasAudio | Player.HasGame]</visible>
+			<visible>!Skin.HasSetting(no_fanart) + ![String.IsEmpty(Skin.String(Nara.SharedRandomFanart.LockedPath)) + String.IsEmpty(Window(home).Property(Home.SharedRandomFanart)) + String.IsEmpty(Window(home).Property(Home.SharedRandomFanart.SessionPath)) + String.IsEmpty(Container(16090).ListItem.Art(fanart))] + ![Player.HasVideo | Player.HasGame]</visible>
 		</control>
 		<control type="image">
 			<include>FullScreenDimensions</include>
@@ -78,7 +78,7 @@
 			<top>160</top>
 			<width>1750</width>
 			<height>870</height>
-			<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="0.75" glassbordercolor="0CFFFFFF" glasshighlight="0.30" glassrefraction="2.5" glassrefractionwidth="14" glassdispersion="0.12" glassdepth="0.55" cornerradius="30">colors/white.png</texture>
+			<texture material="glass" glassstyle="frosted" cornerradius="42">colors/white.png</texture>
 		</control>
 		<control type="group">
 			<left>85</left>
@@ -149,7 +149,7 @@
 						<width>32</width>
 						<height>32</height>
 						<aspectratio align="center" aligny="center">keep</aspectratio>
-						<texture colordiffuse="text_primary">$VAR[ListWatchedIconVar]</texture>
+						<texture colordiffuse="$VAR[FileManagerVideoIconColorVar]">$VAR[ListWatchedIconVar]</texture>
 						<visible>ListItem.Property(FileManager.IsVideo)</visible>
 					</control>
 					<control type="image">
@@ -214,7 +214,7 @@
 						<top>3</top>
 						<width>1700</width>
 						<height>72</height>
-						<texture colordiffuse="focus_soft_surface" border="27">lists/focus.png</texture>
+						<texture colordiffuse="glass_focus_medium" border="27">lists/focus.png</texture>
 					</control>
 					<control type="image">
 						<left>25</left>
@@ -231,7 +231,7 @@
 						<width>32</width>
 						<height>32</height>
 						<aspectratio align="center" aligny="center">keep</aspectratio>
-						<texture colordiffuse="text_primary">$VAR[ListWatchedIconVar]</texture>
+						<texture colordiffuse="$VAR[FileManagerVideoIconColorVar]">$VAR[ListWatchedIconVar]</texture>
 						<visible>ListItem.Property(FileManager.IsVideo)</visible>
 					</control>
 					<control type="image">

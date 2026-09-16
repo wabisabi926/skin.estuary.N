@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<defaultcontrol always="true">110</defaultcontrol>
+	<controls>
+		<!-- CU LRC needs its list for initialization; Nara renders the published lyrics. -->
+		<control type="list" id="110">
+			<left>1040</left>
+			<top>222</top>
+			<width>720</width>
+			<height>560</height>
+			<animation effect="slide" end="0,-10000" time="0" condition="String.IsEqual(Window.Property(NaraMusic.IntegratedLyrics),true)">Conditional</animation>
+			<scrolltime tween="sine">300</scrolltime>
+			<onup>110</onup>
+			<ondown>110</ondown>
+			<itemlayout width="720" height="80">
+				<control type="label">
+					<width>710</width>
+					<height>80</height>
+					<font>font27</font>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Label]</label>
+					<textcolor>70FFFFFF</textcolor>
+				</control>
+			</itemlayout>
+			<focusedlayout width="720" height="80">
+				<control type="label">
+					<width>710</width>
+					<height>80</height>
+					<font>font32_title</font>
+					<aligny>center</aligny>
+					<label>$INFO[ListItem.Label]</label>
+					<textcolor>FFFFFFFF</textcolor>
+					<scroll>true</scroll>
+				</control>
+			</focusedlayout>
+		</control>
+		<control type="label" id="200">
+			<visible>false</visible>
+		</control>
+	</controls>
+</window>

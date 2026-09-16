@@ -145,6 +145,11 @@
 			<style>lighten</style>
 		</font>
 		<font>
+			<name>font_home_tabs</name>
+			<filename>inter.ttf</filename>
+			<size>26</size>
+		</font>
+		<font>
 			<name>font_home_nav</name>
 			<filename>inter.ttf</filename>
 			<size>24</size>

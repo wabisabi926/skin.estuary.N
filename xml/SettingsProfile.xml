@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<defaultcontrol always="true">9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<controls>
-		<include>DefaultBackground</include>
+		<include>NaraSettingsBackground</include>
 		<control type="group" id="9100">
 			<include>OpenClose_Right</include>
 			<left>472</left>
@@ -35,9 +35,7 @@
 						<top>5</top>
 						<width>320</width>
 						<height>380</height>
-						<texture>dialogs/dialog-bg-nobo.png</texture>
-						<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-						<bordersize>20</bordersize>
+						<texture colordiffuse="surface_raised" cornerradius="24">colors/white.png</texture>
 					</control>
 					<control type="image">
 						<left>51</left>
@@ -87,16 +85,13 @@
 							<top>5</top>
 							<width>320</width>
 							<height>380</height>
-							<texture>dialogs/dialog-bg-nobo.png</texture>
-							<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-							<bordersize>20</bordersize>
+							<texture colordiffuse="surface_raised" cornerradius="24">colors/white.png</texture>
 						</control>
 						<control type="image">
 							<top>5</top>
 							<width>320</width>
 							<height>380</height>
-							<texture colordiffuse="focus_card_surface">colors/white.png</texture>
-							<bordersize>20</bordersize>
+							<texture colordiffuse="glass_focus_light" cornerradius="18">colors/white.png</texture>
 							<include>Animation_FocusTextureFade</include>
 						</control>
 						<control type="image">
@@ -115,8 +110,8 @@
 							<align>center</align>
 							<aligny>top</aligny>
 							<label>$INFO[ListItem.Label]</label>
-							<textcolor>focus_card_foreground</textcolor>
-							<selectedcolor>focus_card_foreground</selectedcolor>
+							<textcolor>text_primary</textcolor>
+							<selectedcolor>text_primary</selectedcolor>
 						</control>
 						<control type="label">
 							<left>10</left>
@@ -127,8 +122,8 @@
 							<align>center</align>
 							<aligny>top</aligny>
 							<label>$LOCALIZE[31029]:</label>
-							<textcolor>focus_card_foreground_muted</textcolor>
-							<selectedcolor>focus_card_foreground_muted</selectedcolor>
+							<textcolor>text_primary</textcolor>
+							<selectedcolor>text_primary</selectedcolor>
 							<visible>!String.Contains(Listitem.Label,$LOCALIZE[20058])</visible>
 						</control>
 						<control type="label">
@@ -140,8 +135,8 @@
 							<align>center</align>
 							<aligny>top</aligny>
 							<label fallback="13170">$INFO[ListItem.Label2]</label>
-							<textcolor>focus_card_foreground</textcolor>
-							<selectedcolor>focus_card_foreground</selectedcolor>
+							<textcolor>text_primary</textcolor>
+							<selectedcolor>text_primary</selectedcolor>
 							<visible>!String.Contains(Listitem.Label,$LOCALIZE[20058])</visible>
 						</control>
 					</control>
@@ -158,12 +153,12 @@
 				<ondown>9001</ondown>
 				<control type="radiobutton" id="4">
 					<label>$LOCALIZE[31057]</label>
-					<include>DefaultSettingButton</include>
+					<include>NaraSettingsRow</include>
 				</control>
 				<control type="button" id="5">
 					<label>$LOCALIZE[31058]</label>
 					<label2>$INFO[System.ProfileAutoLogin]</label2>
-					<include>DefaultSettingButton</include>
+					<include>NaraSettingsRow</include>
 					<enable>!Window.IsVisible(ProfileSettings) + !System.HasLoginScreen</enable>
 				</control>
 			</control>
@@ -171,34 +166,33 @@
 		<control type="group">
 			<depth>DepthContentPanel</depth>
 			<include>OpenClose_Left</include>
-			<include content="ContentPanel">
-				<param name="width" value="530" />
+			<include content="NaraSettingsSidebar">
+				<param name="left" value="40" />
+				<param name="top" value="125" />
+				<param name="width" value="430" />
+				<param name="height" value="850" />
 			</include>
 			<control type="list" id="9000">
-				<left>0</left>
-				<top>100</top>
-				<width>470</width>
-				<height>597</height>
 				<onleft>9100</onleft>
 				<onright>9100</onright>
 				<onup>9000</onup>
 				<ondown>9000</ondown>
 				<scrolltime>300</scrolltime>
-				<itemlayout height="85" width="470">
+				<itemlayout height="85" width="398">
 					<control type="label">
 						<left>30</left>
 						<right>30</right>
 						<bottom>0</bottom>
 						<label>$INFO[ListItem.Label]</label>
-						<font>font37</font>
+						<font>font26</font>
 						<aligny>center</aligny>
 					</control>
 				</itemlayout>
-				<focusedlayout height="85" width="470">
+				<focusedlayout height="85" width="398">
 					<control type="image">
 						<right>0</right>
 						<bottom>0</bottom>
-						<texture colordiffuse="focus_surface">lists/focus.png</texture>
+						<texture colordiffuse="glass_focus_light" cornerradius="18">colors/white.png</texture>
 						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(9000)">Conditional</animation>
 					</control>
 					<control type="label">
@@ -206,9 +200,9 @@
 						<right>30</right>
 						<bottom>0</bottom>
 						<label>$INFO[ListItem.Label]</label>
-						<textcolor>$VAR[FocusLayoutTextColor9000Var]</textcolor>
-						<selectedcolor>$VAR[FocusLayoutTextColor9000Var]</selectedcolor>
-						<font>font37</font>
+						<textcolor>text_primary</textcolor>
+						<selectedcolor>text_primary</selectedcolor>
+						<font>font26</font>
 						<aligny>center</aligny>
 					</control>
 				</focusedlayout>
@@ -216,14 +210,18 @@
 					<item id="1">
 						<label>$LOCALIZE[128]</label>
 						<onclick>noop</onclick>
-						<icon></icon>
+						<icon />
 					</item>
 					<item id="2">
 						<label>$LOCALIZE[13200]</label>
 						<onclick>noop</onclick>
-						<icon></icon>
+						<icon />
 					</item>
 				</content>
+				<left>56</left>
+				<top>145</top>
+				<width>398</width>
+				<height>790</height>
 			</control>
 		</control>
 		<include content="TopBar">

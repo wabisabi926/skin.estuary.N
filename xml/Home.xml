@@ -8,12 +8,17 @@
 	<onload condition="!Skin.HasSetting(NaraHomeMenuDefaultsMusicTVOff)">Skin.SetBool(NaraHomeMenuDefaultsMusicTVOff)</onload>
 	<!-- Only choose the initial section once. Returning from a child window must
 	     leave Kodi's remembered home control intact. -->
-	<onload condition="!Window.Previous(filemanager) + String.IsEmpty(Window(home).Property(Home.Section)) + !Skin.HasSetting(HomeMenuNoMovieButton)">SetFocus(9012)</onload>
-	<onload condition="!Window.Previous(filemanager) + String.IsEmpty(Window(home).Property(Home.Section)) + Skin.HasSetting(HomeMenuNoMovieButton)">SetFocus(9011)</onload>
-	<onload condition="Window.Previous(filemanager)">SetProperty(Home.Section,files,home)</onload>
-	<onload condition="Window.Previous(filemanager) + String.IsEqual(Window(home).Property(Home.FileReturnControl),15010)">SetFocus(15010)</onload>
-	<onload condition="Window.Previous(filemanager) + String.IsEqual(Window(home).Property(Home.FileReturnControl),15020)">SetFocus(15020)</onload>
-	<onload condition="Window.Previous(filemanager) + !String.IsEqual(Window(home).Property(Home.FileReturnControl),15010) + !String.IsEqual(Window(home).Property(Home.FileReturnControl),15020)">SetFocus(9017)</onload>
+	<onload condition="String.IsEmpty(Window(home).Property(Home.Section)) + !Skin.HasSetting(HomeMenuNoMovieButton)">SetFocus(9012)</onload>
+	<onload condition="String.IsEmpty(Window(home).Property(Home.Section)) + Skin.HasSetting(HomeMenuNoMovieButton)">SetFocus(9011)</onload>
+	<onload condition="Window.Previous(filemanager) + String.IsEqual(Window(home).Property(Home.Section),files) + String.IsEqual(Window(home).Property(Home.FileReturnControl),15010)">SetFocus(15010)</onload>
+	<onload condition="Window.Previous(filemanager) + String.IsEqual(Window(home).Property(Home.Section),files) + String.IsEqual(Window(home).Property(Home.FileReturnControl),15020)">SetFocus(15020)</onload>
+	<onload condition="Window.Previous(filemanager) + String.IsEqual(Window(home).Property(Home.Section),files) + String.IsEqual(Window(home).Property(Home.FileReturnControl),9017)">SetFocus(9017)</onload>
+	<onload>ClearProperty(Home.FileReturnControl,home)</onload>
+	<!-- Record file-entry focus at departure; opening settings must not reuse an old file selection. -->
+	<onunload>ClearProperty(Home.FileReturnControl,home)</onunload>
+	<onunload condition="Window.Next(filemanager) + Control.HasFocus(15010)">SetProperty(Home.FileReturnControl,15010,home)</onunload>
+	<onunload condition="Window.Next(filemanager) + Control.HasFocus(15020)">SetProperty(Home.FileReturnControl,15020,home)</onunload>
+	<onunload condition="Window.Next(filemanager) + Control.HasFocus(9017)">SetProperty(Home.FileReturnControl,9017,home)</onunload>
 	<!-- Carry the exact shared fanart used by Search, Favorites and Files into the
 	     standalone file manager. This includes locked and just-unlocked paths. -->
 	<onunload condition="Window.Next(filemanager) + ![String.IsEmpty(Skin.String(Nara.SharedRandomFanart.LockedPath)) + String.IsEmpty(Window(home).Property(Home.SharedRandomFanart.SessionPath)) + String.IsEmpty(Container(16090).ListItem.Art(fanart))]">SetProperty(Home.SharedRandomFanart,$ESCVAR[NaraSharedRandomFanartVar],home)</onunload>
@@ -27,14 +32,17 @@
 			<visible allowhiddenfocus="true">Control.HasFocus(20001)</visible>
 		</control>
 		<include>DefaultBackground</include>
-		<control type="multiimage">
+		<control type="multiimage" id="9090">
 			<depth>DepthBackground</depth>
 			<include>FullScreenDimensions</include>
-			<aspectratio>scale</aspectratio>
+			<aspectratio align="right">scale</aspectratio>
 			<fadetime>350</fadetime>
 			<animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
 			<animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
 			<animation effect="fade" time="400">VisibleChange</animation>
+			<include content="Animation_NaraFanartFocus">
+				<param name="condition" value="$EXP[NaraHomeFanartFocused]" />
+			</include>
 			<imagepath background="true">$VAR[HomeFanartVar]</imagepath>
 			<visible>![Player.HasVideo | Player.HasAudio | Player.HasGame]</visible>
 		</control>
@@ -56,7 +64,7 @@
 			<include>FullScreenDimensions</include>
 			<aspectratio align="right">scale</aspectratio>
 			<fadetime>250</fadetime>
-			<texture background="true" colordiffuse="B3FFFFFF">$VAR[NaraSharedRandomFanartVar]</texture>
+			<texture background="true" colordiffuse="CCFFFFFF">$VAR[NaraSharedRandomFanartVar]</texture>
 			<visible>[String.IsEqual(Window(home).Property(Home.Section),files) | String.IsEqual(Window(home).Property(Home.Section),favorites)] + !Skin.HasSetting(no_fanart) + ![String.IsEmpty(Skin.String(Nara.SharedRandomFanart.LockedPath)) + String.IsEmpty(Window(home).Property(Home.SharedRandomFanart.SessionPath)) + String.IsEmpty(Container(16090).ListItem.Art(fanart))] + ![Player.HasVideo | Player.HasAudio | Player.HasGame]</visible>
 		</control>
 		<!-- Standard sections match the movie/TV information pages. Files and
@@ -64,20 +72,20 @@
 		<control type="group">
 			<include>FullScreenDimensions</include>
 			<visible>![Player.HasVideo | Player.HasAudio | Player.HasGame]</visible>
-			<control type="image">
-				<include>FullScreenDimensions</include>
-				<texture colordiffuse="1A000000">colors/black.png</texture>
-			</control>
+			<include content="NaraFanartReveal">
+				<param name="source" value="9090" />
+				<param name="enabled" value="$EXP[NaraHomeFanartSettledRow] + !System.HasActiveModalDialog" />
+				<param name="resting_opacity" value="20" />
+			</include>
 			<!-- Keep the navigation and clock legible over bright fanart. Reuse the
 			     lower scrim texture upside down so it fades from the top edge. -->
 			<control type="image">
 				<width>1920</width>
 				<height>220</height>
 				<aspectratio>stretch</aspectratio>
-				<texture flipy="true" colordiffuse="66FFFFFF">overlays/overlayfade.png</texture>
+				<texture flipy="true" colordiffuse="33FFFFFF">overlays/overlayfade.png</texture>
 			</control>
-			<!-- Give the focused file path a stable reading zone without drawing a
-			     separate bar. This mirrors the top navigation scrim at lower opacity. -->
+			<!-- Give the focused file path a stable reading zone without drawing a separate bar. -->
 			<control type="image">
 				<top>860</top>
 				<width>1920</width>
@@ -91,6 +99,9 @@
 				<height>1080</height>
 				<aspectratio>stretch</aspectratio>
 				<texture>overlays/detail-left-scrim.png</texture>
+				<include content="Animation_NaraScrimFocus">
+					<param name="condition" value="$EXP[NaraHomeFanartFocused]" />
+				</include>
 				<visible>![String.IsEqual(Window(home).Property(Home.Section),files) | String.IsEqual(Window(home).Property(Home.Section),favorites)]</visible>
 			</control>
 			<control type="image">
@@ -101,6 +112,11 @@
 				<texture colordiffuse="opacity_medium">overlays/overlayfade.png</texture>
 				<visible>![String.IsEqual(Window(home).Property(Home.Section),files) | String.IsEqual(Window(home).Property(Home.Section),favorites)]</visible>
 			</control>
+		</control>
+		<control type="group">
+			<visible>String.IsEqual(Window(home).Property(Home.Section),search)</visible>
+			<include>Visible_Fade</include>
+			<include>NaraSearchBackground</include>
 		</control>
 		<control type="group">
 			<animation effect="fade" start="100" end="0" time="100">WindowClose</animation>
@@ -538,7 +554,6 @@
 						<right>80</right>
 						<height>281</height>
 						<orientation>horizontal</orientation>
-						<onfocus>SetProperty(Home.FileReturnControl,15010,home)</onfocus>
 						<onleft>noop</onleft>
 						<onright>noop</onright>
 						<onup>9000</onup>
@@ -564,10 +579,6 @@
 								<animation effect="zoom" start="104" end="100" time="80" tween="sine" easing="inout" center="132.5,132.5">UnFocus</animation>
 								<include content="HomeSourceCardLayout">
 									<param name="focused" value="true" />
-									<param name="glass_border" value="1.5" />
-									<param name="glass_border_color" value="A6FFFFFF" />
-									<param name="glass_highlight" value="0.45" />
-									<param name="glass_depth" value="0.65" />
 								</include>
 							</control>
 						</focusedlayout>
@@ -587,7 +598,6 @@
 						<right>0</right>
 						<height>320</height>
 						<orientation>vertical</orientation>
-						<onfocus>SetProperty(Home.FileReturnControl,15020,home)</onfocus>
 						<onleft>noop</onleft>
 						<onright>noop</onright>
 						<onup condition="Integer.IsGreater(Container(15010).NumItems,0)">15010</onup>
@@ -615,10 +625,6 @@
 								<include content="HomeFolderCardLayout">
 									<param name="focused" value="true" />
 									<param name="icon" value="DefaultFolder.png" />
-									<param name="glass_border" value="1.5" />
-									<param name="glass_border_color" value="A6FFFFFF" />
-									<param name="glass_highlight" value="0.45" />
-									<param name="glass_depth" value="0.65" />
 								</include>
 							</control>
 						</focusedlayout>
@@ -652,52 +658,55 @@
 				     sections collapse without any width or position bookkeeping. -->
 				<control type="grouplist" id="9000">
 					<left>0</left>
-					<top>23</top>
+					<top>20</top>
 					<width>1920</width>
-					<height>205</height>
+					<height>60</height>
 					<orientation>horizontal</orientation>
 					<align>center</align>
 					<itemgap>0</itemgap>
+					<texturebackground material="glass" glassstyle="regular" cornerradius="30">colors/white.png</texturebackground>
 					<renderfocusedlast>true</renderfocusedlast>
 					<onfocus>ClearProperty(Search.NumbersVisible,home)</onfocus>
 					<onleft>804</onleft>
 					<onright>804</onright>
 					<control type="togglebutton" id="9011">
-						<width min="54" max="180">auto</width>
-						<height>54</height>
+						<width min="80" max="240">auto</width>
+						<height>60</height>
 						<label>$LOCALIZE[137]</label>
-						<font>font_home_nav</font>
+						<font>font_home_tabs</font>
 						<align>center</align>
 						<aligny>center</aligny>
-						<textoffsetx>26</textoffsetx>
+						<textoffsetx>30</textoffsetx>
 						<textcolor>$VAR[HomeNavSearchTextColorVar]</textcolor>
-						<focusedcolor>FF101010</focusedcolor>
-						<texturefocus border="27">home/nav-left-focus.png</texturefocus>
-						<texturenofocus border="27">home/nav-left-base.png</texturenofocus>
-						<alttexturefocus border="27">home/nav-left-focus.png</alttexturefocus>
-						<alttexturenofocus border="27">home/nav-left-selected.png</alttexturenofocus>
+						<focusedcolor>text_primary</focusedcolor>
+						<texturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</texturefocus>
+						<texturenofocus />
+						<alttexturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</alttexturefocus>
+						<alttexturenofocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_light">colors/white.png</alttexturenofocus>
 						<usealttexture>String.IsEqual(Window(home).Property(Home.Section),search) + !Control.HasFocus(804) + !ControlGroup(8100).HasFocus</usealttexture>
+						<onfocus condition="!String.IsEqual(Window(home).Property(Home.Section),search) + !$EXP[NaraSearchHasResults]">ClearProperty(Search.KeyboardHidden,home)</onfocus>
+						<onfocus condition="!String.IsEqual(Window(home).Property(Home.Section),search) + $EXP[NaraSearchHasResults]">SetProperty(Search.KeyboardHidden,true,home)</onfocus>
 						<onfocus>SetProperty(Home.Section,search,home)</onfocus>
 						<onup>noop</onup>
-						<ondown condition="$EXP[NaraSearchKeyboardHidden] + $EXP[NaraSearchMoviesActive]">16101</ondown>
-						<ondown condition="$EXP[NaraSearchKeyboardHidden] + $EXP[NaraSearchTVShowsActive]">16102</ondown>
+						<ondown condition="$EXP[NaraSearchKeyboardHidden] + $EXP[NaraSearchHasResults] + $EXP[NaraSearchMoviesActive]">16101</ondown>
+						<ondown condition="$EXP[NaraSearchKeyboardHidden] + $EXP[NaraSearchHasResults] + $EXP[NaraSearchTVShowsActive]">16102</ondown>
 						<ondown>16992</ondown>
-						<onclick>noop</onclick>
+						<onclick>SetFocus(16992)</onclick>
 					</control>
 					<control type="togglebutton" id="9012">
-						<width min="54" max="180">auto</width>
-						<height>54</height>
+						<width min="80" max="240">auto</width>
+						<height>60</height>
 						<label>$LOCALIZE[342]</label>
-						<font>font_home_nav</font>
+						<font>font_home_tabs</font>
 						<align>center</align>
 						<aligny>center</aligny>
-						<textoffsetx>26</textoffsetx>
+						<textoffsetx>30</textoffsetx>
 						<textcolor>$VAR[HomeNavMoviesTextColorVar]</textcolor>
-						<focusedcolor>FF101010</focusedcolor>
-						<texturefocus border="27">home/nav-middle-focus.png</texturefocus>
-						<texturenofocus>home/nav-middle-base.png</texturenofocus>
-						<alttexturefocus border="27">home/nav-middle-focus.png</alttexturefocus>
-						<alttexturenofocus border="27">home/nav-middle-selected.png</alttexturenofocus>
+						<focusedcolor>text_primary</focusedcolor>
+						<texturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</texturefocus>
+						<texturenofocus />
+						<alttexturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</alttexturefocus>
+						<alttexturenofocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_light">colors/white.png</alttexturenofocus>
 						<usealttexture>String.IsEqual(Window(home).Property(Home.Section),movies) + !Control.HasFocus(804) + !ControlGroup(8100).HasFocus</usealttexture>
 						<onfocus>SetProperty(Home.Section,movies,home)</onfocus>
 						<onup>noop</onup>
@@ -709,19 +718,19 @@
 						<visible>!Skin.HasSetting(HomeMenuNoMovieButton)</visible>
 					</control>
 					<control type="togglebutton" id="9013">
-						<width min="54" max="180">auto</width>
-						<height>54</height>
+						<width min="80" max="240">auto</width>
+						<height>60</height>
 						<label>$LOCALIZE[20343]</label>
-						<font>font_home_nav</font>
+						<font>font_home_tabs</font>
 						<align>center</align>
 						<aligny>center</aligny>
-						<textoffsetx>26</textoffsetx>
+						<textoffsetx>30</textoffsetx>
 						<textcolor>$VAR[HomeNavTVShowsTextColorVar]</textcolor>
-						<focusedcolor>FF101010</focusedcolor>
-						<texturefocus border="27">home/nav-middle-focus.png</texturefocus>
-						<texturenofocus>home/nav-middle-base.png</texturenofocus>
-						<alttexturefocus border="27">home/nav-middle-focus.png</alttexturefocus>
-						<alttexturenofocus border="27">home/nav-middle-selected.png</alttexturenofocus>
+						<focusedcolor>text_primary</focusedcolor>
+						<texturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</texturefocus>
+						<texturenofocus />
+						<alttexturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</alttexturefocus>
+						<alttexturenofocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_light">colors/white.png</alttexturenofocus>
 						<usealttexture>String.IsEqual(Window(home).Property(Home.Section),tvshows) + !Control.HasFocus(804) + !ControlGroup(8100).HasFocus</usealttexture>
 						<onfocus>SetProperty(Home.Section,tvshows,home)</onfocus>
 						<onup>noop</onup>
@@ -733,19 +742,19 @@
 						<visible>!Skin.HasSetting(HomeMenuNoTVShowButton)</visible>
 					</control>
 					<control type="togglebutton" id="9014">
-						<width min="54" max="180">auto</width>
-						<height>54</height>
+						<width min="80" max="240">auto</width>
+						<height>60</height>
 						<label>$LOCALIZE[2]</label>
-						<font>font_home_nav</font>
+						<font>font_home_tabs</font>
 						<align>center</align>
 						<aligny>center</aligny>
-						<textoffsetx>26</textoffsetx>
+						<textoffsetx>30</textoffsetx>
 						<textcolor>$VAR[HomeNavMusicTextColorVar]</textcolor>
-						<focusedcolor>FF101010</focusedcolor>
-						<texturefocus border="27">home/nav-middle-focus.png</texturefocus>
-						<texturenofocus>home/nav-middle-base.png</texturenofocus>
-						<alttexturefocus border="27">home/nav-middle-focus.png</alttexturefocus>
-						<alttexturenofocus border="27">home/nav-middle-selected.png</alttexturenofocus>
+						<focusedcolor>text_primary</focusedcolor>
+						<texturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</texturefocus>
+						<texturenofocus />
+						<alttexturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</alttexturefocus>
+						<alttexturenofocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_light">colors/white.png</alttexturenofocus>
 						<usealttexture>String.IsEqual(Window(home).Property(Home.Section),music) + !Control.HasFocus(804) + !ControlGroup(8100).HasFocus</usealttexture>
 						<onfocus>SetProperty(Home.Section,music,home)</onfocus>
 						<onup>noop</onup>
@@ -754,19 +763,19 @@
 						<visible>!Skin.HasSetting(HomeMenuNoMusicButton)</visible>
 					</control>
 					<control type="togglebutton" id="9015">
-						<width min="54" max="180">auto</width>
-						<height>54</height>
+						<width min="80" max="240">auto</width>
+						<height>60</height>
 						<label>$LOCALIZE[19020]</label>
-						<font>font_home_nav</font>
+						<font>font_home_tabs</font>
 						<align>center</align>
 						<aligny>center</aligny>
-						<textoffsetx>26</textoffsetx>
+						<textoffsetx>30</textoffsetx>
 						<textcolor>$VAR[HomeNavLiveTVTextColorVar]</textcolor>
-						<focusedcolor>FF101010</focusedcolor>
-						<texturefocus border="27">home/nav-middle-focus.png</texturefocus>
-						<texturenofocus>home/nav-middle-base.png</texturenofocus>
-						<alttexturefocus border="27">home/nav-middle-focus.png</alttexturefocus>
-						<alttexturenofocus border="27">home/nav-middle-selected.png</alttexturenofocus>
+						<focusedcolor>text_primary</focusedcolor>
+						<texturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</texturefocus>
+						<texturenofocus />
+						<alttexturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</alttexturefocus>
+						<alttexturenofocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_light">colors/white.png</alttexturenofocus>
 						<usealttexture>String.IsEqual(Window(home).Property(Home.Section),livetv) + !Control.HasFocus(804) + !ControlGroup(8100).HasFocus</usealttexture>
 						<onfocus>SetProperty(Home.Section,livetv,home)</onfocus>
 						<onup>noop</onup>
@@ -775,19 +784,19 @@
 						<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
 					</control>
 					<control type="togglebutton" id="9016">
-						<width min="54" max="180">auto</width>
-						<height>54</height>
+						<width min="80" max="240">auto</width>
+						<height>60</height>
 						<label>$LOCALIZE[10134]</label>
-						<font>font_home_nav</font>
+						<font>font_home_tabs</font>
 						<align>center</align>
 						<aligny>center</aligny>
-						<textoffsetx>26</textoffsetx>
+						<textoffsetx>30</textoffsetx>
 						<textcolor>$VAR[HomeNavFavoritesTextColorVar]</textcolor>
-						<focusedcolor>FF101010</focusedcolor>
-						<texturefocus border="27">home/nav-middle-focus.png</texturefocus>
-						<texturenofocus>home/nav-middle-base.png</texturenofocus>
-						<alttexturefocus border="27">home/nav-middle-focus.png</alttexturefocus>
-						<alttexturenofocus border="27">home/nav-middle-selected.png</alttexturenofocus>
+						<focusedcolor>text_primary</focusedcolor>
+						<texturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</texturefocus>
+						<texturenofocus />
+						<alttexturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</alttexturefocus>
+						<alttexturenofocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_light">colors/white.png</alttexturenofocus>
 						<usealttexture>String.IsEqual(Window(home).Property(Home.Section),favorites) + !Control.HasFocus(804) + !ControlGroup(8100).HasFocus</usealttexture>
 						<onfocus>SetProperty(Home.Section,favorites,home)</onfocus>
 						<onup>noop</onup>
@@ -795,31 +804,28 @@
 						<onclick>noop</onclick>
 					</control>
 					<control type="togglebutton" id="9017">
-						<width min="54" max="180">auto</width>
-						<height>54</height>
+						<width min="80" max="240">auto</width>
+						<height>60</height>
 						<label>$LOCALIZE[561]</label>
-						<font>font_home_nav</font>
+						<font>font_home_tabs</font>
 						<align>center</align>
 						<aligny>center</aligny>
-						<textoffsetx>26</textoffsetx>
+						<textoffsetx>30</textoffsetx>
 						<textcolor>$VAR[HomeNavFilesTextColorVar]</textcolor>
-						<focusedcolor>FF101010</focusedcolor>
-						<texturefocus border="27">home/nav-right-focus.png</texturefocus>
-						<texturenofocus border="27">home/nav-right-base.png</texturenofocus>
-						<alttexturefocus border="27">home/nav-right-focus.png</alttexturefocus>
-						<alttexturenofocus border="27">home/nav-right-selected.png</alttexturenofocus>
+						<focusedcolor>text_primary</focusedcolor>
+						<texturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</texturefocus>
+						<texturenofocus />
+						<alttexturefocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_heavy">colors/white.png</alttexturefocus>
+						<alttexturenofocus cornerradius="26" cornerinset="4" colordiffuse="glass_focus_light">colors/white.png</alttexturenofocus>
 						<usealttexture>String.IsEqual(Window(home).Property(Home.Section),files) + !Control.HasFocus(804) + !ControlGroup(8100).HasFocus</usealttexture>
 						<onfocus>SetProperty(Home.Section,files,home)</onfocus>
 						<onup>noop</onup>
 						<ondown condition="Integer.IsGreater(Container(15010).NumItems,0)">15010</ondown>
 						<ondown condition="!Integer.IsGreater(Container(15010).NumItems,0) + Integer.IsGreater(Container(15020).NumItems,0)">15020</ondown>
 						<ondown condition="!Integer.IsGreater(Container(15010).NumItems,0) + !Integer.IsGreater(Container(15020).NumItems,0)">noop</ondown>
-						<onclick>SetProperty(Home.FileReturnControl,9017,home)</onclick>
 						<onclick>ActivateWindow(filemanager,$ROOT,return)</onclick>
 					</control>
 				</control>
-				<!-- The independent menu icon is centred on the same y=50 axis as
-				     the navigation capsule and clock. Only focus states draw a circle. -->
 					<control type="group" id="700">
 						<left>40</left>
 						<top>23</top>
@@ -828,21 +834,21 @@
 						<control type="image">
 							<width>54</width>
 							<height>54</height>
-							<texture border="27" colordiffuse="A2FFFFFF">home/nav-capsule.png</texture>
-							<visible>ControlGroup(8100).HasFocus</visible>
+							<texture material="glass" glassstyle="regular" cornerradius="27">colors/white.png</texture>
 						</control>
 						<control type="image">
 							<width>54</width>
 							<height>54</height>
-							<texture border="27">home/nav-capsule.png</texture>
-							<visible>Control.HasFocus(804)</visible>
+							<texture cornerradius="27" colordiffuse="glass_focus_heavy">colors/white.png</texture>
+							<visible>Control.HasFocus(804) | ControlGroup(8100).HasFocus</visible>
+							<animation effect="fade" start="0" end="100" time="180" tween="sine" easing="out">VisibleChange</animation>
 						</control>
 						<control type="image">
 							<left>13</left>
 							<top>13</top>
 							<width>28</width>
 							<height>28</height>
-							<texture colordiffuse="focus_foreground">icons/menu.png</texture>
+							<texture colordiffuse="text_primary">icons/menu.png</texture>
 							<visible>Control.HasFocus(804) | ControlGroup(8100).HasFocus</visible>
 						</control>
 						<control type="image">
@@ -850,7 +856,7 @@
 							<top>13</top>
 							<width>28</width>
 							<height>28</height>
-							<texture colordiffuse="text_secondary">icons/menu.png</texture>
+							<texture colordiffuse="E6FFFFFF">icons/menu.png</texture>
 							<visible>!Control.HasFocus(804) + !ControlGroup(8100).HasFocus</visible>
 						</control>
 						<control type="button" id="804">
@@ -882,14 +888,14 @@
 							<control type="image">
 								<width>220</width>
 								<height>220</height>
-								<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="0.75" glassbordercolor="0CFFFFFF" glasshighlight="0.30" glassrefraction="2.5" glassrefractionwidth="14" glassdispersion="0.12" glassdepth="0.55" glassbackdropbrightness="0.92" cornerradius="27">colors/white.png</texture>
+								<texture material="glass" glassstyle="regular" cornerradius="32">colors/white.png</texture>
 							</control>
 							<control type="image">
 								<left>6</left>
 								<top>6</top>
 								<width>208</width>
 								<height>52</height>
-								<texture cornerradius="26" colordiffuse="focus_glass_surface">colors/white.png</texture>
+								<texture cornerradius="26" colordiffuse="glass_focus_light">colors/white.png</texture>
 								<visible>Control.HasFocus(8101)</visible>
 							</control>
 							<control type="image">
@@ -897,7 +903,7 @@
 								<top>58</top>
 								<width>208</width>
 								<height>52</height>
-								<texture cornerradius="26" colordiffuse="focus_glass_surface">colors/white.png</texture>
+								<texture cornerradius="26" colordiffuse="glass_focus_light">colors/white.png</texture>
 								<visible>Control.HasFocus(8102)</visible>
 							</control>
 							<control type="image">
@@ -905,7 +911,7 @@
 								<top>110</top>
 								<width>208</width>
 								<height>52</height>
-								<texture cornerradius="26" colordiffuse="focus_glass_surface">colors/white.png</texture>
+								<texture cornerradius="26" colordiffuse="glass_focus_light">colors/white.png</texture>
 								<visible>Control.HasFocus(8106)</visible>
 							</control>
 							<control type="image">
@@ -913,7 +919,7 @@
 								<top>162</top>
 								<width>208</width>
 								<height>52</height>
-								<texture cornerradius="26" colordiffuse="focus_glass_surface">colors/white.png</texture>
+								<texture cornerradius="26" colordiffuse="glass_focus_light">colors/white.png</texture>
 								<visible>Control.HasFocus(8105)</visible>
 							</control>
 							<!-- Match the original independent tick implementation, using a
@@ -1035,6 +1041,7 @@
 					<aligny>center</aligny>
 					<font>font_home_clock</font>
 					<label>$INFO[System.Time]</label>
+					<visible>!Window.IsVisible(notification) + !Window.IsVisible(extendedprogressdialog)</visible>
 				</control>
 			</control>
 			<include>BottomBar</include>

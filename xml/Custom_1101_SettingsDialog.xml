@@ -5,15 +5,7 @@
 	<onunload>ClearProperty(settingsdialog_header,Home)</onunload>
 	<onunload>ClearProperty(settingsdialog_content,Home)</onunload>
 	<controls>
-		<control type="group">
-			<visible>!String.IsEqual(window(home).Property(settingsdialog_content),streamselection)</visible>
-			<include>SettingsDialogLayout</include>
-		</control>
-		<control type="group">
-			<visible>String.IsEqual(window(home).Property(settingsdialog_content),streamselection)</visible>
-			<include content="SettingsDialogLayout">
-				<param name="width" value="1000" />
-			</include>
-		</control>
+		<include condition="$EXP[nara_skin_settings_dialog]">NaraSkinSettingsDialogLayout</include>
+		<include condition="!$EXP[nara_skin_settings_dialog]">SettingsDialogLayouts</include>
 	</controls>
 </window>

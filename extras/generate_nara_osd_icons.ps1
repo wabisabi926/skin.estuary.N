@@ -271,3 +271,37 @@ Save-Icon 'progress-nib' {
   $brush = [System.Drawing.SolidBrush]::new($white)
   try { $g.FillEllipse($brush, 24, 24, 16, 16) } finally { $brush.Dispose() }
 }
+
+Save-Icon 'shuffle' {
+  param($g, $p)
+  Draw-Polyline $g $p ([float[]]@(13, 20, 20, 20, 43, 44, 51, 44))
+  Draw-Polyline $g $p ([float[]]@(13, 44, 20, 44, 28, 36))
+  Draw-Polyline $g $p ([float[]]@(36, 28, 43, 20, 51, 20))
+  Draw-Polyline $g $p ([float[]]@(45, 14, 51, 20, 45, 26))
+  Draw-Polyline $g $p ([float[]]@(45, 38, 51, 44, 45, 50))
+}
+
+Save-Icon 'repeat' {
+  param($g, $p)
+  Draw-Polyline $g $p ([float[]]@(14, 29, 14, 22, 20, 16, 50, 16))
+  Draw-Polyline $g $p ([float[]]@(44, 10, 50, 16, 44, 22))
+  Draw-Polyline $g $p ([float[]]@(50, 35, 50, 42, 44, 48, 14, 48))
+  Draw-Polyline $g $p ([float[]]@(20, 42, 14, 48, 20, 54))
+}
+
+Save-Icon 'repeat-one' {
+  param($g, $p)
+  Draw-Polyline $g $p ([float[]]@(14, 29, 14, 22, 20, 16, 50, 16))
+  Draw-Polyline $g $p ([float[]]@(44, 10, 50, 16, 44, 22))
+  Draw-Polyline $g $p ([float[]]@(50, 35, 50, 42, 44, 48, 14, 48))
+  Draw-Polyline $g $p ([float[]]@(20, 42, 14, 48, 20, 54))
+  Draw-Polyline $g $p ([float[]]@(28, 29, 32, 26, 32, 38))
+}
+
+Save-Icon 'lyrics' {
+  param($g, $p)
+  Draw-RoundedRectangle $g $p 13 13 38 38 5
+  $g.DrawLine($p, 21, 24, 43, 24)
+  $g.DrawLine($p, 21, 32, 39, 32)
+  $g.DrawLine($p, 21, 40, 34, 40)
+}

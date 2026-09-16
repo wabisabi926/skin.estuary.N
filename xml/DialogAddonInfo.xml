@@ -18,7 +18,8 @@
 					<width>755</width>
 					<height>435</height>
 					<label></label>
-					<texturenofocus border="21">dialogs/dialog-bg.png</texturenofocus>
+					<include condition="$EXP[nara_dialog_glass]">NaraDialogButtonInsetTexture</include>
+					<include condition="!$EXP[nara_dialog_glass]">NaraDialogLegacyButtonTexture</include>
 					<onup>50</onup>
 					<ondown>9000</ondown>
 					<onclick>SetProperty(TextViewer_Header,$LOCALIZE[31141] $INFO[ListItem.AddonVersion],home)</onclick>
@@ -264,6 +265,10 @@
 						<font>font12</font>
 						<hitrect x="21" y="21" w="245" h="100" />
 						<visible>Control.IsEnabled(13)</visible>
+						<texturefocus border="21" colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/button-fo.png</texturefocus>
+						<focusedcolor>$VAR[NaraDialogFocusForegroundVar]</focusedcolor>
+						<textureradioonfocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">buttons/radio-button-on.png</textureradioonfocus>
+						<textureradioofffocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">buttons/radio-button-off.png</textureradioofffocus>
 					</control>
 					<include content="InfoDialogButton">
 						<param name="id" value="10" />
@@ -306,9 +311,11 @@
 					<width>540</width>
 					<height>540</height>
 					<aspectratio>scale</aspectratio>
-					<texture>dialogs/dialog-bg-nobo.png</texture>
-					<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-					<bordersize>20</bordersize>
+					<include condition="$EXP[nara_dialog_glass]">NaraDialogGlassTexture</include>
+					<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+						<param name="texture" value="dialogs/dialog-bg-nobo.png" />
+						<param name="shadow" value="true" />
+					</include>
 				</control>
 				<control type="image">
 					<left>14</left>

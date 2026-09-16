@@ -37,7 +37,7 @@
 				<movement>5</movement>
 				<focusposition>1</focusposition>
 				<scrolltime tween="cubic" easing="out">360</scrolltime>
-				<selectionsettledelay>280</selectionsettledelay>
+				<selectionsettledelay mode="adaptive">150</selectionsettledelay>
 				<orientation>vertical</orientation>
 				<preloaditems>2</preloaditems>
 				<pagecontrol>50600</pagecontrol>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<variable name="NaraMusicCoverVar">
+		<value condition="String.IsEmpty(MusicPlayer.Cover) | String.IsEqual(MusicPlayer.Cover,DefaultAlbumCover.png)">osd/nara/music-cover.png</value>
+		<value>$INFO[MusicPlayer.Cover]</value>
+	</variable>
+	<variable name="NaraMusicMuteLabelVar">
+		<value condition="Player.Muted">$LOCALIZE[16041]</value>
+		<value>$LOCALIZE[16039]</value>
+	</variable>
+	<variable name="NaraMusicProgressColorVar">
+		<value condition="Control.HasFocus(87) | Player.Seeking">FFFFFFFF</value>
+		<value>90FFFFFF</value>
+	</variable>
+	<variable name="NaraMusicNibColorVar">
+		<value condition="Control.HasFocus(87) | Player.Seeking">FFFFFFFF</value>
+		<value>FF8C8C8C</value>
+	</variable>
+	<variable name="NaraMusicRepeatColorVar">
+		<value condition="Playlist.IsRepeat">FFFFFFFF</value>
+		<value>80FFFFFF</value>
+	</variable>
+	<variable name="NaraMusicShuffleColorVar">
+		<value condition="Playlist.IsRandom">FFFFFFFF</value>
+		<value>80FFFFFF</value>
+	</variable>
+	<variable name="NaraMusicLyricColorVar">
+		<value condition="String.IsEqual(Window(visualisation).Property(NaraMusic.LyricsStarted),true)">FFFFFFFF</value>
+		<value>70FFFFFF</value>
+	</variable>
+	<variable name="NaraMusicLyricsStatusVar">
+		<value condition="String.IsEqual(Window(visualisation).Property(NaraMusic.LyricsLoading),true)">$LOCALIZE[31700]</value>
+		<value>$LOCALIZE[31701]</value>
+	</variable>
+	<variable name="NaraMusicControlLabelVar">
+		<value condition="Control.HasFocus(600)">$LOCALIZE[210]</value>
+		<value condition="Control.HasFocus(607)">$LOCALIZE[209]</value>
+		<value condition="Control.HasFocus(602) + Player.Paused">$LOCALIZE[208]</value>
+		<value condition="Control.HasFocus(602)">$LOCALIZE[36045]</value>
+		<value condition="Control.HasFocus(70048)">$LOCALIZE[13396]</value>
+		<value>$VAR[OSDHelpTextVar]</value>
+	</variable>
+	<include name="NaraMusicOSDButton">
+		<textureradioonfocus colordiffuse="text_primary">$PARAM[texture]</textureradioonfocus>
+		<textureradioonnofocus colordiffuse="text_primary">$PARAM[texture]</textureradioonnofocus>
+		<textureradioofffocus colordiffuse="text_primary">$PARAM[texture]</textureradioofffocus>
+		<textureradiooffnofocus colordiffuse="text_primary">$PARAM[texture]</textureradiooffnofocus>
+		<textureradioondisabled colordiffuse="text_disabled">$PARAM[texture]</textureradioondisabled>
+		<textureradiooffdisabled colordiffuse="text_disabled">$PARAM[texture]</textureradiooffdisabled>
+		<texturefocus border="0" cornerradius="30.5" colordiffuse="glass_focus_medium">colors/white.png</texturefocus>
+		<texturenofocus />
+		<width>61</width>
+		<height>61</height>
+		<radiowidth>43</radiowidth>
+		<radioheight>43</radioheight>
+		<radioposx>9</radioposx>
+		<radioposy>9</radioposy>
+		<onup>87</onup>
+		<ondown>noop</ondown>
+		<font />
+	</include>
+	<include name="NaraMusicOSDButtonGlass">
+		<width>61</width>
+		<height>61</height>
+		<control type="image">
+			<width>61</width>
+			<height>61</height>
+			<texture material="glass" glassstyle="regular" cornerradius="30.5">colors/white.png</texture>
+		</control>
+	</include>
+	<include name="NaraMusicPlayerControls">
+		<control type="group">
+			<bottom>0</bottom>
+			<height>160</height>
+			<control type="label">
+				<left>32</left>
+				<top>38</top>
+				<width>82</width>
+				<height>24</height>
+				<font>font10</font>
+				<aligny>center</aligny>
+				<label>$VAR[NaraOSDTimeLabelVar]</label>
+			</control>
+			<control type="label">
+				<right>32</right>
+				<top>38</top>
+				<width>82</width>
+				<height>24</height>
+				<font>font10</font>
+				<align>right</align>
+				<aligny>center</aligny>
+				<label>$INFO[Player.Duration]</label>
+			</control>
+			<control type="grouplist" id="200">
+				<left>160</left>
+				<right>160</right>
+				<top>79</top>
+				<height>61</height>
+				<align>center</align>
+				<itemgap>16</itemgap>
+				<orientation>horizontal</orientation>
+				<onup>87</onup>
+				<ondown>noop</ondown>
+				<onleft>70048</onleft>
+				<onright>70054</onright>
+				<control type="group">
+					<include>NaraMusicOSDButtonGlass</include>
+					<control type="radiobutton" id="70054">
+						<onleft>70048</onleft>
+						<onright>70053</onright>
+						<textureradioonnofocus colordiffuse="$VAR[NaraMusicShuffleColorVar]">osd/nara/shuffle.png</textureradioonnofocus>
+						<textureradiooffnofocus colordiffuse="$VAR[NaraMusicShuffleColorVar]">osd/nara/shuffle.png</textureradiooffnofocus>
+						<include content="NaraMusicOSDButton">
+							<param name="texture" value="osd/nara/shuffle.png" />
+						</include>
+						<label>$LOCALIZE[590]</label>
+						<selected>Playlist.IsRandom</selected>
+						<enable>!MusicPartyMode.Enabled + Integer.IsGreater(Playlist.Length(music),1)</enable>
+						<onclick>PlayerControl(Random)</onclick>
+					</control>
+				</control>
+				<control type="group">
+					<include>NaraMusicOSDButtonGlass</include>
+					<control type="radiobutton" id="70053">
+						<onleft>70054</onleft>
+						<onright>70051</onright>
+						<textureradioonfocus colordiffuse="text_primary">osd/nara/repeat-one.png</textureradioonfocus>
+						<textureradioonnofocus colordiffuse="$VAR[NaraMusicRepeatColorVar]">osd/nara/repeat-one.png</textureradioonnofocus>
+						<textureradioondisabled colordiffuse="text_disabled">osd/nara/repeat-one.png</textureradioondisabled>
+						<textureradiooffnofocus colordiffuse="$VAR[NaraMusicRepeatColorVar]">osd/nara/repeat.png</textureradiooffnofocus>
+						<include content="NaraMusicOSDButton">
+							<param name="texture" value="osd/nara/repeat.png" />
+						</include>
+						<label>$LOCALIZE[486]</label>
+						<selected>Playlist.IsRepeatOne</selected>
+						<enable>!MusicPartyMode.Enabled</enable>
+						<onclick>PlayerControl(Repeat)</onclick>
+					</control>
+				</control>
+				<control type="group">
+					<include>NaraMusicOSDButtonGlass</include>
+					<control type="radiobutton" id="70051">
+						<onleft>70053</onleft>
+						<onright>602</onright>
+						<include content="NaraMusicOSDButton">
+							<param name="texture" value="osd/nara/playlist.png" />
+						</include>
+						<label>$LOCALIZE[559]</label>
+						<enable>Integer.IsGreater(Playlist.Length(music),0)</enable>
+						<onclick>ActivateWindow(1114)</onclick>
+					</control>
+				</control>
+				<control type="group">
+					<include>NaraMusicOSDButtonGlass</include>
+					<control type="radiobutton" id="602">
+						<onleft>70051</onleft>
+						<onright>600</onright>
+						<textureradioonfocus colordiffuse="text_primary">osd/nara/play.png</textureradioonfocus>
+						<textureradioonnofocus colordiffuse="text_primary">osd/nara/play.png</textureradioonnofocus>
+						<textureradioondisabled colordiffuse="text_disabled">osd/nara/play.png</textureradioondisabled>
+						<include content="NaraMusicOSDButton">
+							<param name="texture" value="osd/nara/pause.png" />
+						</include>
+						<label>$LOCALIZE[208]</label>
+						<selected>Player.Paused</selected>
+						<enable>Player.PauseEnabled</enable>
+						<onclick>PlayerControl(Play)</onclick>
+					</control>
+				</control>
+				<control type="group">
+					<include>NaraMusicOSDButtonGlass</include>
+					<control type="radiobutton" id="600">
+						<onleft>602</onleft>
+						<onright>607</onright>
+						<include content="NaraMusicOSDButton">
+							<param name="texture" value="osd/nara/previous.png" />
+						</include>
+						<label>$LOCALIZE[210]</label>
+						<onclick>PlayerControl(Previous)</onclick>
+					</control>
+				</control>
+				<control type="group">
+					<include>NaraMusicOSDButtonGlass</include>
+					<control type="radiobutton" id="607">
+						<onleft>600</onleft>
+						<onright>70048</onright>
+						<include content="NaraMusicOSDButton">
+							<param name="texture" value="osd/nara/next.png" />
+						</include>
+						<label>$LOCALIZE[209]</label>
+						<enable>Integer.IsGreater(Playlist.Length(music),1)</enable>
+						<onclick>PlayerControl(Next)</onclick>
+					</control>
+				</control>
+				<control type="group">
+					<include>NaraMusicOSDButtonGlass</include>
+					<control type="radiobutton" id="70048">
+						<onleft>607</onleft>
+						<onright>70054</onright>
+						<include content="NaraMusicOSDButton">
+							<param name="texture" value="osd/nara/settings.png" />
+						</include>
+						<label>$LOCALIZE[13396]</label>
+						<onclick>ActivateWindow(1113)</onclick>
+					</control>
+				</control>
+			</control>
+			<control type="label">
+				<right>32</right>
+				<top>95</top>
+				<width>420</width>
+				<height>28</height>
+				<font>font10</font>
+				<align>right</align>
+				<textcolor>99FFFFFF</textcolor>
+				<label>$VAR[NaraMusicControlLabelVar]</label>
+			</control>
+			<control type="group">
+				<left>122</left>
+				<right>122</right>
+				<top>42</top>
+				<visible>Player.SeekEnabled</visible>
+				<control type="image">
+					<width>100%</width>
+					<top>7</top>
+					<height>2</height>
+					<texture colordiffuse="40FFFFFF">colors/white.png</texture>
+				</control>
+				<control type="progress">
+					<width>100%</width>
+					<top>5</top>
+					<height>6</height>
+					<info>Player.Progress</info>
+					<texturebg colordiffuse="00FFFFFF">colors/white.png</texturebg>
+					<lefttexture />
+					<righttexture />
+					<midtexture colordiffuse="$VAR[NaraMusicProgressColorVar]">colors/white.png</midtexture>
+					<visible>!Player.Seeking</visible>
+				</control>
+				<control type="progress">
+					<width>100%</width>
+					<top>5</top>
+					<height>6</height>
+					<info>Player.SeekBar</info>
+					<texturebg colordiffuse="00FFFFFF">colors/white.png</texturebg>
+					<lefttexture />
+					<righttexture />
+					<midtexture colordiffuse="FFFFFFFF">colors/white.png</midtexture>
+					<visible>Player.Seeking</visible>
+				</control>
+				<control type="progress">
+					<left>-32</left>
+					<right>-32</right>
+					<top>-24</top>
+					<height>64</height>
+					<info>Player.Progress</info>
+					<texturebg colordiffuse="00FFFFFF">osd/nara/progress-nib-track.png</texturebg>
+					<lefttexture />
+					<midtexture />
+					<righttexture colordiffuse="$VAR[NaraMusicNibColorVar]">osd/nara/progress-nib.png</righttexture>
+					<visible>!Player.Seeking</visible>
+				</control>
+				<control type="progress">
+					<left>-32</left>
+					<right>-32</right>
+					<top>-24</top>
+					<height>64</height>
+					<info>Player.SeekBar</info>
+					<texturebg colordiffuse="00FFFFFF">osd/nara/progress-nib-track.png</texturebg>
+					<lefttexture />
+					<midtexture />
+					<righttexture colordiffuse="FFFFFFFF">osd/nara/progress-nib.png</righttexture>
+					<visible>Player.Seeking</visible>
+				</control>
+				<control type="button" id="87">
+					<include>HiddenObject</include>
+					<onup>200</onup>
+					<ondown>200</ondown>
+					<onleft>StepBack</onleft>
+					<onright>StepForward</onright>
+				</control>
+				<control type="slider">
+					<top>-5</top>
+					<width>100%</width>
+					<height>26</height>
+					<texturesliderbar colordiffuse="00FFFFFF">osd/progress/nub_leftright.png</texturesliderbar>
+					<textureslidernib />
+					<textureslidernibfocus />
+					<textureslidernibdisabled />
+					<texturesliderbardisabled />
+					<info>Player.Progress</info>
+					<action>seek</action>
+					<onup>200</onup>
+					<ondown>200</ondown>
+				</control>
+			</control>
+		</control>
+	</include>
+	<include name="NaraMusicPlaylistBackground">
+		<definition>
+			<control type="button">
+				<left>-2000</left>
+				<top>-2000</top>
+				<width>6000</width>
+				<height>6000</height>
+				<texturefocus />
+				<texturenofocus />
+				<onclick>Action(close)</onclick>
+			</control>
+			<control type="group">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<control type="image">
+					<left>0</left>
+					<right>0</right>
+					<top>252</top>
+					<height>166</height>
+					<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
+					<visible>!Integer.IsGreater(Container(6).NumItems,1)</visible>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<right>0</right>
+					<top>224</top>
+					<height>222</height>
+					<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
+					<visible>Integer.IsEqual(Container(6).NumItems,2)</visible>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<right>0</right>
+					<top>196</top>
+					<height>278</height>
+					<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
+					<visible>Integer.IsEqual(Container(6).NumItems,3)</visible>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<right>0</right>
+					<top>168</top>
+					<height>334</height>
+					<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
+					<visible>Integer.IsEqual(Container(6).NumItems,4)</visible>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<right>0</right>
+					<top>140</top>
+					<height>390</height>
+					<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
+					<visible>Integer.IsEqual(Container(6).NumItems,5)</visible>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<right>0</right>
+					<top>112</top>
+					<height>446</height>
+					<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
+					<visible>Integer.IsEqual(Container(6).NumItems,6)</visible>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<right>0</right>
+					<top>84</top>
+					<height>502</height>
+					<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
+					<visible>Integer.IsEqual(Container(6).NumItems,7)</visible>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<right>0</right>
+					<top>56</top>
+					<height>558</height>
+					<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
+					<visible>Integer.IsEqual(Container(6).NumItems,8)</visible>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<right>0</right>
+					<top>28</top>
+					<height>614</height>
+					<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
+					<visible>Integer.IsEqual(Container(6).NumItems,9)</visible>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<right>0</right>
+					<top>0</top>
+					<bottom>0</bottom>
+					<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
+					<visible>Integer.IsGreater(Container(6).NumItems,9)</visible>
+				</control>
+				<control type="label" id="$PARAM[header_id]">
+					<left>40</left>
+					<top>0</top>
+					<right>100</right>
+					<height>70</height>
+					<font>font13</font>
+					<label>$PARAM[header_label]</label>
+					<aligny>center</aligny>
+					<include>NaraStreamDialogVerticalOffset</include>
+				</control>
+				<control type="button" id="22002">
+					<description>button overlay to avoid closing in dialog area</description>
+					<left>0</left>
+					<top>0</top>
+					<right>0</right>
+					<bottom>0</bottom>
+					<texturefocus />
+					<texturenofocus />
+					<onclick>noop</onclick>
+				</control>
+			</control>
+		</definition>
+	</include>
+</includes>

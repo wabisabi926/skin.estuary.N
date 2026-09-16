@@ -32,7 +32,11 @@
 					<top>10</top>
 					<width>672</width>
 					<height>910</height>
-					<texture border="40">buttons/dialogbutton-nofo.png</texture>
+					<include condition="$EXP[nara_dialog_glass]">NaraDialogInsetTexture</include>
+					<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+						<param name="texture" value="buttons/dialogbutton-nofo.png" />
+						<param name="border" value="40" />
+					</include>
 				</control>
 				<control type="list" id="20">
 					<left>20</left>
@@ -95,7 +99,7 @@
 							<left>0</left>
 							<right>0</right>
 							<bottom>0</bottom>
-							<texture colordiffuse="focus_surface">lists/focus.png</texture>
+							<include content="NaraDialogFocusTexture" />
 							<animation effect="fade" start="100" end="30" time="0" condition="!Control.HasFocus(20)">conditional</animation>
 						</control>
 						<control type="image">
@@ -123,8 +127,8 @@
 							<textoffsetx>40</textoffsetx>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Property(Number),, - ]$INFO[ListItem.Property(Name)]</label>
-							<textcolor>$VAR[FocusLayoutTextColor20Var]</textcolor>
-							<selectedcolor>$VAR[FocusLayoutTextColor20Var]</selectedcolor>
+							<textcolor>$VAR[NaraDialogFocusLayoutTextColor20Var]</textcolor>
+							<selectedcolor>$VAR[NaraDialogFocusLayoutTextColor20Var]</selectedcolor>
 						</control>
 						<control type="label">
 							<left>85</left>
@@ -134,8 +138,8 @@
 							<font>font12</font>
 							<aligny>center</aligny>
 							<label>$LOCALIZE[19210]: $INFO[ListItem.Property(ClientName)]</label>
-							<textcolor>$VAR[FocusLayoutTextColor20Var]</textcolor>
-							<selectedcolor>$VAR[FocusLayoutTextColor20Var]</selectedcolor>
+							<textcolor>$VAR[NaraDialogFocusLayoutTextColor20Var]</textcolor>
+							<selectedcolor>$VAR[NaraDialogFocusLayoutTextColor20Var]</selectedcolor>
 						</control>
 					</focusedlayout>
 				</control>
@@ -148,7 +152,10 @@
 					<onright>9000</onright>
 					<onup>34</onup>
 					<ondown>35</ondown>
-					<itemgap>-22</itemgap>
+					<include content="NaraDialogButtonSpacing">
+						<param name="value" value="8" />
+						<param name="legacy" value="-22" />
+					</include>
 					<control type="label" id="9001">
 						<description>channel options Header</description>
 						<width>700</width>
@@ -171,11 +178,22 @@
 						<include>SettingsItemCommon</include>
 						<label>$LOCALIZE[19201]</label>
 					</control>
-					<control type="button" id="9">
-						<description>Channel logo Button</description>
-						<width>700</width>
-						<include>SettingsItemCommon</include>
-						<label>$LOCALIZE[19202]</label>
+					<control type="group">
+						<include>NaraDialogSettingsRowHeight</include>
+						<control type="button" id="9">
+							<description>Channel logo Button</description>
+							<width>700</width>
+							<include>SettingsItemCommon</include>
+							<label>$LOCALIZE[19202]</label>
+						</control>
+						<control type="image">
+							<left>600</left>
+							<width>70</width>
+							<height>50</height>
+							<aspectratio>keep</aspectratio>
+							<texture background="true">$INFO[ListItem.Property(icon)]</texture>
+							<centertop>50%</centertop>
+						</control>
 					</control>
 					<control type="radiobutton" id="12">
 						<description>EPG activated</description>
@@ -196,17 +214,12 @@
 						<label>$LOCALIZE[19267]</label>
 					</control>
 				</control>
-				<control type="image">
-					<left>600</left>
-					<top>299</top>
-					<width>70</width>
-					<height>50</height>
-					<aspectratio>keep</aspectratio>
-					<texture background="true">$INFO[ListItem.Property(icon)]</texture>
-				</control>
 				<control type="grouplist" id="9003">
 					<top>590</top>
-					<itemgap>-18</itemgap>
+					<include content="NaraDialogButtonSpacing">
+						<param name="value" value="8" />
+						<param name="legacy" value="-18" />
+					</include>
 					<onleft>60</onleft>
 					<onright>9000</onright>
 					<onup>14</onup>
@@ -224,49 +237,55 @@
 					<control type="button" id="35">
 						<description>Refresh channel logos Button</description>
 						<width>700</width>
-						<height>100</height>
+						<include>NaraDialogButtonRowHeight</include>
 						<textoffsetx>40</textoffsetx>
 						<align>center</align>
 						<label>$LOCALIZE[19041]</label>
+						<include condition="$EXP[nara_dialog_glass]">NaraDialogControlTextures</include>
 					</control>
 					<control type="button" id="31">
 						<description>New channel Button</description>
 						<width>700</width>
-						<height>100</height>
+						<include>NaraDialogButtonRowHeight</include>
 						<textoffsetx>40</textoffsetx>
 						<align>center</align>
 						<label>$LOCALIZE[19204]</label>
+						<include condition="$EXP[nara_dialog_glass]">NaraDialogControlTextures</include>
 					</control>
 					<control type="button" id="30">
 						<description>Group Manager Button</description>
 						<width>700</width>
-						<height>100</height>
+						<include>NaraDialogButtonRowHeight</include>
 						<textoffsetx>40</textoffsetx>
 						<align>center</align>
 						<label>$LOCALIZE[19205]</label>
+						<include condition="$EXP[nara_dialog_glass]">NaraDialogControlTextures</include>
 					</control>
 				</control>
 			</control>
 			<control type="grouplist" id="9000">
-				<right>20</right>
-				<top>90</top>
+				<right>32</right>
+				<top>100</top>
 				<onleft condition="Integer.IsGreater(Container(20).NumItems, 0)">9002</onleft>
 				<onleft condition="Integer.IsEqual(Container(20).NumItems, 0)">9003</onleft>
 				<onright>20</onright>
-				<itemgap>dialogbuttons_itemgap</itemgap>
-				<width>400</width>
+				<include>NaraDialogButtonSpacing</include>
+				<width>356</width>
 				<include content="DefaultDialogButton">
-					<param name="width" value="400" />
+					<param name="width" value="356" />
+					<param name="legacy_width" value="356" />
 					<param name="id" value="4" />
 					<param name="label" value="$LOCALIZE[186]" />
 				</include>
 				<include content="DefaultDialogButton">
-					<param name="width" value="400" />
+					<param name="width" value="356" />
+					<param name="legacy_width" value="356" />
 					<param name="id" value="5" />
 					<param name="label" value="$LOCALIZE[14070]" />
 				</include>
 				<include content="DefaultDialogButton">
-					<param name="width" value="400" />
+					<param name="width" value="356" />
+					<param name="legacy_width" value="356" />
 					<param name="id" value="6" />
 					<param name="label" value="$LOCALIZE[222]" />
 				</include>

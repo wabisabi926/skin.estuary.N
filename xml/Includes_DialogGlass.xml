@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<expression name="nara_dialog_glass">!Window.IsActive(fullscreenvideo) + !Window.IsActive(fullscreengame) + !$EXP[nara_settings_osd]</expression>
+	<include name="NaraDialogGlassTexture">
+		<param name="radius">32</param>
+		<param name="style">frosted</param>
+		<definition>
+			<texture material="glass" glassstyle="$PARAM[style]" cornerradius="$PARAM[radius]">colors/white.png</texture>
+		</definition>
+	</include>
+	<include name="NaraDialogGlassSurface">
+		<param name="style">dialog</param>
+		<definition>
+			<control type="image">
+				<width>100%</width>
+				<height>100%</height>
+				<include content="NaraDialogGlassTexture">
+					<param name="style" value="$PARAM[style]" />
+				</include>
+			</control>
+		</definition>
+	</include>
+	<include name="NaraDialogInsetTexture">
+		<texture cornerradius="16" colordiffuse="18FFFFFF">colors/white.png</texture>
+	</include>
+	<include name="NaraDialogButtonInsetTexture">
+		<texturenofocus cornerradius="16" colordiffuse="18FFFFFF">colors/white.png</texturenofocus>
+		<texturefocus cornerradius="16" colordiffuse="glass_focus_medium">colors/white.png</texturefocus>
+		<focusedcolor>text_primary</focusedcolor>
+		<selectedcolor>text_primary</selectedcolor>
+	</include>
+	<include name="NaraDialogLegacyButtonTexture">
+		<texturenofocus border="21">dialogs/dialog-bg.png</texturenofocus>
+	</include>
+	<include name="NaraDialogLegacyTexture">
+		<param name="texture">colors/white.png</param>
+		<param name="border">0</param>
+		<param name="color">FFFFFFFF</param>
+		<param name="shadow">false</param>
+		<definition>
+			<texture border="$PARAM[border]" colordiffuse="$PARAM[color]">$PARAM[texture]</texture>
+			<include condition="$PARAM[shadow]">NaraDialogLegacyShadow</include>
+		</definition>
+	</include>
+	<include name="NaraDialogLegacyShadow">
+		<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
+		<bordersize>20</bordersize>
+	</include>
+	<include name="NaraDialogActionTextures">
+		<texturefocus cornerradius="18" colordiffuse="glass_focus_medium">colors/white.png</texturefocus>
+		<texturenofocus />
+		<textcolor>text_primary</textcolor>
+		<focusedcolor>text_primary</focusedcolor>
+		<selectedcolor>text_primary</selectedcolor>
+	</include>
+	<include name="NaraDialogButtonDimensions">
+		<definition>
+			<width>$PARAM[width]</width>
+			<height>$PARAM[height]</height>
+		</definition>
+	</include>
+	<include name="NaraDialogButtonItemGap">
+		<param name="value">16</param>
+		<definition>
+			<itemgap>$PARAM[value]</itemgap>
+		</definition>
+	</include>
+	<include name="NaraDialogButtonSpacing">
+		<param name="legacy">dialogbuttons_itemgap</param>
+		<param name="value">16</param>
+		<definition>
+			<include condition="$EXP[nara_dialog_glass]" content="NaraDialogButtonItemGap">
+				<param name="value" value="$PARAM[value]" />
+			</include>
+			<include content="NaraDialogButtonItemGap" condition="!$EXP[nara_dialog_glass]">
+				<param name="value" value="$PARAM[legacy]" />
+			</include>
+		</definition>
+	</include>
+	<include name="NaraDialogLegacyActionTextures">
+		<texturefocus border="40" colordiffuse="focus_surface">buttons/dialogbutton-fo.png</texturefocus>
+		<texturenofocus border="40">buttons/dialogbutton-nofo.png</texturenofocus>
+	</include>
+	<include name="NaraDialogSolidSurface">
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<right>0</right>
+			<height>70</height>
+			<texture colordiffuse="surface_dialog_header">colors/white.png</texture>
+		</control>
+		<control type="image">
+			<left>0</left>
+			<top>70</top>
+			<right>0</right>
+			<bottom>0</bottom>
+			<texture colordiffuse="surface_dialog">colors/white.png</texture>
+		</control>
+	</include>
+	<include name="NaraPowerMenuLegacyLayout">
+		<control type="group">
+			<centerleft>50%</centerleft>
+			<width>600</width>
+			<centertop>50%</centertop>
+			<height>700</height>
+			<include content="DialogBackgroundCommons">
+				<param name="width" value="600" />
+				<param name="height" value="80" />
+				<param name="header_label" value="$LOCALIZE[33060]" />
+				<param name="header_id" value="2" />
+				<param name="header_icon_right" value="17" />
+				<param name="header_icon_top" value="17" />
+				<param name="header_icon_size" value="36" />
+			</include>
+			<control type="panel" id="9000">
+				<include>ButtonMenuList</include>
+				<content>
+					<item>
+						<label>$LOCALIZE[13012]</label>
+						<onclick>Quit()</onclick>
+						<visible>System.ShowExitButton</visible>
+					</item>
+				</content>
+			</control>
+		</control>
+	</include>
+	<include name="NaraPowerMenuLayout">
+		<control type="image">
+			<width>100%</width>
+			<height>100%</height>
+			<texture colordiffuse="66000000">colors/black.png</texture>
+		</control>
+		<control type="button">
+			<width>100%</width>
+			<height>100%</height>
+			<onclick>Action(close)</onclick>
+			<texturefocus />
+			<texturenofocus />
+		</control>
+		<control type="grouplist" id="9000">
+			<defaultcontrol>103</defaultcontrol>
+			<centerleft>50%</centerleft>
+			<top>180</top>
+			<width>600</width>
+			<orientation>vertical</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<onup>9000</onup>
+			<ondown>9000</ondown>
+			<height max="780">auto</height>
+			<texturebackground material="glass" glassstyle="frosted" cornerradius="32">colors/white.png</texturebackground>
+			<control type="group">
+				<height>88</height>
+				<control type="label" id="2">
+					<left>32</left>
+					<top>16</top>
+					<width>470</width>
+					<height>56</height>
+					<font>font32</font>
+					<label>$LOCALIZE[33060]</label>
+				</control>
+			</control>
+			<control type="button" id="103">
+				<left>24</left>
+				<width>552</width>
+				<height>70</height>
+				<font>font26</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<include>NaraDialogActionTextures</include>
+				<label>$LOCALIZE[13012]</label>
+				<onclick>Quit()</onclick>
+				<visible>System.ShowExitButton</visible>
+			</control>
+			<control type="group">
+				<height>18</height>
+			</control>
+		</control>
+	</include>
+	<variable name="NaraDialogFocusForegroundVar">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>focus_foreground</value>
+	</variable>
+	<variable name="NaraDialogFocusMutedVar">
+		<value condition="$EXP[nara_dialog_glass]">text_secondary</value>
+		<value>focus_foreground_muted</value>
+	</variable>
+	<include name="NaraDialogFocusTexture">
+		<include condition="$EXP[nara_dialog_glass]">NaraDialogGlassFocusTexture</include>
+		<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+			<param name="texture" value="lists/focus.png" />
+			<param name="color" value="focus_surface" />
+		</include>
+	</include>
+	<include name="NaraDialogGlassFocusTexture">
+		<texture cornerradius="16" colordiffuse="glass_focus_medium">colors/white.png</texture>
+	</include>
+	<include name="NaraDialogControlTextures">
+		<include>NaraDialogActionTextures</include>
+		<alttexturefocus cornerradius="18" colordiffuse="glass_focus_medium">colors/white.png</alttexturefocus>
+		<alttexturenofocus />
+	</include>
+	<include name="NaraDialogButtonRowHeight">
+		<include condition="$EXP[nara_dialog_glass]">NaraDialogCompactRowHeight</include>
+		<include condition="!$EXP[nara_dialog_glass]">NaraDialogLegacyRowHeight</include>
+	</include>
+	<include name="NaraDialogCompactRowHeight">
+		<height>64</height>
+	</include>
+	<include name="NaraDialogLegacyRowHeight">
+		<height>100</height>
+	</include>
+	<variable name="NaraDialogFocusSurfaceVar">
+		<value condition="$EXP[nara_dialog_glass]">glass_focus_medium</value>
+		<value>focus_surface</value>
+	</variable>
+	<include name="NaraDialogLegacySettingsItem">
+		<texturenofocus border="40">buttons/dialogbutton-nofo.png</texturenofocus>
+		<texturefocus border="40" colordiffuse="focus_surface">buttons/dialogbutton-fo.png</texturefocus>
+		<height>100</height>
+		<aligny>center</aligny>
+		<textoffsetx>40</textoffsetx>
+		<alttexturefocus border="40" colordiffuse="focus_surface">buttons/dialogbutton-fo.png</alttexturefocus>
+		<alttexturenofocus border="40">buttons/dialogbutton-nofo.png</alttexturenofocus>
+	</include>
+	<variable name="NaraDialogFocusLayoutTextColor10Var">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>$VAR[FocusLayoutTextColor10Var]</value>
+	</variable>
+	<variable name="NaraDialogFocusLayoutTextColor11Var">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>$VAR[FocusLayoutTextColor11Var]</value>
+	</variable>
+	<variable name="NaraDialogFocusLayoutTextColor120Var">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>$VAR[FocusLayoutTextColor120Var]</value>
+	</variable>
+	<variable name="NaraDialogFocusLayoutTextColor12Var">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>$VAR[FocusLayoutTextColor12Var]</value>
+	</variable>
+	<variable name="NaraDialogFocusLayoutTextColor13Var">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>$VAR[FocusLayoutTextColor13Var]</value>
+	</variable>
+	<variable name="NaraDialogFocusLayoutTextColor20Var">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>$VAR[FocusLayoutTextColor20Var]</value>
+	</variable>
+	<variable name="NaraDialogFocusLayoutTextColor450Var">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>$VAR[FocusLayoutTextColor450Var]</value>
+	</variable>
+	<variable name="NaraDialogFocusLayoutTextColor451Var">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>$VAR[FocusLayoutTextColor451Var]</value>
+	</variable>
+	<variable name="NaraDialogFocusLayoutTextColor6Var">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>$VAR[FocusLayoutTextColor6Var]</value>
+	</variable>
+	<variable name="NaraDialogFocusLayoutTextColor9010Var">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>$VAR[FocusLayoutTextColor9010Var]</value>
+	</variable>
+	<include name="NaraDialogSettingsRowHeight">
+		<include condition="$EXP[nara_dialog_glass]">NaraDialogSettingsRowCompactHeight</include>
+		<include condition="!$EXP[nara_dialog_glass]">NaraDialogLegacyRowHeight</include>
+	</include>
+	<include name="NaraDialogSettingsRowCompactHeight">
+		<height>70</height>
+	</include>
+</includes>

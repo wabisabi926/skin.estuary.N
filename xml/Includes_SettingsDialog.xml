@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+	<expression name="nara_skin_settings_dialog">String.IsEqual(Window(home).Property(settingsdialog_content),moviewidgets) | String.IsEqual(Window(home).Property(settingsdialog_content),tvshowwidgets) | String.IsEqual(Window(home).Property(settingsdialog_content),musicwidgets) | String.IsEqual(Window(home).Property(settingsdialog_content),tvwidgets)</expression>
+	<include name="SettingsDialogLayouts">
+		<control type="group">
+			<visible>!String.IsEqual(window(home).Property(settingsdialog_content),streamselection)</visible>
+			<include>SettingsDialogLayout</include>
+		</control>
+		<control type="group">
+			<visible>String.IsEqual(window(home).Property(settingsdialog_content),streamselection)</visible>
+			<include content="SettingsDialogLayout">
+				<param name="width" value="1000" />
+			</include>
+		</control>
+	</include>
+	<include name="NaraSkinSettingButton">
+		<width>936</width>
+		<include content="NaraSettingsRow">
+			<param name="focuscolor" value="glass_focus_medium" />
+		</include>
+	</include>
+	<include name="NaraSkinSettingsDialogLayout">
+		<control type="group">
+			<centerleft>50%</centerleft>
+			<centertop>50%</centertop>
+			<width>1000</width>
+			<height>800</height>
+			<include content="NaraSettingsDialogFrame">
+				<param name="height" value="800" />
+				<param name="header_label" value="$INFO[Window(home).Property(settingsdialog_header)]" />
+			</include>
+			<control type="group" id="11000">
+				<left>32</left>
+				<top>104</top>
+				<control type="grouplist" id="11100">
+					<width>936</width>
+					<height>664</height>
+					<itemgap>2</itemgap>
+					<orientation>vertical</orientation>
+					<onup>11100</onup>
+					<ondown>11100</ondown>
+					<onright>noop</onright>
+					<include condition="String.IsEqual(Window(home).Property(settingsdialog_content),moviewidgets)">SettingsDialogMovieWidgetsContent</include>
+					<include condition="String.IsEqual(Window(home).Property(settingsdialog_content),tvshowwidgets)">SettingsDialogTVShowWidgetsContent</include>
+					<include condition="String.IsEqual(Window(home).Property(settingsdialog_content),musicwidgets)">SettingsDialogMusicWidgetsContent</include>
+					<include condition="String.IsEqual(Window(home).Property(settingsdialog_content),tvwidgets)">SettingsDialogTVWidgetsContent</include>
+				</control>
+			</control>
+		</control>
+	</include>
 	<include name="SettingsDialogOSDVisible">
 		<visible>!Window.IsActive(DialogSettings.xml) + !Window.IsActive(DialogSlider.xml)</visible>
 	</include>
@@ -182,14 +230,14 @@
 	</include>
 	<include name="SettingsDialogMovieWidgetsContent">
 		<control type="radiobutton" id="22101">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31148]</label>
 			<onclick>Skin.ToggleSetting(home_no_movies_categories_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_movies_categories_widget)</selected>
 		</control>
 		<control type="button" id="22108">
 			<label>- $LOCALIZE[31157]</label>
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<onclick condition="System.AddonIsEnabled(plugin.library.node.editor)">Dialog.Close(1101)</onclick>
 			<onclick condition="System.AddonIsEnabled(plugin.library.node.editor)">ActivateWindow(programs,plugin://plugin.library.node.editor/?ltype=video,return)</onclick>
 			<onclick condition="System.HasAddon(plugin.library.node.editor) + !System.AddonIsEnabled(plugin.library.node.editor)">EnableAddon(plugin.library.node.editor)</onclick>
@@ -197,37 +245,37 @@
 			<enable>!Skin.HasSetting(home_no_movies_categories_widget)</enable>
 		</control>
 		<control type="radiobutton" id="22102">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31010]</label>
 			<onclick>Skin.ToggleSetting(home_no_movies_inprogress_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_movies_inprogress_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22103">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[20386]</label>
 			<onclick>Skin.ToggleSetting(home_no_movies_recentlyadded_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_movies_recentlyadded_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22104">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31007]</label>
 			<onclick>Skin.ToggleSetting(home_no_movies_unwatched_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_movies_unwatched_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22105">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31006]</label>
 			<onclick>Skin.ToggleSetting(home_no_movies_random_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_movies_random_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22106">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[135]</label>
 			<onclick>Skin.ToggleSetting(home_no_movies_genres_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_movies_genres_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22107">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31075]</label>
 			<onclick>Skin.ToggleSetting(home_no_movies_sets_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_movies_sets_widget)</selected>
@@ -235,14 +283,14 @@
 	</include>
 	<include name="SettingsDialogTVShowWidgetsContent">
 		<control type="radiobutton" id="22101">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31148]</label>
 			<onclick>Skin.ToggleSetting(home_no_tvshows_categories_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tvshows_categories_widget)</selected>
 		</control>
 		<control type="button" id="22108">
 			<label>- $LOCALIZE[31157]</label>
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<onclick condition="System.AddonIsEnabled(plugin.library.node.editor)">Dialog.Close(1101)</onclick>
 			<onclick condition="System.AddonIsEnabled(plugin.library.node.editor)">ActivateWindow(programs,plugin://plugin.library.node.editor/?ltype=video,return)</onclick>
 			<onclick condition="System.HasAddon(plugin.library.node.editor) + !System.AddonIsEnabled(plugin.library.node.editor)">EnableAddon(plugin.library.node.editor)</onclick>
@@ -250,31 +298,31 @@
 			<enable>!Skin.HasSetting(home_no_tvshows_categories_widget)</enable>
 		</control>
 		<control type="radiobutton" id="22102">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[626]</label>
 			<onclick>Skin.ToggleSetting(home_no_tvshows_inprogress_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tvshows_inprogress_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22103">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[20387]</label>
 			<onclick>Skin.ToggleSetting(home_no_tvshows_recentlyaddedepisodes_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tvshows_recentlyaddedepisodes_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22104">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31122]</label>
 			<onclick>Skin.ToggleSetting(home_no_tvshows_unwatched_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tvshows_unwatched_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22105">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[135]</label>
 			<onclick>Skin.ToggleSetting(home_no_tvshows_genres_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tvshows_genres_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22106">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[20388]</label>
 			<onclick>Skin.ToggleSetting(home_tvshows_studios_widget)</onclick>
 			<selected>Skin.HasSetting(home_tvshows_studios_widget)</selected>
@@ -282,14 +330,14 @@
 	</include>
 	<include name="SettingsDialogMusicWidgetsContent">
 		<control type="radiobutton" id="22101">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31148]</label>
 			<onclick>Skin.ToggleSetting(home_no_music_categories_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_music_categories_widget)</selected>
 		</control>
 		<control type="button" id="22108">
 			<label>- $LOCALIZE[31157]</label>
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<onclick condition="System.AddonIsEnabled(plugin.library.node.editor)">Dialog.Close(1101)</onclick>
 			<onclick condition="System.AddonIsEnabled(plugin.library.node.editor)">ActivateWindow(programs,plugin://plugin.library.node.editor/?ltype=music,return)</onclick>
 			<onclick condition="System.HasAddon(plugin.library.node.editor) + !System.AddonIsEnabled(plugin.library.node.editor)">EnableAddon(plugin.library.node.editor)</onclick>
@@ -297,37 +345,37 @@
 			<enable>!Skin.HasSetting(home_no_music_categories_widget)</enable>
 		</control>
 		<control type="radiobutton" id="22102">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[517]</label>
 			<onclick>Skin.ToggleSetting(home_no_music_recentlyplayedalbums_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_music_recentlyplayedalbums_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22103">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[359]</label>
 			<onclick>Skin.ToggleSetting(home_no_music_recentalbums_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_music_recentalbums_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22104">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31012]</label>
 			<onclick>Skin.ToggleSetting(home_no_music_randomalbums_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_music_randomalbums_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22105">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31013]</label>
 			<onclick>Skin.ToggleSetting(home_no_music_randomartists_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_music_randomartists_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22106">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31014]</label>
 			<onclick>Skin.ToggleSetting(home_no_music_unplayedalbums_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_music_unplayedalbums_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22107">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31011]</label>
 			<onclick>Skin.ToggleSetting(home_no_music_mostplayedalbums_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_music_mostplayedalbums_widget)</selected>
@@ -335,43 +383,43 @@
 	</include>
 	<include name="SettingsDialogTVWidgetsContent">
 		<control type="radiobutton" id="22101">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31148]</label>
 			<onclick>Skin.ToggleSetting(home_no_tv_categories_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tv_categories_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22102">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31016]</label>
 			<onclick>Skin.ToggleSetting(home_no_tv_recentlyplayed_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tv_recentlyplayed_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22103">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[31015]</label>
 			<onclick>Skin.ToggleSetting(home_no_tv_recentrecordings_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tv_recentrecordings_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22104">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[19040]</label>
 			<onclick>Skin.ToggleSetting(home_no_tv_timers_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tv_timers_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22105">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[19173]</label>
 			<onclick>Skin.ToggleSetting(home_no_tv_channelgroups_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tv_channelgroups_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22106">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[19337]</label>
 			<onclick>Skin.ToggleSetting(home_no_tv_savedsearches_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tv_savedsearches_widget)</selected>
 		</control>
 		<control type="radiobutton" id="22107">
-			<include>DialogSettingButton</include>
+			<include>NaraSkinSettingButton</include>
 			<label>$LOCALIZE[855]</label>
 			<onclick>Skin.ToggleSetting(home_no_tv_recentlyaddedchannels_widget)</onclick>
 			<selected>!Skin.HasSetting(home_no_tv_recentlyaddedchannels_widget)</selected>

@@ -16,7 +16,7 @@
 			<control type="image">
 				<width>1920</width>
 				<height>1080</height>
-				<aspectratio align="left">scale</aspectratio>
+				<aspectratio align="right">scale</aspectratio>
 				<fadetime>250</fadetime>
 				<texture background="true">$INFO[Container(51).ListItemSettled.Art(fanart)]</texture>
 				<visible>!Skin.HasSetting(no_fanart) + !String.IsEmpty(Container(51).ListItemSettled.Art(fanart))</visible>
@@ -211,7 +211,7 @@
 				<orientation>horizontal</orientation>
 				<pagecontrol>5198</pagecontrol>
 				<scrolltime tween="sine" easing="inout">500</scrolltime>
-				<selectionsettledelay>560</selectionsettledelay>
+				<selectionsettledelay mode="adaptive">150</selectionsettledelay>
 				<preloaditems>2</preloaditems>
 				<onleft condition="$EXP[nara_tv_hierarchy_sidebar_locked]">51</onleft>
 				<onleft condition="!$EXP[nara_tv_hierarchy_sidebar_locked]">9000</onleft>

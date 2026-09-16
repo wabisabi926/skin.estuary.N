@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window id="1113" type="dialog">
+	<defaultcontrol always="true">10</defaultcontrol>
+	<onload condition="Player.Passthrough">SetFocus(11)</onload>
+	<include>Animation_DialogPopupOpenClose</include>
+	<depth>DepthOSD+</depth>
+	<controls>
+		<control type="button">
+			<include>FullScreenDimensions</include>
+			<texturefocus />
+			<texturenofocus />
+			<onclick>Action(close)</onclick>
+		</control>
+		<control type="group">
+			<centerleft>50%</centerleft>
+			<centertop>50%</centertop>
+			<width>760</width>
+			<height>290</height>
+			<control type="image">
+				<width>760</width>
+				<height>290</height>
+				<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
+			</control>
+			<control type="button">
+				<width>760</width>
+				<height>290</height>
+				<texturefocus />
+				<texturenofocus />
+				<onclick>noop</onclick>
+			</control>
+			<control type="label">
+				<left>40</left>
+				<width>600</width>
+				<height>70</height>
+				<font>font13</font>
+				<aligny>center</aligny>
+				<label>$LOCALIZE[13396]</label>
+			</control>
+			<control type="image">
+				<right>28</right>
+				<top>17</top>
+				<width>36</width>
+				<height>36</height>
+				<texture>osd/nara/settings.png</texture>
+			</control>
+			<control type="label">
+				<left>40</left>
+				<top>98</top>
+				<width>480</width>
+				<height>32</height>
+				<font>font12</font>
+				<label>$LOCALIZE[13376]</label>
+			</control>
+			<control type="label">
+				<right>40</right>
+				<top>98</top>
+				<width>180</width>
+				<height>32</height>
+				<font>font12</font>
+				<align>right</align>
+				<label>$INFO[Player.Volume]</label>
+				<textcolor>text_secondary</textcolor>
+			</control>
+			<control type="image">
+				<left>72</left>
+				<right>72</right>
+				<top>167</top>
+				<height>10</height>
+				<texture material="glass" glassstyle="regular" cornerradius="5">colors/white.png</texture>
+			</control>
+			<control type="progress">
+				<left>72</left>
+				<right>72</right>
+				<top>170</top>
+				<height>4</height>
+				<info>Player.Volume</info>
+				<texturebg />
+				<lefttexture />
+				<righttexture />
+				<midtexture colordiffuse="90FFFFFF">colors/white.png</midtexture>
+			</control>
+			<control type="slider" id="10">
+				<left>40</left>
+				<top>140</top>
+				<width>680</width>
+				<height>64</height>
+				<texturesliderbar colordiffuse="00FFFFFF">osd/nara/progress-nib-track.png</texturesliderbar>
+				<texturesliderbardisabled colordiffuse="00FFFFFF">osd/nara/progress-nib-track.png</texturesliderbardisabled>
+				<textureslidernib colordiffuse="80FFFFFF">osd/nara/progress-nib.png</textureslidernib>
+				<textureslidernibfocus>osd/nara/progress-nib.png</textureslidernibfocus>
+				<textureslidernibdisabled colordiffuse="40FFFFFF">osd/nara/progress-nib.png</textureslidernibdisabled>
+				<action>volume</action>
+				<enable>!Player.Passthrough</enable>
+				<onup>11</onup>
+				<ondown>11</ondown>
+			</control>
+			<control type="image">
+				<left>20</left>
+				<top>218</top>
+				<width>720</width>
+				<height>50</height>
+				<texture colordiffuse="glass_focus_medium" cornerradius="4">colors/white.png</texture>
+				<visible>Control.HasFocus(11)</visible>
+			</control>
+			<control type="button" id="11">
+				<left>20</left>
+				<top>215</top>
+				<width>720</width>
+				<height>56</height>
+				<font>font12</font>
+				<textoffsetx>20</textoffsetx>
+				<textcolor>text_primary</textcolor>
+				<focusedcolor>text_primary</focusedcolor>
+				<texturefocus />
+				<texturenofocus />
+				<label>$LOCALIZE[31703]</label>
+				<label2>$VAR[NaraMusicMuteLabelVar]</label2>
+				<onclick>Mute</onclick>
+				<onup>10</onup>
+				<ondown>10</ondown>
+			</control>
+		</control>
+	</controls>
+</window>

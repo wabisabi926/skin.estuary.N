@@ -27,7 +27,7 @@
 				<focusedcolor>text_primary</focusedcolor>
 				<!-- A quiet translucent fill remains legible over changing artwork without
 				     turning the four view choices into heavy black tiles. -->
-				<texturefocus cornerradius="4" colordiffuse="focus_glass_surface">colors/white.png</texturefocus>
+				<texturefocus cornerradius="4" colordiffuse="glass_focus_light">colors/white.png</texturefocus>
 				<texturenofocus cornerradius="4" colordiffuse="surface_subtle">colors/white.png</texturenofocus>
 				<onclick>$PARAM[onclick]</onclick>
 				<onback>50</onback>
@@ -53,7 +53,7 @@
 				<radioheight>24</radioheight>
 				<textcolor>text_primary</textcolor>
 				<focusedcolor>text_primary</focusedcolor>
-				<texturefocus colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
+				<texturefocus colordiffuse="glass_focus_light">colors/white.png</texturefocus>
 				<texturenofocus />
 				<textureradioonfocus colordiffuse="selection_foreground">$PARAM[icon]</textureradioonfocus>
 				<textureradioonnofocus colordiffuse="text_primary">$PARAM[icon]</textureradioonnofocus>
@@ -87,7 +87,7 @@
 				<radioheight>14</radioheight>
 				<textcolor>text_primary</textcolor>
 				<focusedcolor>text_primary</focusedcolor>
-				<texturefocus colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
+				<texturefocus colordiffuse="glass_focus_light">colors/white.png</texturefocus>
 				<texturenofocus />
 				<textureradioonfocus cornerradius="7" colordiffuse="selection_foreground">colors/white.png</textureradioonfocus>
 				<textureradioonnofocus cornerradius="7" colordiffuse="selection_foreground">colors/white.png</textureradioonnofocus>
@@ -161,7 +161,7 @@
 					<focusedlayout width="384" height="48">
 						<control type="image">
 							<width>384</width><height>48</height>
-							<texture colordiffuse="focus_glass_surface">lists/focus.png</texture>
+							<texture colordiffuse="glass_focus_light">colors/white.png</texture>
 							<include>Animation_FocusTextureFade</include>
 						</control>
 						<control type="image">
@@ -195,7 +195,7 @@
 				<radioheight>14</radioheight>
 				<textcolor>text_primary</textcolor>
 				<focusedcolor>text_primary</focusedcolor>
-				<texturefocus colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
+				<texturefocus colordiffuse="glass_focus_light">colors/white.png</texturefocus>
 				<texturenofocus />
 				<textureradioonfocus cornerradius="7" colordiffuse="selection_foreground">colors/white.png</textureradioonfocus>
 				<textureradioonnofocus cornerradius="7" colordiffuse="selection_foreground">colors/white.png</textureradioonnofocus>
@@ -258,7 +258,7 @@
 			     shader. This avoids minifying the padded 120 px round-button bitmap. -->
 			<control type="image">
 				<left>337</left><top>15</top><width>28</width><height>28</height>
-				<texture cornerradius="14" colordiffuse="focus_glass_surface">colors/white.png</texture>
+				<texture cornerradius="14" colordiffuse="glass_focus_light">colors/white.png</texture>
 				<visible>Control.HasFocus(9151)</visible>
 			</control>
 			<control type="radiobutton" id="9151">
@@ -623,7 +623,7 @@
 			<top>0</top>
 			<width>432</width>
 			<height>100%</height>
-			<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="0.75" glassbordercolor="0CFFFFFF" glasshighlight="0.30" glassrefraction="2.5" glassrefractionwidth="14" glassdispersion="0.12" glassdepth="0.55" glassbackdropbrightness="0.92">colors/white.png</texture>
+			<texture material="glass" glassstyle="frosted">colors/white.png</texture>
 			<visible>$EXP[nara_video_library_menu]</visible>
 		</control>
 		<control type="image">

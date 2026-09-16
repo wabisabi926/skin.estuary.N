@@ -15,11 +15,11 @@
 				<param name="header_id" value="411" />
 			</include>
 			<control type="grouplist" id="9000">
-				<left>990</left>
-				<top>85</top>
-				<width>400</width>
+				<left>1010</left>
+				<top>100</top>
+				<width>260</width>
 				<height>400</height>
-				<itemgap>dialogbuttons_itemgap</itemgap>
+				<include>NaraDialogButtonSpacing</include>
 				<orientation>vertical</orientation>
 				<onleft>450</onleft>
 				<onright>450</onright>
@@ -28,20 +28,28 @@
 				<include content="DefaultDialogButton">
 					<param name="id" value="413" />
 					<param name="label" value="$LOCALIZE[186]" />
+					<param name="width" value="260" />
+					<param name="legacy_width" value="260" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="414" />
 					<param name="label" value="$LOCALIZE[222]" />
+					<param name="width" value="260" />
+					<param name="legacy_width" value="260" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="415" />
 					<param name="label" value="$LOCALIZE[119]" />
 					<param name="visible" value="Control.IsEnabled(415)" />
+					<param name="width" value="260" />
+					<param name="legacy_width" value="260" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="416" />
 					<param name="label" value="$LOCALIZE[749]" />
 					<param name="visible" value="Control.IsEnabled(416)" />
+					<param name="width" value="260" />
+					<param name="legacy_width" value="260" />
 				</include>
 			</control>
 			<control type="image">
@@ -59,7 +67,11 @@
 				<top>80</top>
 				<width>980</width>
 				<height>740</height>
-				<texture border="40">buttons/dialogbutton-nofo.png</texture>
+				<include condition="$EXP[nara_dialog_glass]">NaraDialogInsetTexture</include>
+				<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+					<param name="texture" value="buttons/dialogbutton-nofo.png" />
+					<param name="border" value="40" />
+				</include>
 			</control>
 			<control type="panel" id="450">
 				<left>20</left>
@@ -95,9 +107,9 @@
 						<left>0</left>
 						<top>0</top>
 						<right>0</right>
-						<height>71</height>
+						<height>70</height>
 						<visible>Control.HasFocus(450)</visible>
-						<texture colordiffuse="focus_surface">lists/focus.png</texture>
+						<include content="NaraDialogFocusTexture" />
 					</control>
 					<control type="image">
 						<left>10</left>
@@ -105,7 +117,7 @@
 						<width>50</width>
 						<height>50</height>
 						<texture>$INFO[ListItem.Icon]</texture>
-						<colordiffuse>$VAR[FocusLayoutTextColor450Var]</colordiffuse>
+						<colordiffuse>$VAR[NaraDialogFocusLayoutTextColor450Var]</colordiffuse>
 						<aspectratio>keep</aspectratio>
 					</control>
 					<control type="label">
@@ -115,8 +127,8 @@
 						<height>70</height>
 						<aligny>center</aligny>
 						<label>$INFO[ListItem.Label]</label>
-						<textcolor>$VAR[FocusLayoutTextColor450Var]</textcolor>
-						<selectedcolor>$VAR[FocusLayoutTextColor450Var]</selectedcolor>
+						<textcolor>$VAR[NaraDialogFocusLayoutTextColor450Var]</textcolor>
+						<selectedcolor>$VAR[NaraDialogFocusLayoutTextColor450Var]</selectedcolor>
 					</control>
 				</focusedlayout>
 			</control>
@@ -154,9 +166,9 @@
 						<left>0</left>
 						<top>0</top>
 						<right>0</right>
-						<height>71</height>
+						<height>70</height>
 						<visible>Control.HasFocus(451)</visible>
-						<texture colordiffuse="focus_surface">lists/focus.png</texture>
+						<include content="NaraDialogFocusTexture" />
 					</control>
 					<control type="image">
 						<left>10</left>
@@ -164,7 +176,7 @@
 						<width>50</width>
 						<height>50</height>
 						<texture>$INFO[ListItem.Icon]</texture>
-						<colordiffuse>$VAR[FocusLayoutTextColor451Var]</colordiffuse>
+						<colordiffuse>$VAR[NaraDialogFocusLayoutTextColor451Var]</colordiffuse>
 						<aspectratio>keep</aspectratio>
 					</control>
 					<control type="label">
@@ -174,8 +186,8 @@
 						<height>70</height>
 						<aligny>center</aligny>
 						<label>$INFO[ListItem.Label]</label>
-						<textcolor>$VAR[FocusLayoutTextColor451Var]</textcolor>
-						<selectedcolor>$VAR[FocusLayoutTextColor451Var]</selectedcolor>
+						<textcolor>$VAR[NaraDialogFocusLayoutTextColor451Var]</textcolor>
+						<selectedcolor>$VAR[NaraDialogFocusLayoutTextColor451Var]</selectedcolor>
 					</control>
 				</focusedlayout>
 			</control>

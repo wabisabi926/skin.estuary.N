@@ -11,6 +11,7 @@
 			<width>900</width>
 			<height>380</height>
 			<include content="DialogBackgroundCommons">
+				<param name="glass_style" value="frosted" />
 				<param name="width" value="900" />
 				<param name="height" value="380" />
 				<param name="header_label" value="$LOCALIZE[8]" />
@@ -33,6 +34,7 @@
 				<height>100</height>
 				<orientation>horizontal</orientation>
 				<align>center</align>
+				<include condition="$EXP[nara_dialog_glass]">NaraDialogButtonItemGap</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="9000" />
 					<param name="label" value="$LOCALIZE[15067]" />

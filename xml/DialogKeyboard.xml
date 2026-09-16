@@ -22,7 +22,12 @@
 				<bottom>0</bottom>
 				<width>100%</width>
 				<height>470</height>
-				<texture colordiffuse="surface_dialog">colors/white.png</texture>
+				<include condition="$EXP[nara_dialog_glass]" content="NaraDialogGlassTexture">
+					<param name="style" value="dialog" />
+				</include>
+				<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+					<param name="color" value="surface_dialog" />
+				</include>
 			</control>
 			<control type="label" id="311">
 				<centerleft>50%</centerleft>
@@ -39,7 +44,10 @@
 				<top>184</top>
 				<width>1542</width>
 				<height>100</height>
-				<texture colordiffuse="surface_dialog">colors/white.png</texture>
+				<include condition="$EXP[nara_dialog_glass]">NaraDialogInsetTexture</include>
+				<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+					<param name="color" value="surface_dialog" />
+				</include>
 			</control>
 			<control type="image">
 				<centerleft>50%</centerleft>
@@ -435,15 +443,16 @@
 						<height>120</height>
 						<onup>160</onup>
 						<ondown>100</ondown>
-						<texturefocus colordiffuse="focus_surface">buttons/roundbutton-fo.png</texturefocus>
+						<texturefocus colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/roundbutton-fo.png</texturefocus>
 						<texturenofocus />
-						<textureradioonfocus colordiffuse="focus_foreground">icons/keyboard/letters.png</textureradioonfocus>
+						<textureradioonfocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/letters.png</textureradioonfocus>
 						<textureradioonnofocus colordiffuse="text_primary">icons/keyboard/letters.png</textureradioonnofocus>
-						<textureradioofffocus colordiffuse="focus_foreground">icons/keyboard/accents.png</textureradioofffocus>
+						<textureradioofffocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/accents.png</textureradioofffocus>
 						<textureradiooffnofocus colordiffuse="text_primary">icons/keyboard/accents.png</textureradiooffnofocus>
 						<radioposx>32l</radioposx>
 						<radiowidth>56</radiowidth>
 						<radioheight>36</radioheight>
+						<focusedcolor>$VAR[NaraDialogFocusForegroundVar]</focusedcolor>
 					</control>
 					<control type="radiobutton" id="303">
 						<description>CAPS LOCK button</description>
@@ -451,16 +460,17 @@
 						<height>120</height>
 						<onup>161</onup>
 						<ondown>101</ondown>
-						<texturefocus colordiffuse="focus_surface">buttons/roundbutton-fo.png</texturefocus>
+						<texturefocus colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/roundbutton-fo.png</texturefocus>
 						<texturenofocus />
-						<textureradioonfocus colordiffuse="focus_foreground">icons/keyboard/capslock.png</textureradioonfocus>
+						<textureradioonfocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/capslock.png</textureradioonfocus>
 						<textureradioonnofocus colordiffuse="text_primary">icons/keyboard/capslock.png</textureradioonnofocus>
-						<textureradioofffocus colordiffuse="focus_foreground">icons/keyboard/capslock.png</textureradioofffocus>
+						<textureradioofffocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/capslock.png</textureradioofffocus>
 						<textureradiooffnofocus colordiffuse="text_primary">icons/keyboard/capslock.png</textureradiooffnofocus>
 						<radioposx>40</radioposx>
 						<radioposy>42</radioposy>
 						<radiowidth>42</radiowidth>
 						<radioheight>47</radioheight>
+						<focusedcolor>$VAR[NaraDialogFocusForegroundVar]</focusedcolor>
 					</control>
 					<control type="radiobutton" id="302">
 						<description>SHIFT button</description>
@@ -468,15 +478,16 @@
 						<height>120</height>
 						<onup>162</onup>
 						<ondown>102</ondown>
-						<texturefocus colordiffuse="focus_surface">buttons/roundbutton-fo.png</texturefocus>
+						<texturefocus colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/roundbutton-fo.png</texturefocus>
 						<texturenofocus />
-						<textureradioonfocus colordiffuse="focus_foreground">icons/keyboard/shift.png</textureradioonfocus>
+						<textureradioonfocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/shift.png</textureradioonfocus>
 						<textureradioonnofocus colordiffuse="text_primary">icons/keyboard/shift.png</textureradioonnofocus>
-						<textureradioofffocus colordiffuse="focus_foreground">icons/keyboard/shift.png</textureradioofffocus>
+						<textureradioofffocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/shift.png</textureradioofffocus>
 						<textureradiooffnofocus colordiffuse="text_primary">icons/keyboard/shift.png</textureradiooffnofocus>
 						<radioposx>42</radioposx>
 						<radiowidth>36</radiowidth>
 						<radioheight>36</radioheight>
+						<focusedcolor>$VAR[NaraDialogFocusForegroundVar]</focusedcolor>
 					</control>
 					<control type="radiobutton" id="32">
 						<description>SPACE button</description>
@@ -500,15 +511,16 @@
 						<height>120</height>
 						<ondown>107</ondown>
 						<onup>167</onup>
-						<texturefocus colordiffuse="focus_surface">buttons/roundbutton-fo.png</texturefocus>
+						<texturefocus colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/roundbutton-fo.png</texturefocus>
 						<texturenofocus />
-						<textureradioonfocus colordiffuse="focus_foreground">icons/keyboard/arrowleft.png</textureradioonfocus>
+						<textureradioonfocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/arrowleft.png</textureradioonfocus>
 						<textureradioonnofocus colordiffuse="text_primary">icons/keyboard/arrowleft.png</textureradioonnofocus>
-						<textureradioofffocus colordiffuse="focus_foreground">icons/keyboard/arrowleft.png</textureradioofffocus>
+						<textureradioofffocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/arrowleft.png</textureradioofffocus>
 						<textureradiooffnofocus colordiffuse="text_primary">icons/keyboard/arrowleft.png</textureradiooffnofocus>
 						<radioposx>38</radioposx>
 						<radiowidth>36</radiowidth>
 						<radioheight>36</radioheight>
+						<focusedcolor>$VAR[NaraDialogFocusForegroundVar]</focusedcolor>
 					</control>
 					<control type="radiobutton" id="306">
 						<description>next button</description>
@@ -516,15 +528,16 @@
 						<height>120</height>
 						<ondown>108</ondown>
 						<onup>168</onup>
-						<texturefocus colordiffuse="focus_surface">buttons/roundbutton-fo.png</texturefocus>
+						<texturefocus colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/roundbutton-fo.png</texturefocus>
 						<texturenofocus />
-						<textureradioonfocus colordiffuse="focus_foreground">icons/keyboard/arrowright.png</textureradioonfocus>
+						<textureradioonfocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/arrowright.png</textureradioonfocus>
 						<textureradioonnofocus colordiffuse="text_primary">icons/keyboard/arrowright.png</textureradioonnofocus>
-						<textureradioofffocus colordiffuse="focus_foreground">icons/keyboard/arrowright.png</textureradioofffocus>
+						<textureradioofffocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/arrowright.png</textureradioofffocus>
 						<textureradiooffnofocus colordiffuse="text_primary">icons/keyboard/arrowright.png</textureradiooffnofocus>
 						<radioposx>45</radioposx>
 						<radiowidth>36</radiowidth>
 						<radioheight>36</radioheight>
+						<focusedcolor>$VAR[NaraDialogFocusForegroundVar]</focusedcolor>
 					</control>
 					<control type="radiobutton" id="8">
 						<description>BACKSPACE button</description>
@@ -532,15 +545,16 @@
 						<height>120</height>
 						<onup>169</onup>
 						<ondown>109</ondown>
-						<texturefocus colordiffuse="focus_surface">buttons/roundbutton-fo.png</texturefocus>
+						<texturefocus colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/roundbutton-fo.png</texturefocus>
 						<texturenofocus />
-						<textureradioonfocus colordiffuse="focus_foreground">icons/keyboard/backspace.png</textureradioonfocus>
+						<textureradioonfocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/backspace.png</textureradioonfocus>
 						<textureradioonnofocus colordiffuse="text_primary">icons/keyboard/backspace.png</textureradioonnofocus>
-						<textureradioofffocus colordiffuse="focus_foreground">icons/keyboard/backspace.png</textureradioofffocus>
+						<textureradioofffocus colordiffuse="$VAR[NaraDialogFocusForegroundVar]">icons/keyboard/backspace.png</textureradioofffocus>
 						<textureradiooffnofocus colordiffuse="text_primary">icons/keyboard/backspace.png</textureradiooffnofocus>
 						<radioposx>31</radioposx>
 						<radiowidth>51</radiowidth>
 						<radioheight>36</radioheight>
+						<focusedcolor>$VAR[NaraDialogFocusForegroundVar]</focusedcolor>
 					</control>
 				</control>
 			</control>
@@ -548,7 +562,7 @@
 				<bottom>0</bottom>
 				<height>460</height>
 				<centerleft>88%</centerleft>
-				<itemgap>dialogbuttons_itemgap</itemgap>
+				<include>NaraDialogButtonSpacing</include>
 				<onup condition="!Integer.IsGreater(Container(9010).NumItems,0)">95200</onup>
 				<onup condition="Integer.IsGreater(Container(9010).NumItems,0)">9010</onup>
 				<ondown>95200</ondown>
@@ -559,25 +573,30 @@
 				<include content="DefaultDialogButton">
 					<param name="id" value="300" />
 					<param name="label" value="$LOCALIZE[12321]" />
-					<param name="width" value="350" />
+					<param name="width" value="310" />
+					<param name="legacy_width" value="350" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="301" />
 					<param name="label" value="$LOCALIZE[222]" />
-					<param name="width" value="350" />
+					<param name="width" value="310" />
+					<param name="legacy_width" value="350" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="310" />
-					<param name="width" value="350" />
+					<param name="width" value="310" />
+					<param name="legacy_width" value="350" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="309" />
-					<param name="width" value="350" />
+					<param name="width" value="310" />
+					<param name="legacy_width" value="350" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="307" />
 					<param name="label" value="$LOCALIZE[1006]" />
-					<param name="width" value="350" />
+					<param name="width" value="310" />
+					<param name="legacy_width" value="350" />
 				</include>
 			</control>
 			<control type="panel" id="9010">
@@ -598,7 +617,10 @@
 						<top>0</top>
 						<width>480</width>
 						<height>50</height>
-						<texture colordiffuse="surface_dialog">colors/white.png</texture>
+						<include condition="$EXP[nara_dialog_glass]">NaraDialogInsetTexture</include>
+						<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+							<param name="color" value="surface_dialog" />
+						</include>
 					</control>
 					<control type="label">
 						<textoffsetx>30</textoffsetx>
@@ -617,7 +639,10 @@
 							<top>0</top>
 							<width>480</width>
 							<height>50</height>
-							<texture colordiffuse="surface_dialog">colors/white.png</texture>
+							<include condition="$EXP[nara_dialog_glass]">NaraDialogInsetTexture</include>
+							<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+								<param name="color" value="surface_dialog" />
+							</include>
 						</control>
 						<control type="image">
 							<left>10</left>
@@ -632,8 +657,8 @@
 							<width>500</width>
 							<height>50</height>
 							<label>$INFO[ListItem.Label]</label>
-							<textcolor>$VAR[FocusLayoutTextColor9010Var]</textcolor>
-							<selectedcolor>$VAR[FocusLayoutTextColor9010Var]</selectedcolor>
+							<textcolor>$VAR[NaraDialogFocusLayoutTextColor9010Var]</textcolor>
+							<selectedcolor>$VAR[NaraDialogFocusLayoutTextColor9010Var]</selectedcolor>
 							<font>font12</font>
 							<aligny>center</aligny>
 						</control>

@@ -17,9 +17,11 @@
 					<width>620</width>
 					<height>620</height>
 					<aspectratio>scale</aspectratio>
-					<texture>dialogs/dialog-bg-nobo.png</texture>
-					<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-					<bordersize>20</bordersize>
+					<include condition="$EXP[nara_dialog_glass]">NaraDialogGlassTexture</include>
+					<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+						<param name="texture" value="dialogs/dialog-bg-nobo.png" />
+						<param name="shadow" value="true" />
+					</include>
 				</control>
 				<control type="image">
 					<depth>DepthContentPopout</depth>
@@ -49,6 +51,7 @@
 						<onleft>41</onleft>
 						<onright>41</onright>
 						<label></label>
+						<include condition="$EXP[nara_dialog_glass]">NaraDialogControlTextures</include>
 					</control>
 					<control type="image">
 						<left>-4</left>
@@ -93,7 +96,8 @@
 						<width>720</width>
 						<height>430</height>
 						<label></label>
-						<texturenofocus border="21">dialogs/dialog-bg.png</texturenofocus>
+						<include condition="$EXP[nara_dialog_glass]">NaraDialogButtonInsetTexture</include>
+						<include condition="!$EXP[nara_dialog_glass]">NaraDialogLegacyButtonTexture</include>
 						<onclick>SetProperty(TextViewer_Header,$LOCALIZE[21821],home)</onclick>
 						<onclick>SetProperty(TextViewer_Text,$ESCVAR[MusicInfoTextboxVar],home)</onclick>
 						<onclick condition="[String.IsEqual(ListItem.DbType,song) + !String.IsEmpty(ListItem.Comment)] | [String.IsEqual(ListItem.DbType,album) + !String.IsEmpty(ListItem.Property(Album_Description))] | [String.IsEqual(ListItem.DbType,artist) + !String.IsEmpty(ListItem.Property(Artist_Description))]">ActivateWindow(1102)</onclick>
@@ -210,7 +214,7 @@
 							<top>-10</top>
 							<width>595</width>
 							<height>100</height>
-							<texture border="21" colordiffuse="focus_surface">buttons/button-fo.png</texture>
+							<texture border="21" colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/button-fo.png</texture>
 						</control>
 						<control type="label">
 							<left>40</left>
@@ -220,9 +224,9 @@
 							<font>font12</font>
 							<aligny>center</aligny>
 							<scroll>true</scroll>
-							<label>$INFO[ListItem.Label,[COLOR focus_foreground_muted], - [/COLOR]]$INFO[ListItem.Label2]</label>
-							<textcolor>focus_foreground</textcolor>
-							<selectedcolor>focus_foreground</selectedcolor>
+							<label>$INFO[ListItem.Label,[COLOR $VAR[NaraDialogFocusMutedVar]], - [/COLOR]]$INFO[ListItem.Label2]</label>
+							<textcolor>$VAR[NaraDialogFocusForegroundVar]</textcolor>
+							<selectedcolor>$VAR[NaraDialogFocusForegroundVar]</selectedcolor>
 						</control>
 					</focusedlayout>
 					<itemlayout height="72.5" width="595" condition="Container.Content(albums)">
@@ -264,7 +268,7 @@
 								<top>-10</top>
 								<width>595</width>
 								<height>100</height>
-								<texture border="21" colordiffuse="focus_surface">buttons/button-fo.png</texture>
+								<texture border="21" colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/button-fo.png</texture>
 							</control>
 							<control type="label">
 								<left>40</left>
@@ -274,9 +278,9 @@
 								<font>font12</font>
 								<aligny>center</aligny>
 								<scroll>true</scroll>
-								<label>$INFO[ListItem.TrackNumber,[COLOR focus_foreground_muted], - [/COLOR]]$INFO[ListItem.Label]</label>
-								<textcolor>focus_foreground</textcolor>
-								<selectedcolor>focus_foreground</selectedcolor>
+								<label>$INFO[ListItem.TrackNumber,[COLOR $VAR[NaraDialogFocusMutedVar]], - [/COLOR]]$INFO[ListItem.Label]</label>
+								<textcolor>$VAR[NaraDialogFocusForegroundVar]</textcolor>
+								<selectedcolor>$VAR[NaraDialogFocusForegroundVar]</selectedcolor>
 								<visible>![Skin.HasSetting(circle_rating) | Skin.HasSetting(circle_userrating)] | [Skin.HasSetting(circle_userrating) + String.IsEmpty(ListItem.UserRating)] | [Skin.HasSetting(circle_rating) + String.IsEmpty(ListItem.Rating)]</visible>
 							</control>
 							<control type="label">
@@ -287,9 +291,9 @@
 								<font>font12</font>
 								<aligny>center</aligny>
 								<scroll>true</scroll>
-								<label>$INFO[ListItem.TrackNumber,[COLOR focus_foreground_muted], - [/COLOR]]$INFO[ListItem.Label]</label>
-								<textcolor>focus_foreground</textcolor>
-								<selectedcolor>focus_foreground</selectedcolor>
+								<label>$INFO[ListItem.TrackNumber,[COLOR $VAR[NaraDialogFocusMutedVar]], - [/COLOR]]$INFO[ListItem.Label]</label>
+								<textcolor>$VAR[NaraDialogFocusForegroundVar]</textcolor>
+								<selectedcolor>$VAR[NaraDialogFocusForegroundVar]</selectedcolor>
 								<visible>[Skin.HasSetting(circle_rating) + !String.IsEmpty(ListItem.Rating)] | [Skin.HasSetting(circle_userrating) + !String.IsEmpty(ListItem.UserRating)]</visible>
 							</control>
 							<control type="group">
@@ -500,7 +504,7 @@
 								<top>1</top>
 								<width>446</width>
 								<height>33</height>
-								<texture colordiffuse="focus_surface">lists/focus.png</texture>
+								<include content="NaraDialogFocusTexture" />
 								<visible>Control.HasFocus(41)</visible>
 								</control>
 								<control type="label">
@@ -510,8 +514,8 @@
 								<height>30</height>
 								<font>font27_narrow</font>
 								<label>$INFO[ListItem.Label] $INFO[ListItem.Label2]</label>
-								<textcolor>focus_foreground</textcolor>
-								<selectedcolor>focus_foreground</selectedcolor>
+								<textcolor>$VAR[NaraDialogFocusForegroundVar]</textcolor>
+								<selectedcolor>$VAR[NaraDialogFocusForegroundVar]</selectedcolor>
 								<scroll>true</scroll>
 									<visible>Control.HasFocus(41)</visible>
 								</control>

@@ -25,6 +25,7 @@
 				<onright>9000</onright>
 				<onup>24</onup>
 				<ondown>10</ondown>
+				<include condition="$EXP[nara_dialog_glass]">NaraDialogButtonInsetTexture</include>
 			</control>
 			<control type="textbox">
 				<description>Search help</description>
@@ -41,7 +42,11 @@
 				<top>210</top>
 				<width>1460</width>
 				<height>740</height>
-				<texture border="40">buttons/dialogbutton-nofo.png</texture>
+				<include condition="$EXP[nara_dialog_glass]">NaraDialogInsetTexture</include>
+				<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+					<param name="texture" value="buttons/dialogbutton-nofo.png" />
+					<param name="border" value="40" />
+				</include>
 			</control>
 			<control type="grouplist" id="5000">
 				<left>30</left>
@@ -202,29 +207,38 @@
 				</control>
 			</control>
 			<control type="grouplist" id="9000">
-				<top>80</top>
-				<left>1460</left>
+				<top>100</top>
+				<left>1492</left>
 				<onup>9000</onup>
 				<ondown>9000</ondown>
 				<onleft>6000</onleft>
 				<onright>5000</onright>
-				<width>1320</width>
+				<width>260</width>
 				<orientation>vertical</orientation>
+				<include condition="$EXP[nara_dialog_glass]">NaraDialogButtonItemGap</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="26" />
 					<param name="label" value="$LOCALIZE[137]" />
+					<param name="width" value="260" />
+					<param name="legacy_width" value="260" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="29" />
 					<param name="label" value="$LOCALIZE[190]" />
+					<param name="width" value="260" />
+					<param name="legacy_width" value="260" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="28" />
 					<param name="label" value="$LOCALIZE[13007]" />
+					<param name="width" value="260" />
+					<param name="legacy_width" value="260" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="25" />
 					<param name="label" value="$LOCALIZE[222]" />
+					<param name="width" value="260" />
+					<param name="legacy_width" value="260" />
 				</include>
 			</control>
 		</control>

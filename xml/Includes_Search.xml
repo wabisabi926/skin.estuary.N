@@ -30,7 +30,8 @@
 	     when the movie result is empty. -->
 	<expression name="NaraSearchMoviesActive">Integer.IsGreater(Container(16101).NumItems,0) + [!String.IsEqual(Window(home).Property(Search.ActiveType),tvshows) | Integer.IsEqual(Container(16102).NumItems,0)]</expression>
 	<expression name="NaraSearchTVShowsActive">Integer.IsGreater(Container(16102).NumItems,0) + [String.IsEqual(Window(home).Property(Search.ActiveType),tvshows) | Integer.IsEqual(Container(16101).NumItems,0)]</expression>
-	<expression name="NaraSearchKeyboardHidden">!String.IsEmpty(Control.GetLabel(16999).index(1)) + !ControlGroup(16010).HasFocus() + [ControlGroup(16020).HasFocus() | !String.IsEmpty(Window(home).Property(Search.KeyboardHidden))]</expression>
+	<expression name="NaraSearchHasResults">!String.IsEmpty(Control.GetLabel(16999).index(1)) + [Integer.IsGreater(Container(16101).NumItems,0) | Integer.IsGreater(Container(16102).NumItems,0)]</expression>
+	<expression name="NaraSearchKeyboardHidden">!String.IsEqual(Window(home).Property(Home.Section),search) | System.HasActiveModalDialog | [!ControlGroup(16010).HasFocus() + !String.IsEmpty(Window(home).Property(Search.KeyboardHidden))]</expression>
 	<variable name="NaraSearchFanartVar">
 		<value condition="$EXP[NaraSearchMoviesActive]">$INFO[Container(16101).ListItemSettled.Art(fanart)]</value>
 		<value condition="$EXP[NaraSearchTVShowsActive]">$INFO[Container(16102).ListItemSettled.Art(fanart)]</value>
@@ -94,146 +95,93 @@
 
 	<include name="NaraSearchKeyboardItemLayout">
 		<param name="focused">false</param>
-		<param name="textcolor">text_primary</param>
 		<definition>
 			<control type="image">
-				<left>2</left>
-				<top>0</top>
-				<width>42</width>
-				<height>42</height>
-				<texture colordiffuse="focus_surface">lists/focus.png</texture>
+				<left>6</left><top>6</top><width>60</width><height>52</height>
+				<texture cornerradius="14" colordiffuse="glass_focus_light">colors/white.png</texture>
 				<visible>$PARAM[focused]</visible>
 			</control>
 			<control type="label">
-				<left>0</left>
-				<top>0</top>
-				<width>46</width>
-				<height>42</height>
+				<width>72</width><height>64</height>
 				<font>font24_search_bold</font>
 				<label>$INFO[ListItem.Label]</label>
-				<align>center</align>
-				<aligny>center</aligny>
-				<textcolor>$PARAM[textcolor]</textcolor>
+				<align>center</align><aligny>center</aligny>
+				<textcolor>text_primary</textcolor>
 			</control>
 			<control type="image">
-				<left>10</left>
-				<top>9</top>
-				<width>26</width>
-				<height>24</height>
-				<aspectratio>keep</aspectratio>
-				<texture colordiffuse="focus_foreground">$INFO[ListItem.Icon]</texture>
-				<visible>$PARAM[focused] + !String.IsEmpty(ListItem.Icon)</visible>
-			</control>
-			<control type="image">
-				<left>10</left>
-				<top>9</top>
-				<width>26</width>
-				<height>24</height>
+				<left>22</left><top>20</top><width>28</width><height>24</height>
 				<aspectratio>keep</aspectratio>
 				<texture colordiffuse="text_primary">$INFO[ListItem.Icon]</texture>
-				<visible>!$PARAM[focused] + !String.IsEmpty(ListItem.Icon)</visible>
+				<visible>!String.IsEmpty(ListItem.Icon)</visible>
 			</control>
 		</definition>
 	</include>
 
-	<include name="NaraSearchKeyboard">
-		<!-- Hidden receiver for Fuse 2's remote-friendly multi-tap input. -->
-		<control type="edit" id="16999">
-			<left>-1000</left>
-			<top>-1000</top>
-			<width>1</width>
-			<height>1</height>
-			<onfocus>ClearProperty(Search.KeyboardHidden,home)</onfocus>
-			<ondown>16992</ondown>
-			<onleft>noop</onleft>
-			<ontextchange>ClearProperty(Search.ActiveType,home)</ontextchange>
-			<onright condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + Integer.IsGreater(Container(16101).NumItems,0)">16201</onright>
-			<onright condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + Integer.IsEqual(Container(16101).NumItems,0) + Integer.IsGreater(Container(16102).NumItems,0)">16202</onright>
-			<onright>noop</onright>
-			<onback condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchMoviesActive]">16101</onback>
-			<onback condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchTVShowsActive]">16102</onback>
-			<onback>9000</onback>
-		</control>
+	<include name="NaraSearchKeyboardNavigation">
+		<onfocus>ClearProperty(Search.KeyboardHidden,home)</onfocus>
+		<onback>SetProperty(Search.KeyboardHidden,true,home)</onback>
+		<onback>ClearProperty(Search.NumbersVisible,home)</onback>
+		<onback condition="$EXP[NaraSearchHasResults] + $EXP[NaraSearchMoviesActive]">16101</onback>
+		<onback condition="$EXP[NaraSearchHasResults] + $EXP[NaraSearchTVShowsActive]">16102</onback>
+		<onback condition="!$EXP[NaraSearchHasResults]">9011</onback>
+	</include>
+	<include name="NaraSearchResultsLift">
+		<animation effect="slide" start="0,0" end="0,-360" time="280" tween="cubic" easing="inout" reversible="true" condition="!$EXP[NaraSearchKeyboardHidden]">Conditional</animation>
+	</include>
 
-		<!-- The edit above remains only as the receiver for Number* actions. Kodi's
-		     edit control consumes Back as character deletion, so a transparent
-		     button owns the visible input row's navigation instead. -->
+	<include name="NaraSearchKeyboard">
+		<!-- Virtual-key input targets the hidden edit; the visible input button owns Back navigation. -->
+		<control type="edit" id="16999">
+			<left>-1000</left><top>-1000</top><width>1</width><height>1</height>
+			<include>NaraSearchKeyboardNavigation</include>
+			<ontextchange>ClearProperty(Search.ActiveType,home)</ontextchange>
+			<ondown>16992</ondown>
+			<onleft>noop</onleft><onright>noop</onright>
+		</control>
 		<control type="group">
-			<left>30</left>
-			<top>92</top>
-			<width>280</width>
-			<height>76</height>
+			<centerleft>50%</centerleft><top>24</top><width>1008</width><height>64</height>
 			<control type="button" id="16998">
-				<width>280</width>
-				<height>76</height>
-				<label></label>
-				<texturefocus />
-				<texturenofocus />
-				<onfocus>ClearProperty(Search.KeyboardHidden,home)</onfocus>
-				<onup>9000</onup>
+				<width>1008</width><height>64</height>
+				<label></label><texturefocus /><texturenofocus />
+				<include>NaraSearchKeyboardNavigation</include>
+				<onup>SetProperty(Search.KeyboardHidden,true,home)</onup>
+				<onup>ClearProperty(Search.NumbersVisible,home)</onup>
+				<onup condition="$EXP[NaraSearchHasResults] + $EXP[NaraSearchMoviesActive]">16101</onup>
+				<onup condition="$EXP[NaraSearchHasResults] + $EXP[NaraSearchTVShowsActive]">16102</onup>
+				<onup condition="!$EXP[NaraSearchHasResults]">9011</onup>
 				<ondown>16992</ondown>
-				<onleft>noop</onleft>
-				<onright condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + Integer.IsGreater(Container(16101).NumItems,0)">16201</onright>
-				<onright condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + Integer.IsEqual(Container(16101).NumItems,0) + Integer.IsGreater(Container(16102).NumItems,0)">16202</onright>
-				<onright>noop</onright>
-				<onback condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchMoviesActive]">16101</onback>
-				<onback condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchTVShowsActive]">16102</onback>
-				<onback>9000</onback>
+				<onleft>noop</onleft><onright>noop</onright>
+				<onclick>SetFocus(16992)</onclick>
 			</control>
 			<control type="label">
-				<left>0</left>
-				<top>0</top>
-				<width>280</width>
-				<height>72</height>
+				<width>1008</width><height>60</height>
 				<font>font34_search</font>
 				<label>$INFO[Control.GetLabel(16999).index(1)]</label>
 				<textcolor>text_primary</textcolor>
-				<align>center</align>
-				<aligny>center</aligny>
-				<scroll>true</scroll>
+				<align>center</align><aligny>center</aligny><scroll>true</scroll>
 			</control>
 			<control type="image">
-				<left>0</left>
-				<bottom>0</bottom>
-				<width>280</width>
-				<height>1</height>
+				<centerleft>50%</centerleft><bottom>0</bottom><width>1008</width><height>1</height>
 				<texture colordiffuse="text_secondary">colors/white.png</texture>
 			</control>
 			<control type="image">
-				<left>0</left>
-				<bottom>0</bottom>
-				<width>280</width>
-				<height>3</height>
-				<texture colordiffuse="focus_indicator">colors/white.png</texture>
+				<centerleft>50%</centerleft><bottom>0</bottom><width>1008</width><height>3</height>
+				<texture colordiffuse="glass_focus_heavy">colors/white.png</texture>
 				<visible>Control.HasFocus(16998)</visible>
 			</control>
 		</control>
-
-		<!-- Exact Fuse 2 six-column A-Z / 0-9 toggle / backspace panel. -->
 		<control type="panel" id="16992">
-			<left>30</left>
-			<top>214</top>
-			<width>280</width>
-			<height>420</height>
+			<centerleft>50%</centerleft><top>106</top><width>1008</width><height>128</height>
 			<orientation>vertical</orientation>
-			<onfocus>ClearProperty(Search.KeyboardHidden,home)</onfocus>
+			<include>NaraSearchKeyboardNavigation</include>
 			<onup>16998</onup>
 			<ondown condition="!String.IsEmpty(Window(home).Property(Search.NumbersVisible))">16994</ondown>
 			<ondown>noop</ondown>
-			<onleft>noop</onleft>
-			<onright condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + Integer.IsGreater(Container(16101).NumItems,0)">16201</onright>
-			<onright condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + Integer.IsEqual(Container(16101).NumItems,0) + Integer.IsGreater(Container(16102).NumItems,0)">16202</onright>
-			<onright>noop</onright>
-			<onback condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchMoviesActive]">16101</onback>
-			<onback condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchTVShowsActive]">16102</onback>
-			<onback>9000</onback>
-			<itemlayout width="46" height="60">
-				<include content="NaraSearchKeyboardItemLayout" />
-			</itemlayout>
-			<focusedlayout width="46" height="60">
+			<onleft>16992</onleft><onright>16992</onright>
+			<itemlayout width="72" height="64"><include>NaraSearchKeyboardItemLayout</include></itemlayout>
+			<focusedlayout width="72" height="64">
 				<include content="NaraSearchKeyboardItemLayout">
-					<param name="focused" value="true" />
-					<param name="textcolor" value="focus_foreground" />
+					<param name="focused" value="Control.HasFocus(16992)" />
 				</include>
 			</focusedlayout>
 			<content>
@@ -267,35 +215,24 @@
 					<label>$VAR[NaraSearchNumber0]</label>
 					<onclick condition="!String.IsEmpty(Window(home).Property(Search.NumbersVisible))">ClearProperty(Search.NumbersVisible,home)</onclick>
 					<onclick condition="String.IsEmpty(Window(home).Property(Search.NumbersVisible))">SetProperty(Search.NumbersVisible,True,home)</onclick>
-					<onclick>SetFocus(16992)</onclick>
+					<onclick condition="String.IsEmpty(Window(home).Property(Search.NumbersVisible))">SetFocus(16994)</onclick>
+					<onclick condition="!String.IsEmpty(Window(home).Property(Search.NumbersVisible))">SetFocus(16992)</onclick>
 				</item>
 				<item><label></label><icon>icons/keyboard/backspace.png</icon><onclick>SetFocus(16999)</onclick><include>NaraSearchInputBackspace</include><onclick>SetFocus(16992)</onclick></item>
 			</content>
 		</control>
-
-		<!-- Hidden numeric page, revealed by the 0-9 item above. -->
 		<control type="panel" id="16994">
-			<left>30</left>
-			<top>525</top>
-			<width>280</width>
-			<height>120</height>
+			<centerleft>50%</centerleft><top>258</top><width>720</width><height>64</height>
 			<orientation>vertical</orientation>
-			<onfocus>ClearProperty(Search.KeyboardHidden,home)</onfocus>
-			<onup>16992</onup>
-			<ondown>noop</ondown>
-			<onleft>noop</onleft>
-			<onright condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + Integer.IsGreater(Container(16101).NumItems,0)">16201</onright>
-			<onright condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + Integer.IsEqual(Container(16101).NumItems,0) + Integer.IsGreater(Container(16102).NumItems,0)">16202</onright>
-			<onright>noop</onright>
-			<onback condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchMoviesActive]">16101</onback>
-			<onback condition="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchTVShowsActive]">16102</onback>
-			<onback>9000</onback>
-			<visible>!String.IsEmpty(Window(home).Property(Search.NumbersVisible))</visible>
-			<itemlayout width="46" height="60"><include content="NaraSearchKeyboardItemLayout" /></itemlayout>
-			<focusedlayout width="46" height="60">
+			<include>NaraSearchKeyboardNavigation</include>
+			<onup>16992</onup><ondown>noop</ondown>
+			<onleft>16994</onleft><onright>16994</onright>
+			<!-- The toggle can focus this row before the next visibility update. -->
+			<visible allowhiddenfocus="true">!String.IsEmpty(Window(home).Property(Search.NumbersVisible))</visible>
+			<itemlayout width="72" height="64"><include>NaraSearchKeyboardItemLayout</include></itemlayout>
+			<focusedlayout width="72" height="64">
 				<include content="NaraSearchKeyboardItemLayout">
-					<param name="focused" value="true" />
-					<param name="textcolor" value="focus_foreground" />
+					<param name="focused" value="Control.HasFocus(16994)" />
 				</include>
 			</focusedlayout>
 			<content>
@@ -531,9 +468,9 @@
 	</include>
 
 
-	<include name="NaraSearchWindow">
-		<!-- Search results retain the information-dialog fanart treatment. Only the
-		     empty-query random backdrop matches Files, Favorites and File Manager. -->
+	<include name="NaraSearchBackground">
+		<!-- Search results retain the information-dialog fanart treatment. The
+		     empty-query random backdrop matches Home's Files and Favorites sections. -->
 		<control type="image">
 			<width>1920</width>
 			<height>1080</height>
@@ -546,37 +483,32 @@
 			<height>1080</height>
 			<aspectratio align="right">scale</aspectratio>
 			<fadetime>250</fadetime>
-			<texture background="true" colordiffuse="B3FFFFFF">$VAR[NaraSharedRandomFanartVar]</texture>
+			<texture background="true" colordiffuse="CCFFFFFF">$VAR[NaraSharedRandomFanartVar]</texture>
 			<visible>String.IsEmpty(Control.GetLabel(16999).index(1)) + !Skin.HasSetting(no_fanart) + ![String.IsEmpty(Skin.String(Nara.SharedRandomFanart.LockedPath)) + String.IsEmpty(Window(home).Property(Home.SharedRandomFanart.SessionPath)) + String.IsEmpty(Container(16090).ListItem.Art(fanart))]</visible>
 		</control>
-		<control type="image">
+		<control type="image" id="16590">
 			<width>1920</width>
 			<height>1080</height>
 			<aspectratio align="right">scale</aspectratio>
 			<fadetime>350</fadetime>
 			<texture background="true">$VAR[NaraSearchFanartVar]</texture>
+			<include content="Animation_NaraFanartDetail">
+				<param name="source" value="search" />
+			</include>
 			<visible>!String.IsEmpty(Control.GetLabel(16999).index(1)) + !Skin.HasSetting(no_fanart) + [[$EXP[NaraSearchMoviesActive] + !String.IsEmpty(Container(16101).ListItemSettled.Art(fanart))] | [$EXP[NaraSearchTVShowsActive] + !String.IsEmpty(Container(16102).ListItemSettled.Art(fanart))]]</visible>
 			<animation effect="fade" time="400">VisibleChange</animation>
 		</control>
 		<control type="image">
 			<width>1920</width>
-			<height>1080</height>
-			<texture colordiffuse="1A000000">colors/black.png</texture>
-			<visible>String.IsEmpty(Control.GetLabel(16999).index(1)) + !Skin.HasSetting(no_fanart) + ![String.IsEmpty(Skin.String(Nara.SharedRandomFanart.LockedPath)) + String.IsEmpty(Window(home).Property(Home.SharedRandomFanart.SessionPath)) + String.IsEmpty(Container(16090).ListItem.Art(fanart))]</visible>
-		</control>
-		<control type="image">
-			<width>1920</width>
 			<height>220</height>
 			<aspectratio>stretch</aspectratio>
-			<texture flipy="true" colordiffuse="66FFFFFF">overlays/overlayfade.png</texture>
+			<texture flipy="true" colordiffuse="33FFFFFF">overlays/overlayfade.png</texture>
 		</control>
-		<control type="image">
-			<width>1920</width>
-			<height>1080</height>
-			<texture colordiffuse="14000000">colors/black.png</texture>
-			<visible>!Skin.HasSetting(no_fanart) + [[!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchMoviesActive] + !String.IsEmpty(Container(16101).ListItemSettled.Art(fanart))] | [!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchTVShowsActive] + !String.IsEmpty(Container(16102).ListItemSettled.Art(fanart))]]</visible>
-			<animation effect="fade" time="400">VisibleChange</animation>
-		</control>
+		<include content="NaraFanartReveal">
+			<param name="source" value="16590" />
+			<param name="enabled" value="[Control.HasFocus(16101) | Control.HasFocus(16102)] + !System.HasActiveModalDialog" />
+			<param name="visible" value="!Skin.HasSetting(no_fanart) + [[!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchMoviesActive] + !String.IsEmpty(Container(16101).ListItemSettled.Art(fanart))] | [!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchTVShowsActive] + !String.IsEmpty(Container(16102).ListItemSettled.Art(fanart))]]" />
+		</include>
 		<control type="image">
 			<width>1200</width>
 			<height>1080</height>
@@ -593,7 +525,8 @@
 			<texture colordiffuse="opacity_medium">overlays/overlayfade.png</texture>
 			<visible>!String.IsEmpty(Control.GetLabel(16999).index(1))</visible>
 		</control>
-
+	</include>
+	<include name="NaraSearchWindow">
 		<!-- Match the detail page's poster fallback when fanart is unavailable. -->
 		<control type="group">
 			<left>1250</left>
@@ -612,38 +545,16 @@
 			</control>
 		</control>
 
-		<!-- Keep the off-screen rail focusable so Left from the results can restore it. -->
-		<control type="group" id="16010">
-			<top>140</top>
-			<width>340</width>
-			<height>940</height>
-			<animation effect="slide" start="0,0" end="-340,0" time="320" tween="cubic" easing="inout" reversible="true" condition="$EXP[NaraSearchKeyboardHidden]">Conditional</animation>
-			<animation effect="fade" start="100" end="0" time="220" reversible="true" condition="$EXP[NaraSearchKeyboardHidden]">Conditional</animation>
-			<control type="image">
-				<width>340</width><height>940</height>
-				<texture colordiffuse="3318171E">colors/white.png</texture>
-			</control>
-			<control type="group">
-				<top>-80</top>
-				<include>NaraSearchKeyboard</include>
-			</control>
-		</control>
-
-		<!-- Collapsing the rail moves the results onto the detail-page coordinates. -->
 		<control type="group" id="16020">
-			<left>340</left>
-			<width>1920</width>
-			<height>1080</height>
-			<animation effect="slide" start="0,0" end="-340,0" time="320" tween="cubic" easing="inout" reversible="true" condition="$EXP[NaraSearchKeyboardHidden]">Conditional</animation>
-
+			<width>1920</width><height>1080</height>
 			<include content="NaraSearchHero">
 				<param name="container_id" value="16101" />
-				<param name="visible" value="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchMoviesActive]" />
+				<param name="visible" value="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchMoviesActive] + $EXP[NaraSearchKeyboardHidden]" />
 				<param name="metadata" value="$INFO[Container(16101).ListItemSettled.Year]$INFO[Container(16101).ListItemSettled.Mpaa,  &#183;  ]$INFO[Container(16101).ListItemSettled.Duration,  &#183;  ]$INFO[Container(16101).ListItemSettled.Genre,  &#183;  ]" />
 			</include>
 			<include content="NaraSearchHero">
 				<param name="container_id" value="16102" />
-				<param name="visible" value="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchTVShowsActive]" />
+				<param name="visible" value="!String.IsEmpty(Control.GetLabel(16999).index(1)) + $EXP[NaraSearchTVShowsActive] + $EXP[NaraSearchKeyboardHidden]" />
 				<param name="metadata" value="$INFO[Container(16102).ListItemSettled.Year]$INFO[Container(16102).ListItemSettled.Mpaa,  &#183;  ]$INFO[Container(16102).ListItemSettled.Genre,  &#183;  ]$INFO[Container(16102).ListItemSettled.Season,  &#183;  , $LOCALIZE[36905]]$INFO[Container(16102).ListItemSettled.Episode,  &#183;  , $LOCALIZE[36907]]" />
 				<param name="is_tv" value="true" />
 			</include>
@@ -654,6 +565,7 @@
 			<control type="grouplist" id="16200">
 				<left>80</left>
 				<top>605</top>
+				<include>NaraSearchResultsLift</include>
 				<width>440</width>
 				<height>52</height>
 				<orientation>horizontal</orientation>
@@ -666,7 +578,7 @@
 					<texturefocus /><texturenofocus />
 					<onfocus>SetProperty(Search.ActiveType,movies,home)</onfocus>
 					<onfocus>SetProperty(Search.KeyboardHidden,true,home)</onfocus>
-					<onleft>16992</onleft>
+					<onleft>noop</onleft>
 					<onright condition="Integer.IsGreater(Container(16102).NumItems,0)">16202</onright>
 					<onright>noop</onright>
 					<onup>9000</onup><ondown>16101</ondown><onback>9000</onback>
@@ -682,7 +594,7 @@
 					<onfocus>SetProperty(Search.ActiveType,tvshows,home)</onfocus>
 					<onfocus>SetProperty(Search.KeyboardHidden,true,home)</onfocus>
 					<onleft condition="Integer.IsGreater(Container(16101).NumItems,0)">16201</onleft>
-					<onleft>16992</onleft>
+					<onleft>noop</onleft>
 					<onright>noop</onright>
 					<onup>9000</onup><ondown>16102</ondown><onback>9000</onback>
 					<onclick>SetFocus(16102)</onclick>
@@ -693,6 +605,7 @@
 			<control type="grouplist">
 				<left>80</left>
 				<top>605</top>
+				<include>NaraSearchResultsLift</include>
 				<width>440</width>
 				<height>52</height>
 				<orientation>horizontal</orientation>
@@ -715,16 +628,17 @@
 
 			<control type="fixedlist" id="16101">
 				<left>70</left><top>667</top><width>1780</width><height>413</height>
+				<include>NaraSearchResultsLift</include>
 				<orientation>horizontal</orientation>
 				<movement>6</movement>
 				<scrolltime tween="quadratic">350</scrolltime>
-				<selectionsettledelay>300</selectionsettledelay>
+				<selectionsettledelay mode="adaptive">150</selectionsettledelay>
 				<preloaditems>2</preloaditems>
 				<onfocus>SetProperty(Search.KeyboardHidden,true,home)</onfocus>
-				<onleft>16992</onleft>
+				<onleft>16101</onleft>
 				<onright>16101</onright>
 				<onup>16201</onup>
-				<ondown>16101</ondown>
+				<ondown>16992</ondown>
 				<onback>9000</onback>
 				<itemlayout width="240" height="400"><include content="NaraSearchPosterLayout" /></itemlayout>
 				<focusedlayout width="240" height="400">
@@ -738,16 +652,17 @@
 			</control>
 			<control type="fixedlist" id="16102">
 				<left>70</left><top>667</top><width>1780</width><height>413</height>
+				<include>NaraSearchResultsLift</include>
 				<orientation>horizontal</orientation>
 				<movement>6</movement>
 				<scrolltime tween="quadratic">350</scrolltime>
-				<selectionsettledelay>300</selectionsettledelay>
+				<selectionsettledelay mode="adaptive">150</selectionsettledelay>
 				<preloaditems>2</preloaditems>
 				<onfocus>SetProperty(Search.KeyboardHidden,true,home)</onfocus>
-				<onleft>16992</onleft>
+				<onleft>16102</onleft>
 				<onright>16102</onright>
 				<onup>16202</onup>
-				<ondown>16102</ondown>
+				<ondown>16992</ondown>
 				<onback>9000</onback>
 				<itemlayout width="240" height="400"><include content="NaraSearchPosterLayout" /></itemlayout>
 				<focusedlayout width="240" height="400">
@@ -761,13 +676,24 @@
 			</control>
 
 			<control type="label">
-				<left>0</left><top>510</top><width>1580</width><height>60</height>
+				<left>0</left><top>510</top><width>1920</width><height>60</height>
 				<font>font32_title</font>
 				<label>$LOCALIZE[284]</label>
 				<textcolor>text_muted</textcolor>
 				<align>center</align><aligny>center</aligny>
 				<visible>!String.IsEmpty(Control.GetLabel(16999).index(1)) + !Container(16101).IsUpdating + !Container(16102).IsUpdating + Integer.IsEqual(Container(16101).NumItems,0) + Integer.IsEqual(Container(16102).NumItems,0)</visible>
 			</control>
+		</control>
+		<!-- Animated hiding keeps the last keyboard key focusable for re-entry. -->
+		<control type="group" id="16010">
+			<depth>DepthSideBlade</depth>
+			<bottom>0</bottom><width>1920</width><height>360</height>
+			<animation effect="slide" start="0,0" end="0,360" time="280" tween="cubic" easing="inout" reversible="true" condition="$EXP[NaraSearchKeyboardHidden]">Conditional</animation>
+			<control type="image">
+				<width>1920</width><height>100%</height>
+				<texture material="glass" glassstyle="regular" glassedge="soft">colors/white.png</texture>
+			</control>
+			<include>NaraSearchKeyboard</include>
 		</control>
 	</include>
 </includes>

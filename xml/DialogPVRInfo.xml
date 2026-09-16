@@ -20,7 +20,11 @@
 						<width>566</width>
 						<height>718</height>
 						<aspectratio>stretch</aspectratio>
-						<texture border="21">dialogs/dialog-bg.png</texture>
+						<include condition="$EXP[nara_dialog_glass]">NaraDialogGlassTexture</include>
+						<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+							<param name="texture" value="dialogs/dialog-bg.png" />
+							<param name="border" value="21" />
+						</include>
 					</control>
 					<control type="image">
 						<left>14</left>
@@ -98,7 +102,8 @@
 						<onleft>4000</onleft>
 						<onright>4000</onright>
 						<ondown>5000</ondown>
-						<texturenofocus border="21">dialogs/dialog-bg.png</texturenofocus>
+						<include condition="$EXP[nara_dialog_glass]">NaraDialogButtonInsetTexture</include>
+						<include condition="!$EXP[nara_dialog_glass]">NaraDialogLegacyButtonTexture</include>
 						<visible>Integer.IsGreater(Container(4000).NumItems,0)</visible>
 					</control>
 					<control type="image">
@@ -106,7 +111,11 @@
 						<width>509</width>
 						<height>718</height>
 						<aligny>bottom</aligny>
-						<texture border="21">dialogs/dialog-bg.png</texture>
+						<include condition="$EXP[nara_dialog_glass]">NaraDialogGlassTexture</include>
+						<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+							<param name="texture" value="dialogs/dialog-bg.png" />
+							<param name="border" value="21" />
+						</include>
 						<visible>Integer.IsGreater(Container(4000).NumItems,0)</visible>
 					</control>
 					<control type="button" id="139">
@@ -123,7 +132,8 @@
 						<onleft>4000</onleft>
 						<onright>4000</onright>
 						<ondown>5000</ondown>
-						<texturenofocus border="21">dialogs/dialog-bg.png</texturenofocus>
+						<include condition="$EXP[nara_dialog_glass]">NaraDialogButtonInsetTexture</include>
+						<include condition="!$EXP[nara_dialog_glass]">NaraDialogLegacyButtonTexture</include>
 						<visible>!Integer.IsGreater(Container(4000).NumItems,0)</visible>
 					</control>
 					<control type="textbox">

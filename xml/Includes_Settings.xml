@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<expression name="nara_settings_osd">Window.IsActive(osdvideosettings) | Window.IsActive(osdaudiosettings) | Window.IsActive(osdsubtitlesettings) | Window.IsActive(osdcmssettings)</expression>
+	<expression name="nara_settings_context">Window.IsActive(playersettings) | Window.IsActive(mediasettings) | Window.IsActive(interfacesettings) | Window.IsActive(systemsettings) | Window.IsActive(servicesettings) | Window.IsActive(pvrsettings) | Window.IsActive(narapekasettings) | Window.IsActive(skinsettings) | Window.IsActive(profiles) | Window.IsActive(systeminfo) | Window.IsActive(1115) | Window.IsActive(addonsettings) | Window.IsActive(networksetup) | Window.IsActive(contentsettings) | Window.IsActive(10162) | Window.IsActive(10163)</expression>
+	<include name="NaraSettingsBackground">
+		<definition>
+			<control type="image">
+				<width>1920</width>
+				<height>1080</height>
+				<aspectratio>scale</aspectratio>
+				<texture>settings/background.png</texture>
+			</control>
+			<control type="image">
+				<width>1920</width>
+				<height>1080</height>
+				<texture colordiffuse="66000000">colors/black.png</texture>
+			</control>
+		</definition>
+	</include>
+	<include name="NaraSettingsSidebar">
+		<param name="width">400</param>
+		<param name="height">830</param>
+		<param name="left">60</param>
+		<param name="top">145</param>
+		<definition>
+			<control type="image">
+				<left>$PARAM[left]</left>
+				<top>$PARAM[top]</top>
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<texture cornerradius="28" material="glass" glassstyle="regular">colors/white.png</texture>
+			</control>
+		</definition>
+	</include>
+	<include name="NaraSettingsRow">
+		<param name="height">76</param>
+		<param name="textoffsetx">28</param>
+		<param name="focuscolor">glass_focus_light</param>
+		<definition>
+			<top>0</top>
+			<height>$PARAM[height]</height>
+			<textoffsetx>$PARAM[textoffsetx]</textoffsetx>
+			<textoffsety>0</textoffsety>
+			<font>font26</font>
+			<aligny>center</aligny>
+			<textcolor>text_primary</textcolor>
+			<focusedcolor>text_primary</focusedcolor>
+			<selectedcolor>text_primary</selectedcolor>
+			<disabledcolor>text_disabled</disabledcolor>
+			<invalidcolor>status_error</invalidcolor>
+			<texturefocus cornerradius="18" colordiffuse="$PARAM[focuscolor]">colors/white.png</texturefocus>
+			<texturenofocus />
+			<radiowidth>72</radiowidth>
+			<radioheight>40</radioheight>
+			<textureradioonfocus colordiffuse="white">settings/switch-on.png</textureradioonfocus>
+			<textureradioonnofocus colordiffuse="white">settings/switch-on.png</textureradioonnofocus>
+			<textureradioondisabled colordiffuse="text_disabled">settings/switch-on.png</textureradioondisabled>
+			<textureradioofffocus colordiffuse="white">settings/switch-off.png</textureradioofffocus>
+			<textureradiooffnofocus colordiffuse="white">settings/switch-off.png</textureradiooffnofocus>
+			<textureradiooffdisabled colordiffuse="text_disabled">settings/switch-off.png</textureradiooffdisabled>
+			<textureupfocus colordiffuse="text_primary">buttons/spinctrl/arrow-light-up.png</textureupfocus>
+			<texturedownfocus colordiffuse="text_primary">buttons/spinctrl/arrow-light-down.png</texturedownfocus>
+			<textureslidernibfocus colordiffuse="text_primary">buttons/slider-nib.png</textureslidernibfocus>
+		</definition>
+	</include>
+	<include name="NaraSettingsCategoryButton">
+		<param name="width">368</param>
+		<param name="height">78</param>
+		<param name="focuscolor">glass_focus_heavy</param>
+		<param name="selectedfocuscolor">glass_focus_light</param>
+		<definition>
+			<left>0</left>
+			<width>$PARAM[width]</width>
+			<height>$PARAM[height]</height>
+			<textoffsetx>24</textoffsetx>
+			<aligny>center</aligny>
+			<font>font26</font>
+			<textcolor>text_primary</textcolor>
+			<focusedcolor>text_primary</focusedcolor>
+			<selectedcolor>text_primary</selectedcolor>
+			<texturefocus cornerradius="20" colordiffuse="$PARAM[focuscolor]">colors/white.png</texturefocus>
+			<texturenofocus />
+			<alttexturefocus cornerradius="20" colordiffuse="$PARAM[selectedfocuscolor]">colors/white.png</alttexturefocus>
+			<alttexturenofocus cornerradius="20" colordiffuse="glass_focus_light">colors/white.png</alttexturenofocus>
+		</definition>
+	</include>
+	<include name="NaraSettingsDialogFrame">
+		<param name="glass_style">dialog</param>
+		<param name="width">1000</param>
+		<param name="height">700</param>
+		<param name="header_id">1</param>
+		<param name="header_label" />
+		<param name="close_action">Action(close)</param>
+		<definition>
+			<control type="image">
+				<left>-2000</left>
+				<top>-2000</top>
+				<width>6000</width>
+				<height>6000</height>
+				<texture colordiffuse="66000000">colors/black.png</texture>
+			</control>
+			<control type="button">
+				<left>-2000</left>
+				<top>-2000</top>
+				<width>6000</width>
+				<height>6000</height>
+				<texturefocus />
+				<texturenofocus />
+				<onclick>$PARAM[close_action]</onclick>
+			</control>
+			<control type="image">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<visible>!Window.IsActive(fullscreenvideo) + !Window.IsActive(visualisation)</visible>
+				<texture cornerradius="32" material="glass" glassstyle="$PARAM[glass_style]">colors/white.png</texture>
+			</control>
+			<control type="image">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<visible>Window.IsActive(fullscreenvideo) | Window.IsActive(visualisation)</visible>
+				<texture colordiffuse="F02A2D32" cornerradius="32">colors/white.png</texture>
+			</control>
+			<control type="button" id="22002">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<texturefocus />
+				<texturenofocus />
+				<onclick>noop</onclick>
+			</control>
+			<control type="group">
+				<width>$PARAM[width]</width>
+				<height>100</height>
+				<control type="label" id="$PARAM[header_id]">
+					<left>42</left>
+					<top>24</top>
+					<height>62</height>
+					<font>font32</font>
+					<label>$PARAM[header_label]</label>
+					<right>115</right>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="NaraSettingsActionButton">
+		<param name="id">0</param>
+		<param name="label" />
+		<param name="width">250</param>
+		<param name="focuscolor">glass_focus_light</param>
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>$PARAM[width]</width>
+				<height>62</height>
+				<label>$PARAM[label]</label>
+				<font>font26</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<texturefocus cornerradius="18" colordiffuse="$PARAM[focuscolor]">colors/white.png</texturefocus>
+				<texturenofocus />
+				<focusedcolor>text_primary</focusedcolor>
+				<textcolor>text_primary</textcolor>
+				<selectedcolor>text_primary</selectedcolor>
+			</control>
+		</definition>
+	</include>
+	<include name="NaraSettingsHubEntry">
+		<param name="id">0</param>
+		<param name="height">126</param>
+		<param name="x">0</param>
+		<param name="y">0</param>
+		<param name="label" />
+		<param name="icon" />
+		<param name="target" />
+		<param name="up">noop</param>
+		<param name="down">noop</param>
+		<param name="left">noop</param>
+		<param name="right">noop</param>
+		<param name="secondary">false</param>
+		<param name="modal">false</param>
+		<definition>
+			<control type="group">
+				<left>$PARAM[x]</left>
+				<top>$PARAM[y]</top>
+				<width>320</width>
+				<height>$PARAM[height]</height>
+				<control type="button" id="$PARAM[id]">
+					<width>312</width>
+					<height>$PARAM[height]</height>
+					<label>$PARAM[label]</label>
+					<font />
+					<onup>$PARAM[up]</onup>
+					<ondown>$PARAM[down]</ondown>
+					<onleft>$PARAM[left]</onleft>
+					<onright>$PARAM[right]</onright>
+					<texturenofocus />
+					<focusedcolor>text_primary</focusedcolor>
+					<textcolor>text_primary</textcolor>
+					<selectedcolor>text_primary</selectedcolor>
+					<texturefocus cornerradius="26" colordiffuse="glass_focus_light">colors/white.png</texturefocus>
+					<onclick condition="$PARAM[modal]">SetProperty(SettingsHub.Target,$PARAM[target],1115)</onclick>
+					<onclick condition="$PARAM[modal]">Dialog.Close(1115)</onclick>
+					<onclick condition="!$PARAM[modal]">ActivateWindow($PARAM[target])</onclick>
+				</control>
+				<control type="image">
+					<left>24</left>
+					<top>29</top>
+					<width>64</width>
+					<height>64</height>
+					<aspectratio>keep</aspectratio>
+					<visible>!$PARAM[secondary]</visible>
+					<texture colordiffuse="text_primary">settings/$PARAM[icon].png</texture>
+				</control>
+				<control type="image">
+					<left>24</left>
+					<top>27</top>
+					<width>48</width>
+					<height>48</height>
+					<aspectratio>keep</aspectratio>
+					<visible>$PARAM[secondary]</visible>
+					<texture colordiffuse="text_secondary">settings/$PARAM[icon].png</texture>
+				</control>
+				<control type="textbox">
+					<left>110</left>
+					<top>14</top>
+					<right>16</right>
+					<height>98</height>
+					<aligny>center</aligny>
+					<font>font26</font>
+					<textcolor>text_primary</textcolor>
+					<label>$PARAM[label]</label>
+					<visible>!$PARAM[secondary]</visible>
+				</control>
+				<control type="textbox">
+					<left>92</left>
+					<top>4</top>
+					<right>16</right>
+					<height>98</height>
+					<aligny>center</aligny>
+					<font>font24</font>
+					<textcolor>text_secondary</textcolor>
+					<label>$PARAM[label]</label>
+					<visible>$PARAM[secondary]</visible>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="NaraSettingsHub">
+		<param name="modal">false</param>
+		<definition>
+			<control type="group">
+				<centerleft>50%</centerleft>
+				<centertop>50%</centertop>
+				<width>1400</width>
+				<height>560</height>
+				<include content="NaraSettingsDialogFrame">
+					<param name="glass_style" value="frosted" />
+					<param name="width" value="1400" />
+					<param name="height" value="560" />
+					<param name="header_label" value="$LOCALIZE[5]" />
+					<param name="close_action" value="Action(back)" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="101" />
+					<param name="x" value="44" />
+					<param name="y" value="100" />
+					<param name="label" value="$LOCALIZE[14200]" />
+					<param name="icon" value="player" />
+					<param name="target" value="playersettings" />
+					<param name="down" value="105" />
+					<param name="left" value="104" />
+					<param name="right" value="102" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="102" />
+					<param name="x" value="372" />
+					<param name="y" value="100" />
+					<param name="label" value="$LOCALIZE[14211]" />
+					<param name="icon" value="media" />
+					<param name="target" value="mediasettings" />
+					<param name="down" value="106" />
+					<param name="left" value="101" />
+					<param name="right" value="103" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="103" />
+					<param name="x" value="700" />
+					<param name="y" value="100" />
+					<param name="label" value="$LOCALIZE[14206]" />
+					<param name="icon" value="interface" />
+					<param name="target" value="interfacesettings" />
+					<param name="down" value="107" />
+					<param name="left" value="102" />
+					<param name="right" value="104" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="104" />
+					<param name="x" value="1028" />
+					<param name="y" value="100" />
+					<param name="label" value="$LOCALIZE[70127]" />
+					<param name="icon" value="additionalfeatures" />
+					<param name="target" value="narapekasettings" />
+					<param name="up" value="23" />
+					<param name="down" value="108" />
+					<param name="left" value="103" />
+					<param name="right" value="101" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="105" />
+					<param name="x" value="44" />
+					<param name="y" value="240" />
+					<param name="label" value="$LOCALIZE[10003]" />
+					<param name="icon" value="filemanager" />
+					<param name="target" value="filemanager" />
+					<param name="up" value="101" />
+					<param name="down" value="109" />
+					<param name="left" value="108" />
+					<param name="right" value="106" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="106" />
+					<param name="x" value="372" />
+					<param name="y" value="240" />
+					<param name="label" value="$LOCALIZE[24001]" />
+					<param name="icon" value="addons" />
+					<param name="target" value="addonbrowser" />
+					<param name="up" value="102" />
+					<param name="down" value="110" />
+					<param name="left" value="105" />
+					<param name="right" value="107" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="107" />
+					<param name="x" value="700" />
+					<param name="y" value="240" />
+					<param name="label" value="$LOCALIZE[14036]" />
+					<param name="icon" value="network" />
+					<param name="target" value="servicesettings" />
+					<param name="up" value="103" />
+					<param name="down" value="111" />
+					<param name="left" value="106" />
+					<param name="right" value="108" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="108" />
+					<param name="x" value="1028" />
+					<param name="y" value="240" />
+					<param name="label" value="$LOCALIZE[13000]" />
+					<param name="icon" value="system" />
+					<param name="target" value="systemsettings" />
+					<param name="up" value="104" />
+					<param name="down" value="112" />
+					<param name="left" value="107" />
+					<param name="right" value="105" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="109" />
+					<param name="x" value="44" />
+					<param name="y" value="430" />
+					<param name="label" value="$LOCALIZE[14204]" />
+					<param name="icon" value="livetv" />
+					<param name="target" value="pvrsettings" />
+					<param name="up" value="105" />
+					<param name="down" value="101" />
+					<param name="left" value="112" />
+					<param name="right" value="110" />
+					<param name="secondary" value="true" />
+					<param name="height" value="106" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="110" />
+					<param name="x" value="372" />
+					<param name="y" value="430" />
+					<param name="label" value="$LOCALIZE[13200]" />
+					<param name="icon" value="profiles" />
+					<param name="target" value="profiles" />
+					<param name="up" value="106" />
+					<param name="down" value="102" />
+					<param name="left" value="109" />
+					<param name="right" value="111" />
+					<param name="secondary" value="true" />
+					<param name="height" value="106" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="111" />
+					<param name="x" value="700" />
+					<param name="y" value="430" />
+					<param name="label" value="$LOCALIZE[138]" />
+					<param name="icon" value="sysinfo" />
+					<param name="target" value="systeminfo" />
+					<param name="up" value="107" />
+					<param name="down" value="103" />
+					<param name="left" value="110" />
+					<param name="right" value="112" />
+					<param name="secondary" value="true" />
+					<param name="height" value="106" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<include content="NaraSettingsHubEntry">
+					<param name="id" value="112" />
+					<param name="x" value="1028" />
+					<param name="y" value="430" />
+					<param name="label" value="$LOCALIZE[31067]" />
+					<param name="icon" value="eventlog" />
+					<param name="target" value="eventlog" />
+					<param name="up" value="108" />
+					<param name="down" value="104" />
+					<param name="left" value="111" />
+					<param name="right" value="109" />
+					<param name="secondary" value="true" />
+					<param name="height" value="106" />
+					<param name="modal" value="$PARAM[modal]" />
+				</include>
+				<control type="image">
+					<left>52</left>
+					<top>384</top>
+					<width>1296</width>
+					<height>1</height>
+					<texture colordiffuse="30FFFFFF">colors/white.png</texture>
+				</control>
+				<control type="label">
+					<left>52</left>
+					<top>396</top>
+					<width>500</width>
+					<height>30</height>
+					<font>font24</font>
+					<textcolor>text_secondary</textcolor>
+					<label>$LOCALIZE[31704]</label>
+				</control>
+				<control type="button" id="23">
+					<left>1110</left>
+					<top>32</top>
+					<width>170</width>
+					<height>48</height>
+					<font>font24</font>
+					<label>LibreELEC</label>
+					<visible>System.AddonIsEnabled(service.libreelec.settings)</visible>
+					<onclick>RunAddon(service.libreelec.settings)</onclick>
+					<onleft>104</onleft>
+					<onright>104</onright>
+					<onup>104</onup>
+					<ondown>104</ondown>
+					<texturefocus cornerradius="18" colordiffuse="glass_focus_light">colors/white.png</texturefocus>
+					<texturenofocus />
+					<focusedcolor>text_primary</focusedcolor>
+					<textcolor>text_primary</textcolor>
+					<selectedcolor>text_primary</selectedcolor>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="NaraSettingsSimpleListLayout">
+		<param name="align">left</param>
+		<param name="height">70</param>
+		<param name="font">font13</param>
+		<param name="fontcolor">grey</param>
+		<param name="selectedcolor">selection_foreground</param>
+		<param name="focusedselectedcolor">focus_foreground</param>
+		<param name="labelright">20</param>
+		<param name="showselectedmark">false</param>
+		<param name="focuscolor">glass_focus_light</param>
+		<definition>
+			<itemlayout width="$PARAM[width]" height="$PARAM[height]">
+				<control type="group">
+					<visible>ListItem.Property(PVR.IsRecordingTimer) | ListItem.Property(PVR.IsRemindingTimer)</visible>
+					<control type="image">
+						<left>20</left>
+						<width>40</width>
+						<aspectratio align="left">keep</aspectratio>
+						<aligny>center</aligny>
+						<texture>icons/pvr/timers/recording.png</texture>
+						<visible>ListItem.Property(PVR.IsRecordingTimer)</visible>
+					</control>
+					<control type="image">
+						<left>20</left>
+						<width>40</width>
+						<aspectratio align="left">keep</aspectratio>
+						<aligny>center</aligny>
+						<texture>icons/pvr/timers/bell.png</texture>
+						<visible>ListItem.Property(PVR.IsRemindingTimer)</visible>
+					</control>
+					<control type="label">
+						<left>80</left>
+						<top>0</top>
+						<right>$PARAM[labelright]</right>
+						<bottom>0</bottom>
+						<align>$PARAM[align]</align>
+						<font>$PARAM[font]</font>
+						<aligny>center</aligny>
+						<textcolor>$PARAM[fontcolor]</textcolor>
+						<selectedcolor>$PARAM[selectedcolor]</selectedcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</control>
+				<control type="group">
+					<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
+					<control type="label">
+						<left>20</left>
+						<top>0</top>
+						<right>$PARAM[labelright]</right>
+						<bottom>0</bottom>
+						<align>$PARAM[align]</align>
+						<font>$PARAM[font]</font>
+						<aligny>center</aligny>
+						<textcolor>$PARAM[fontcolor]</textcolor>
+						<selectedcolor>$PARAM[selectedcolor]</selectedcolor>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</control>
+				<control type="image">
+					<right>20</right>
+					<centertop>50%</centertop>
+					<width>30</width>
+					<height>30</height>
+					<aspectratio>keep</aspectratio>
+					<texture colordiffuse="$PARAM[selectedcolor]">icons/menumarks/tick.png</texture>
+					<visible>$PARAM[showselectedmark] + ListItem.IsSelected</visible>
+				</control>
+			</itemlayout>
+			<focusedlayout width="$PARAM[width]" height="$PARAM[height]">
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<right>0</right>
+					<bottom>0</bottom>
+					<texture colordiffuse="$PARAM[focuscolor]" cornerradius="18">colors/white.png</texture>
+					<animation effect="fade" start="100" end="50" time="0">UnFocus</animation>
+				</control>
+				<control type="group">
+					<visible>ListItem.Property(PVR.IsRecordingTimer) | ListItem.Property(PVR.IsRemindingTimer)</visible>
+					<control type="image">
+						<left>20</left>
+						<width>40</width>
+						<aspectratio align="left">keep</aspectratio>
+						<aligny>center</aligny>
+						<texture>icons/pvr/timers/recording.png</texture>
+						<visible>ListItem.Property(PVR.IsRecordingTimer)</visible>
+					</control>
+					<control type="image">
+						<left>20</left>
+						<width>40</width>
+						<aspectratio align="left">keep</aspectratio>
+						<aligny>center</aligny>
+						<texture>icons/pvr/timers/bell.png</texture>
+						<visible>ListItem.Property(PVR.IsRemindingTimer)</visible>
+					</control>
+					<control type="label">
+						<left>80</left>
+						<top>0</top>
+						<right>$PARAM[labelright]</right>
+						<bottom>0</bottom>
+						<align>$PARAM[align]</align>
+						<font>$PARAM[font]</font>
+						<aligny>center</aligny>
+						<textcolor>text_primary</textcolor>
+						<selectedcolor>$PARAM[focusedselectedcolor]</selectedcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<scroll>true</scroll>
+					</control>
+				</control>
+				<control type="group">
+					<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
+					<control type="label">
+						<left>20</left>
+						<top>0</top>
+						<right>$PARAM[labelright]</right>
+						<bottom>0</bottom>
+						<align>$PARAM[align]</align>
+						<font>$PARAM[font]</font>
+						<aligny>center</aligny>
+						<textcolor>text_primary</textcolor>
+						<selectedcolor>$PARAM[focusedselectedcolor]</selectedcolor>
+						<label>$INFO[ListItem.Label]</label>
+						<scroll>true</scroll>
+					</control>
+				</control>
+				<control type="image">
+					<right>20</right>
+					<centertop>50%</centertop>
+					<width>30</width>
+					<height>30</height>
+					<aspectratio>keep</aspectratio>
+					<texture colordiffuse="$PARAM[focusedselectedcolor]">icons/menumarks/tick.png</texture>
+					<visible>$PARAM[showselectedmark] + ListItem.IsSelected</visible>
+				</control>
+			</focusedlayout>
+		</definition>
+	</include>
+	<include name="NaraSettingsDialogLayout">
+		<definition>
+			<control type="group">
+				<centerleft>50%</centerleft>
+				<centertop>50%</centertop>
+				<width>1280</width>
+				<height>890</height>
+				<include content="NaraSettingsDialogFrame">
+					<param name="width" value="1280" />
+					<param name="height" value="890" />
+					<param name="header_id" value="2" />
+				</include>
+				<control type="grouplist" id="5">
+					<left>40</left>
+					<top>110</top>
+					<width>1170</width>
+					<height>615</height>
+					<itemgap>2</itemgap>
+					<pagecontrol>60</pagecontrol>
+					<onleft>9000</onleft>
+					<onright>60</onright>
+					<onup>5</onup>
+					<ondown>9000</ondown>
+				</control>
+				<control type="button" id="7">
+					<include content="NaraSettingsRow">
+						<param name="height" value="72" />
+						<param name="focuscolor" value="glass_focus_medium" />
+					</include>
+				</control>
+				<control type="radiobutton" id="8">
+					<include content="NaraSettingsRow">
+						<param name="height" value="72" />
+						<param name="focuscolor" value="glass_focus_medium" />
+					</include>
+				</control>
+				<control type="spincontrolex" id="9">
+					<include content="NaraSettingsRow">
+						<param name="height" value="72" />
+						<param name="focuscolor" value="glass_focus_medium" />
+					</include>
+				</control>
+				<control type="edit" id="12">
+					<include content="NaraSettingsRow">
+						<param name="height" value="72" />
+						<param name="focuscolor" value="glass_focus_medium" />
+					</include>
+				</control>
+				<control type="sliderex" id="13">
+					<include content="NaraSettingsRow">
+						<param name="height" value="72" />
+						<param name="focuscolor" value="glass_focus_medium" />
+					</include>
+				</control>
+				<control type="colorbutton" id="15">
+					<include content="NaraSettingsRow">
+						<param name="height" value="72" />
+						<param name="focuscolor" value="glass_focus_medium" />
+					</include>
+				</control>
+				<control type="image" id="11">
+					<height>18</height>
+					<texture />
+				</control>
+				<control type="label" id="14">
+					<height>56</height>
+					<font>font24</font>
+					<textcolor>text_secondary</textcolor>
+					<align>left</align>
+					<aligny>center</aligny>
+					<textoffsetx>28</textoffsetx>
+				</control>
+				<control type="scrollbar" id="60">
+					<left>1222</left>
+					<top>118</top>
+					<width>6</width>
+					<height>595</height>
+					<orientation>vertical</orientation>
+					<onleft>5</onleft>
+					<onright>9000</onright>
+				</control>
+				<control type="grouplist" id="9000">
+					<left>40</left>
+					<top>797</top>
+					<width>1170</width>
+					<height>65</height>
+					<itemgap>16</itemgap>
+					<orientation>horizontal</orientation>
+					<align>right</align>
+					<onup>5</onup>
+					<onleft>5</onleft>
+					<onright>5</onright>
+					<include content="NaraSettingsActionButton">
+						<param name="id" value="28" />
+						<param name="focuscolor" value="glass_focus_medium" />
+					</include>
+					<include content="NaraSettingsActionButton">
+						<param name="id" value="29" />
+						<param name="focuscolor" value="glass_focus_medium" />
+					</include>
+					<include content="NaraSettingsActionButton">
+						<param name="id" value="30" />
+						<param name="focuscolor" value="glass_focus_medium" />
+					</include>
+				</control>
+			</control>
+		</definition>
+	</include>
+</includes>

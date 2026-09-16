@@ -5,7 +5,7 @@
 	<include>Animation_DialogPopupOpenClose</include>
 	<depth>DepthOSD</depth>
 	<controls>
-		<include condition="![Window.IsActive(dialogselectvideo) | Window.IsActive(dialogselectaudio) | Window.IsActive(dialogselectsubtitle) | Window.IsActive(gamesaves) | Window.IsActive(gamestretchmode) | Window.IsActive(gamevideofilter) | Window.IsActive(gamevideorotation) | Window.IsActive(ingamesaves)]">DefaultDialogSelectLayout</include>
+		<include condition="[![Window.IsActive(dialogselectvideo) | Window.IsActive(dialogselectaudio) | Window.IsActive(dialogselectsubtitle) | Window.IsActive(gamesaves) | Window.IsActive(gamestretchmode) | Window.IsActive(gamevideofilter) | Window.IsActive(gamevideorotation) | Window.IsActive(ingamesaves)]] + !$EXP[nara_settings_context]">DefaultDialogSelectLayout</include>
 		<include condition="Window.IsActive(dialogselectvideo)">VideoDialogSelectVideoLayout</include>
 		<include condition="Window.IsActive(dialogselectaudio)">VideoDialogSelectAudioLayout</include>
 		<include condition="Window.IsActive(dialogselectsubtitle)">VideoDialogSelectSubtitleLayout</include>
@@ -13,5 +13,6 @@
 			<param name="header_label" value="$LOCALIZE[15016]" />
 			<param name="message_label" value="$LOCALIZE[31178]" />
 		</include>
+		<include condition="[![Window.IsActive(dialogselectvideo) | Window.IsActive(dialogselectaudio) | Window.IsActive(dialogselectsubtitle) | Window.IsActive(gamesaves) | Window.IsActive(gamestretchmode) | Window.IsActive(gamevideofilter) | Window.IsActive(gamevideorotation) | Window.IsActive(ingamesaves)]] + $EXP[nara_settings_context]">NaraSettingsSelectLayout</include>
 	</controls>
 </window>

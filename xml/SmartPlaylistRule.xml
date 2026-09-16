@@ -6,7 +6,6 @@
 		<control type="group">
 			<centerleft>50%</centerleft>
 			<width>960</width>
-			<top>330</top>
 			<include content="DialogBackgroundCommons">
 				<param name="width" value="960" />
 				<param name="height" value="500" />
@@ -38,12 +37,10 @@
 					<include>SettingsItemCommon</include>
 				</control>
 				<control type="grouplist" id="9002">
-					<left>30</left>
-					<top>200</top>
 					<orientation>horizontal</orientation>
 					<control type="edit" id="17">
 						<description>Value Button</description>
-						<width>600</width>
+						<width>584</width>
 						<include>SettingsItemCommon</include>
 						<hinttext>$LOCALIZE[31103]</hinttext>
 					</control>
@@ -54,7 +51,14 @@
 						<align>center</align>
 						<label>$LOCALIZE[1024]</label>
 					</control>
+					<width>900</width>
+					<include>NaraDialogSettingsRowHeight</include>
+					<itemgap>16</itemgap>
 				</control>
+				<include content="NaraDialogButtonSpacing">
+					<param name="value" value="8" />
+					<param name="legacy" value="0" />
+				</include>
 			</control>
 			<control type="grouplist" id="9000">
 				<orientation>horizontal</orientation>
@@ -64,6 +68,7 @@
 				<align>center</align>
 				<onup>9002</onup>
 				<ondown>15</ondown>
+				<include condition="$EXP[nara_dialog_glass]">NaraDialogButtonItemGap</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="18" />
 					<param name="label" value="$LOCALIZE[186]" />
@@ -73,6 +78,8 @@
 					<param name="label" value="$LOCALIZE[222]" />
 				</include>
 			</control>
+			<centertop>50%</centertop>
+			<height>500</height>
 		</control>
 	</controls>
 </window>

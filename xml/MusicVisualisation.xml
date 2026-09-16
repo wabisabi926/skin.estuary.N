@@ -1,143 +1,179 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol></defaultcontrol>
-	<backgroundcolor>background</backgroundcolor>
-	<onload condition="System.AddonIsEnabled(script.artistslideshow) + !Skin.HasSetting(hide_background_fanart)">RunScript(script.artistslideshow)</onload>
+	<onload condition="!Player.PauseEnabled">SetFocus(70048)</onload>
+	<defaultcontrol always="true">602</defaultcontrol>
+	<backgroundcolor>FF000000</backgroundcolor>
 	<controls>
-		<control type="visualisation" id="2">
-			<include>FullScreenDimensions</include>
-			<visible>Player.HasAudio</visible>
-		</control>
+		<include>NaraMusicPlayerBackground</include>
 		<control type="group">
-			<depth>DepthBackground</depth>
-			<include>FullScreenDimensions</include>
-			<visible>!Skin.HasSetting(hide_background_fanart)</visible>
-			<animation effect="zoom" start="105" end="130" center="auto" time="10000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(animate_background_fanart)">Conditional</animation>
-			<animation effect="slide" start="-30,-30" end="30,30" time="6000" tween="sine" easing="inout" pulse="true" condition="Skin.HasSetting(animate_background_fanart)">Conditional</animation>
-			<control type="image">
-				<aspectratio>scale</aspectratio>
-				<fadetime>400</fadetime>
-				<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
-				<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
-				<animation effect="fade" start="100" end="50" time="0" condition="Visualisation.Enabled">Conditional</animation>
-				<texture background="true">$INFO[Player.Art(fanart)]</texture>
-				<visible>String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))</visible>
+			<animation effect="fade" start="0" end="100" time="260">WindowOpen</animation>
+			<control type="label">
+				<left>40</left>
+				<top>28</top>
+				<width>800</width>
+				<height>36</height>
+				<font>font27</font>
+				<aligny>center</aligny>
+				<textcolor>text_primary</textcolor>
+				<label>$LOCALIZE[31000]...</label>
+				<visible>!PVR.IsPlayingRadio</visible>
+			</control>
+			<control type="label">
+				<left>40</left>
+				<top>64</top>
+				<width>800</width>
+				<height>32</height>
+				<font>font12_large</font>
+				<aligny>center</aligny>
+				<textcolor>text_secondary</textcolor>
+				<label>$LOCALIZE[554] $INFO[Playlist.Position(music)] / $INFO[Playlist.Length(music)]</label>
+				<visible>!PVR.IsPlayingRadio + Integer.IsGreater(Playlist.Length(music),0)</visible>
+			</control>
+			<control type="label">
+				<right>40</right>
+				<top>28</top>
+				<width>240</width>
+				<height>68</height>
+				<font>font_home_clock</font>
+				<textcolor>text_primary</textcolor>
+				<align>right</align>
+				<aligny>center</aligny>
+				<label>$INFO[System.Time]</label>
 			</control>
 			<control type="image">
-				<aspectratio>scale</aspectratio>
-				<fadetime>400</fadetime>
-				<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
-				<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
-				<animation effect="fade" start="100" end="50" time="0" condition="Visualisation.Enabled">Conditional</animation>
-				<texture background="true">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</texture>
-			</control>
-		</control>
-		<control type="group">
-			<visible>!Visualisation.Enabled + [[String.IsEmpty(Player.Art(fanart)) + String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))] | Skin.HasSetting(hide_background_fanart)]</visible>
-			<include>ColoredBackgroundImages</include>
-		</control>
-		<control type="group">
-			<visible>[Player.ShowInfo | Window.IsActive(musicosd)] + !MusicPlayer.Content(livetv)</visible>
-			<height>460</height>
-			<include>OpenClose_Left</include>
-			<include>Visible_Left</include>
-			<bottom>0</bottom>
-			<control type="image">
-				<left>0</left>
-				<width>120%</width>
-				<height>280</height>
-				<texture colordiffuse="opacity_soft">dialogs/dialog-bg-nobo.png</texture>
+				<left>201</left>
+				<top>136</top>
+				<width>578</width>
+				<height>578</height>
+				<texture border="40" colordiffuse="60000000">overlays/shadow.png</texture>
+				<visible>!String.IsEmpty(MusicPlayer.Cover) + !String.IsEqual(MusicPlayer.Cover,DefaultAlbumCover.png)</visible>
 			</control>
 			<control type="image">
-				<left>20</left>
-				<top>-140</top>
-				<include>Visible_Left</include>
-				<visible>[Player.ShowInfo | Window.IsActive(musicosd)] + !MusicPlayer.Content(livetv)</visible>
-				<width>400</width>
-				<height>400</height>
-				<fadetime>400</fadetime>
-				<aspectratio aligny="bottom">keep</aspectratio>
-				<texture fallback="DefaultAlbumCover.png" border="2">$INFO[MusicPlayer.Cover]</texture>
-				<bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture>
-				<bordersize>4</bordersize>
+				<left>225</left>
+				<top>160</top>
+				<width>530</width>
+				<height>530</height>
+				<aspectratio>keep</aspectratio>
+				<fadetime>250</fadetime>
+				<texture background="true" fallback="osd/nara/music-cover.png">$VAR[NaraMusicCoverVar]</texture>
+			</control>
+			<control type="label">
+				<left>180</left>
+				<top>730</top>
+				<width>620</width>
+				<height>58</height>
+				<font>font45_title</font>
+				<label>$INFO[Player.Title]</label>
+				<scroll>true</scroll>
+			</control>
+			<control type="label">
+				<left>180</left>
+				<top>794</top>
+				<width>620</width>
+				<height>40</height>
+				<font>font27</font>
+				<textcolor>BFFFFFFF</textcolor>
+				<label>$INFO[MusicPlayer.Artist]</label>
+				<scroll>true</scroll>
+			</control>
+			<control type="label">
+				<left>180</left>
+				<top>840</top>
+				<width>620</width>
+				<height>32</height>
+				<font>font12</font>
+				<textcolor>80FFFFFF</textcolor>
+				<label>$INFO[MusicPlayer.Album]$INFO[MusicPlayer.Year, · ]</label>
+				<scroll>true</scroll>
+			</control>
+			<control type="fixedlist" id="420">
+				<left>1040</left>
+				<top>222</top>
+				<width>720</width>
+				<height>560</height>
+				<focusposition>3</focusposition>
+				<movement>0</movement>
+				<scrolltime tween="sine">300</scrolltime>
+				<onleft>602</onleft>
+				<onright>602</onright>
+				<onup>420</onup>
+				<ondown>420</ondown>
+				<onclick>SetFocus(602)</onclick>
+				<visible>String.IsEqual(Window(visualisation).Property(NaraMusic.LyricsTimed),true)</visible>
+				<itemlayout width="720" height="80">
+					<control type="label">
+						<width>710</width>
+						<height>80</height>
+						<font>font27</font>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>70FFFFFF</textcolor>
+					</control>
+				</itemlayout>
+				<focusedlayout width="720" height="80">
+					<control type="label">
+						<width>710</width>
+						<height>80</height>
+						<font>font32_title</font>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+						<textcolor>$VAR[NaraMusicLyricColorVar]</textcolor>
+						<scroll>true</scroll>
+					</control>
+				</focusedlayout>
+			</control>
+			<control type="textbox" id="421">
+				<left>1040</left>
+				<top>230</top>
+				<width>690</width>
+				<height>552</height>
+				<font>font27</font>
+				<textcolor>CFFFFFFF</textcolor>
+				<label>$INFO[Window(visualisation).Property(NaraMusic.LyricsText)]</label>
+				<pagecontrol>422</pagecontrol>
+				<visible>!String.IsEmpty(Window(visualisation).Property(NaraMusic.LyricsText))</visible>
+			</control>
+			<control type="scrollbar" id="422">
+				<left>1760</left>
+				<top>230</top>
+				<width>6</width>
+				<height>552</height>
+				<orientation>vertical</orientation>
+				<onleft>602</onleft>
+				<onright>602</onright>
+				<visible>!String.IsEmpty(Window(visualisation).Property(NaraMusic.LyricsText))</visible>
 			</control>
 			<control type="group">
-				<visible>[Player.ShowInfo | Window.IsActive(musicosd)] + ![Window.IsActive(playerprocessinfo) | MusicPlayer.Content(livetv)]</visible>
-				<include>Visible_Left</include>
-				<left>440</left>
-				<top>10</top>
-				<control type="label">
-					<top>10</top>
-					<width>1450</width>
-					<height>50</height>
-					<aligny>center</aligny>
-					<label>$INFO[MusicPlayer.TrackNumber,,. ]$INFO[Player.Title]</label>
-					<font>font45</font>
-					<scroll>true</scroll>
+				<left>1040</left>
+				<top>360</top>
+				<visible>!String.IsEqual(Window(visualisation).Property(NaraMusic.LyricsTimed),true) + String.IsEmpty(Window(visualisation).Property(NaraMusic.LyricsText))</visible>
+				<control type="image">
+					<width>56</width>
+					<height>56</height>
+					<texture colordiffuse="60FFFFFF">osd/nara/lyrics.png</texture>
 				</control>
 				<control type="label">
-					<top>65</top>
-					<width>1450</width>
-					<height>50</height>
-					<aligny>center</aligny>
-					<label>$INFO[MusicPlayer.Artist]</label>
-					<font>font45</font>
-					<scroll>true</scroll>
+					<top>86</top>
+					<width>720</width>
+					<height>48</height>
+					<font>font32</font>
+					<textcolor>BFFFFFFF</textcolor>
+					<label>$VAR[NaraMusicLyricsStatusVar]</label>
 				</control>
-				<control type="grouplist">
-					<top>120</top>
-					<width>1450</width>
-					<height>40</height>
-					<align>left</align>
-					<orientation>horizontal</orientation>
-					<itemgap>20</itemgap>
-					<control type="label">
-						<width>100</width>
-						<height>35</height>
-						<label>$INFO[MusicPlayer.Year]</label>
-						<font>font37</font>
-						<aligny>center</aligny>
-						<align>left</align>
-						<visible>!String.IsEmpty(MusicPlayer.Year)</visible>
-					</control>
-					<control type="label">
-						<width min="0" max="1130">auto</width>
-						<height>35</height>
-						<label>$INFO[MusicPlayer.Genre]</label>
-						<font>font37</font>
-						<aligny>center</aligny>
-						<align>left</align>
-						<scroll>true</scroll>
-						<visible>!String.IsEmpty(MusicPlayer.Genre)</visible>
-					</control>
-					<control type="image">
-						<width>190</width>
-						<height>40</height>
-						<texture fallback="flags/starrating/0.png">$INFO[MusicPlayer.UserRating,flags/starrating/,.png]</texture>
-						<aspectratio>keep</aspectratio>
-						<aligny>center</aligny>
-						<align>left</align>
-					</control>
-				</control>
-				<control type="label">
-					<top>165</top>
-					<width>1450</width>
-					<height>40</height>
-					<aligny>center</aligny>
-					<label>$INFO[MusicPlayer.Album]$VAR[MultiDiscVar]</label>
-					<font>font37</font>
-					<scroll>true</scroll>
-				</control>
-				<control type="label">
-					<top>210</top>
-					<width>1450</width>
-					<height>40</height>
-					<aligny>center</aligny>
-					<label>$VAR[OSDNextLabelVar]</label>
-					<scroll>true</scroll>
-					<visible>Integer.IsGreater(Playlist.Length(music),1)</visible>
+				<control type="textbox">
+					<top>145</top>
+					<width>700</width>
+					<height>96</height>
+					<font>font12</font>
+					<textcolor>70FFFFFF</textcolor>
+					<label>$LOCALIZE[31702]</label>
+					<visible>!String.IsEqual(Window(visualisation).Property(NaraMusic.LyricsLoading),true)</visible>
 				</control>
 			</control>
+		</control>
+		<control type="group">
+			<visible>!Window.IsVisible(musicosd)</visible>
+			<include>NaraMusicPlayerControls</include>
 		</control>
 	</controls>
 </window>

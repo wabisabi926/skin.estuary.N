@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+	<expression name="NaraHomeFanartFocused">!Skin.HasSetting(no_fanart) + [[String.IsEqual(Window(home).Property(Home.Section),movies) + ControlGroup(5001).HasFocus()] | [String.IsEqual(Window(home).Property(Home.Section),tvshows) + ControlGroup(6001).HasFocus()]]</expression>
+	<expression name="NaraHomeFanartSettledRow">$EXP[NaraHomeFanartFocused] + [Control.HasFocus(5100) | Control.HasFocus(5200) | Control.HasFocus(5300) | Control.HasFocus(5400) | Control.HasFocus(5600) | Control.HasFocus(6100) | Control.HasFocus(6200) | Control.HasFocus(6300)]</expression>
+	<expression name="NaraVideoInfoFromHome">Window.IsVisible(Home) + !Skin.HasSetting(no_fanart) + [String.IsEqual(Window(home).Property(Home.Section),movies) | String.IsEqual(Window(home).Property(Home.Section),tvshows) | String.IsEqual(Window(home).Property(Home.Section),search)]</expression>
 	<expression name="home_widget_group_scrolled">[String.IsEqual(Window(home).Property(Home.Section),movies) + Container(5001).HasPrevious] | [String.IsEqual(Window(home).Property(Home.Section),tvshows) + Container(6001).HasPrevious] | [String.IsEqual(Window(home).Property(Home.Section),music) + Container(7001).HasPrevious] | [String.IsEqual(Window(home).Property(Home.Section),livetv) + Container(12001).HasPrevious]</expression>
 	<variable name="HomeFocusedFilePathVar">
 		<value condition="Control.HasFocus(15010) + !String.IsEmpty(Container(15010).ListItem.Property(displaypath))">$INFO[Container(15010).ListItem.Property(displaypath)]</value>
@@ -12,13 +15,6 @@
 		<param name="icon">$INFO[ListItem.Icon]</param>
 		<param name="icon_color">FFFFFFFF</param>
 		<param name="text_color">text_primary</param>
-		<param name="glass_border">0.75</param>
-		<param name="glass_border_color">0CFFFFFF</param>
-		<param name="glass_highlight">0.30</param>
-		<param name="glass_refraction">2.5</param>
-		<param name="glass_refraction_width">14</param>
-		<param name="glass_dispersion">0.12</param>
-		<param name="glass_depth">0.55</param>
 		<definition>
 			<control type="group">
 				<width>380</width>
@@ -26,7 +22,13 @@
 				<control type="image">
 					<width>380</width>
 					<height>130</height>
-					<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="$PARAM[glass_border]" glassbordercolor="$PARAM[glass_border_color]" glasshighlight="$PARAM[glass_highlight]" glassrefraction="$PARAM[glass_refraction]" glassrefractionwidth="$PARAM[glass_refraction_width]" glassdispersion="$PARAM[glass_dispersion]" glassdepth="$PARAM[glass_depth]" cornerradius="30">colors/white.png</texture>
+					<texture material="glass" glassstyle="regular" cornerradius="65">colors/white.png</texture>
+				</control>
+				<control type="image">
+					<width>380</width>
+					<height>130</height>
+					<texture cornerradius="65" colordiffuse="glass_focus_light">colors/white.png</texture>
+					<visible>$PARAM[focused]</visible>
 				</control>
 				<control type="image">
 					<left>28</left>
@@ -56,13 +58,6 @@
 		<param name="icon">$INFO[ListItem.Icon]</param>
 		<param name="icon_color">FFFFFFFF</param>
 		<param name="text_color">text_primary</param>
-		<param name="glass_border">0.75</param>
-		<param name="glass_border_color">0CFFFFFF</param>
-		<param name="glass_highlight">0.30</param>
-		<param name="glass_refraction">2.5</param>
-		<param name="glass_refraction_width">14</param>
-		<param name="glass_dispersion">0.12</param>
-		<param name="glass_depth">0.55</param>
 		<definition>
 			<control type="group">
 				<width>265</width>
@@ -70,7 +65,13 @@
 				<control type="image">
 					<width>265</width>
 					<height>265</height>
-					<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="$PARAM[glass_border]" glassbordercolor="$PARAM[glass_border_color]" glasshighlight="$PARAM[glass_highlight]" glassrefraction="$PARAM[glass_refraction]" glassrefractionwidth="$PARAM[glass_refraction_width]" glassdispersion="$PARAM[glass_dispersion]" glassdepth="$PARAM[glass_depth]" cornerradius="30">colors/white.png</texture>
+					<texture material="glass" glassstyle="regular" cornerradius="48">colors/white.png</texture>
+				</control>
+				<control type="image">
+					<width>265</width>
+					<height>265</height>
+					<texture cornerradius="48" colordiffuse="glass_focus_light">colors/white.png</texture>
+					<visible>$PARAM[focused]</visible>
 				</control>
 				<control type="image">
 					<left>79</left>
@@ -216,10 +217,10 @@
 	     rail. No-art rails can then keep that exact backdrop, regardless of
 	     which video row it came from. -->
 	<include name="HomeRememberFanartOnUnfocus">
-		<onunfocus condition="String.IsEqual(Window(home).Property(Home.Section),movies) + !String.IsEqual(Container($PARAM[list_id]).ListItem.Property(node.type),target_folder) + !String.IsEmpty(Container($PARAM[list_id]).ListItem.Art(fanart))">SetProperty(Home.LastMovieFanart,$ESCINFO[Container($PARAM[list_id]).ListItem.Art(fanart)],home)</onunfocus>
-		<onunfocus condition="String.IsEqual(Window(home).Property(Home.Section),movies) + String.IsEqual(Container($PARAM[list_id]).ListItem.Property(node.type),target_folder) + !String.IsEmpty(Container($PARAM[list_id]).ListItemNoWrap(-1).Art(fanart))">SetProperty(Home.LastMovieFanart,$ESCINFO[Container($PARAM[list_id]).ListItemNoWrap(-1).Art(fanart)],home)</onunfocus>
-		<onunfocus condition="String.IsEqual(Window(home).Property(Home.Section),tvshows) + !String.IsEqual(Container($PARAM[list_id]).ListItem.Property(node.type),target_folder) + !String.IsEmpty(Container($PARAM[list_id]).ListItem.Art(fanart))">SetProperty(Home.LastTVShowFanart,$ESCINFO[Container($PARAM[list_id]).ListItem.Art(fanart)],home)</onunfocus>
-		<onunfocus condition="String.IsEqual(Window(home).Property(Home.Section),tvshows) + String.IsEqual(Container($PARAM[list_id]).ListItem.Property(node.type),target_folder) + !String.IsEmpty(Container($PARAM[list_id]).ListItemNoWrap(-1).Art(fanart))">SetProperty(Home.LastTVShowFanart,$ESCINFO[Container($PARAM[list_id]).ListItemNoWrap(-1).Art(fanart)],home)</onunfocus>
+		<onunfocus condition="String.IsEqual(Window(home).Property(Home.Section),movies) + !String.IsEqual(Container($PARAM[list_id]).ListItemSettled.Property(node.type),target_folder) + !String.IsEmpty(Container($PARAM[list_id]).ListItemSettled.Art(fanart))">SetProperty(Home.LastMovieFanart,$ESCINFO[Container($PARAM[list_id]).ListItemSettled.Art(fanart)],home)</onunfocus>
+		<onunfocus condition="String.IsEqual(Window(home).Property(Home.Section),movies) + String.IsEqual(Container($PARAM[list_id]).ListItemSettled.Property(node.type),target_folder) + !String.IsEmpty(Container($PARAM[list_id]).ListItemSettled(-1).Art(fanart))">SetProperty(Home.LastMovieFanart,$ESCINFO[Container($PARAM[list_id]).ListItemSettled(-1).Art(fanart)],home)</onunfocus>
+		<onunfocus condition="String.IsEqual(Window(home).Property(Home.Section),tvshows) + !String.IsEqual(Container($PARAM[list_id]).ListItemSettled.Property(node.type),target_folder) + !String.IsEmpty(Container($PARAM[list_id]).ListItemSettled.Art(fanart))">SetProperty(Home.LastTVShowFanart,$ESCINFO[Container($PARAM[list_id]).ListItemSettled.Art(fanart)],home)</onunfocus>
+		<onunfocus condition="String.IsEqual(Window(home).Property(Home.Section),tvshows) + String.IsEqual(Container($PARAM[list_id]).ListItemSettled.Property(node.type),target_folder) + !String.IsEmpty(Container($PARAM[list_id]).ListItemSettled(-1).Art(fanart))">SetProperty(Home.LastTVShowFanart,$ESCINFO[Container($PARAM[list_id]).ListItemSettled(-1).Art(fanart)],home)</onunfocus>
 	</include>
 	<include name="CategoryLabel">
 		<param name="visible">true</param>
@@ -357,6 +358,7 @@
 					<include content="HomeRememberFanartOnUnfocus">
 						<param name="list_id" value="$PARAM[list_id]"/>
 					</include>
+					<selectionsettledelay mode="adaptive">150</selectionsettledelay>
 					<itemlayout width="347" height="250">
 						<control type="group">
 							<left>80</left>
@@ -684,15 +686,16 @@
 								<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
 								<bordersize>20</bordersize>
 							</control>
-							<control type="image">
-								<width>320</width>
-								<height>180</height>
-								<texture cornerradius="12" colordiffuse="focus_card_surface">colors/white.png</texture>
-								<visible>!$PARAM[background_art_condition]</visible>
-							</control>
 							<control type="group">
 								<visible>$PARAM[background_art_condition]</visible>
 								<include>HomeMediaLibraryArtwork</include>
+							</control>
+							<control type="image">
+								<width>320</width>
+								<height>180</height>
+								<texture cornerradius="12" colordiffuse="glass_focus_light">colors/white.png</texture>
+								<visible>!$PARAM[background_art_condition]</visible>
+								<include>Animation_FocusTextureFade</include>
 							</control>
 							<control type="image">
 								<left>-12.923077</left>
@@ -787,6 +790,7 @@
 				<include content="HomeRememberFanartOnUnfocus">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
+				<selectionsettledelay mode="adaptive">150</selectionsettledelay>
 				<itemlayout width="260" height="486">
 					<control type="group">
 						<left>58</left>
@@ -1019,12 +1023,7 @@
 		<param name="browse">auto</param>
 		<param name="focus_zoom">104</param>
 		<param name="label_font">font25_narrow</param>
-		<param name="glass_corner_radius">16</param>
-		<param name="glass_highlight">0.30</param>
-		<param name="glass_refraction">2.5</param>
-		<param name="glass_refraction_width">14</param>
-		<param name="glass_dispersion">0.12</param>
-		<param name="glass_depth">0.55</param>
+		<param name="glass_corner_radius">32</param>
 		<definition>
 			<include content="CategoryLabel">
 				<param name="label">$PARAM[widget_header]</param>
@@ -1053,7 +1052,7 @@
 							<top>20</top>
 							<width>276</width>
 							<height>160</height>
-							<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="0.75" glassbordercolor="0CFFFFFF" glasshighlight="$PARAM[glass_highlight]" glassrefraction="$PARAM[glass_refraction]" glassrefractionwidth="$PARAM[glass_refraction_width]" glassdispersion="$PARAM[glass_dispersion]" glassdepth="$PARAM[glass_depth]" cornerradius="$PARAM[glass_corner_radius]">colors/white.png</texture>
+							<texture material="glass" glassstyle="regular" cornerradius="$PARAM[glass_corner_radius]">colors/white.png</texture>
 							<visible>!$PARAM[background_art_condition]</visible>
 						</control>
 						<control type="image">
@@ -1113,17 +1112,8 @@
 							<top>20</top>
 							<width>276</width>
 							<height>160</height>
-							<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="1.5" glassbordercolor="A6FFFFFF" glasshighlight="0.45" glassrefraction="$PARAM[glass_refraction]" glassrefractionwidth="$PARAM[glass_refraction_width]" glassdispersion="$PARAM[glass_dispersion]" glassdepth="0.65" cornerradius="$PARAM[glass_corner_radius]">colors/white.png</texture>
+							<texture material="glass" glassstyle="regular" cornerradius="$PARAM[glass_corner_radius]">colors/white.png</texture>
 							<visible>!$PARAM[background_art_condition]</visible>
-						</control>
-						<control type="image">
-							<left>6.169811</left>
-							<top>6.169811</top>
-							<width>303.660378</width>
-							<height>187.660378</height>
-							<texture cornerradius="14" cornerborder="2" cornerglow="12" colordiffuse="focus_media">colors/white.png</texture>
-							<visible>$PARAM[background_art_condition]</visible>
-							<include>Animation_FocusTextureFade</include>
 						</control>
 						<control type="image">
 							<left>20</left>
@@ -1133,6 +1123,23 @@
 							<texture background="true" cornerradius="12">$INFO[ListItem.Art(thumb)]</texture>
 							<aspectratio>scale</aspectratio>
 							<visible>$PARAM[background_art_condition]</visible>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>20</top>
+							<width>276</width>
+							<height>160</height>
+							<texture cornerradius="$PARAM[glass_corner_radius]" colordiffuse="glass_focus_light">colors/white.png</texture>
+							<visible>!$PARAM[background_art_condition]</visible>
+						</control>
+						<control type="image">
+							<left>20</left>
+							<top>20</top>
+							<width>276</width>
+							<height>160</height>
+							<texture cornerradius="12" colordiffuse="glass_focus_light">colors/white.png</texture>
+							<visible>$PARAM[background_art_condition]</visible>
+							<include>Animation_FocusTextureFade</include>
 						</control>
 						<control type="image">
 							<centertop>74</centertop>

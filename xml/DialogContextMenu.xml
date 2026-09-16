@@ -26,16 +26,13 @@
 			<onclick>Action(close)</onclick>
 		</control>
 		<control type="group">
-			<!-- The redesigned Home navigation still needs Estuary's vertical offset,
-			     but information dialogs layered over Home must use Kodi's bounded position. -->
-			<animation effect="slide" end="0,175" time="0" condition="Window.IsActive(home) + !$EXP[infodialog_active]">conditional</animation>
 			<control type="image" id="999">
 				<description>background image</description>
 				<left>0</left>
 				<top>0</top>
 				<width>450</width>
 				<height>780</height>
-				<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="0.75" glassbordercolor="0CFFFFFF" glasshighlight="0.30" glassrefraction="2.5" glassrefractionwidth="14" glassdispersion="0.12" glassdepth="0.55" glassbackdropbrightness="0.92" cornerradius="30">colors/white.png</texture>
+				<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
 			</control>
 			<control type="grouplist" id="996">
 				<description>grouplist for context buttons</description>
@@ -59,7 +56,7 @@
 			<width>426</width>
 			<height>65</height>
 			<align>center</align>
-			<texturefocus cornerradius="30" colordiffuse="focus_glass_surface">lists/focus.png</texturefocus>
+			<texturefocus cornerradius="30" colordiffuse="glass_focus_light">colors/white.png</texturefocus>
 			<texturenofocus />
 			<focusedcolor>text_primary</focusedcolor>
 		</control>

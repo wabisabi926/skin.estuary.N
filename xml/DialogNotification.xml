@@ -14,9 +14,11 @@
 				<top>0</top>
 				<width>640</width>
 				<height>160</height>
-				<texture>dialogs/dialog-bg-nobo.png</texture>
-				<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-				<bordersize>20</bordersize>
+				<include condition="$EXP[nara_dialog_glass]">NaraDialogGlassTexture</include>
+				<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+					<param name="texture" value="dialogs/dialog-bg-nobo.png" />
+					<param name="shadow" value="true" />
+				</include>
 			</control>
 			<control type="image" id="400">
 				<description>avatar</description>

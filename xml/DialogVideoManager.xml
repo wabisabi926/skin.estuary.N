@@ -53,7 +53,11 @@
 					<top>0</top>
 					<width>1040</width>
 					<height>665</height>
-					<texture border="40">buttons/dialogbutton-nofo.png</texture>
+					<include condition="$EXP[nara_dialog_glass]">NaraDialogInsetTexture</include>
+					<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+						<param name="texture" value="buttons/dialogbutton-nofo.png" />
+						<param name="border" value="40" />
+					</include>
 				</control>
 				<control type="list" id="50">
 					<description>version list</description>
@@ -79,49 +83,65 @@
 				</control>
 			</control>
 			<control type="grouplist" id="101">
-				<left>1460</left>
-				<top>80</top>
-				<width>300</width>
+				<left>1480</left>
+				<top>100</top>
+				<width>252</width>
 				<height>565</height>
 				<onleft condition="Integer.IsGreater(Container(50).NumItems,0)">100</onleft>
-				<itemgap>dialogbuttons_itemgap</itemgap>
+				<include>NaraDialogButtonSpacing</include>
 				<scrolltime tween="quadratic">200</scrolltime>
 				<include content="DefaultDialogButton">
 					<param name="id" value="21" />
 					<param name="label" value="$LOCALIZE[208]" />
+					<param name="width" value="252" />
+					<param name="legacy_width" value="252" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="22" />
 					<param name="label" value="$LOCALIZE[40014]" />
 					<param name="visible">Window.IsVisible(managevideoversions)</param>
+					<param name="width" value="252" />
+					<param name="legacy_width" value="252" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="23" />
 					<param name="label" value="$LOCALIZE[40015]" />
 					<param name="visible">Window.IsVisible(managevideoextras)</param>
+					<param name="width" value="252" />
+					<param name="legacy_width" value="252" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="27" />
 					<param name="label" value="$LOCALIZE[13511]" />
+					<param name="width" value="252" />
+					<param name="legacy_width" value="252" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="24" />
 					<param name="label" value="$LOCALIZE[40004]" />
 					<param name="visible">Window.IsVisible(managevideoversions)</param>
+					<param name="width" value="252" />
+					<param name="legacy_width" value="252" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="28" />
 					<param name="label" value="$LOCALIZE[118]" />
 					<param name="visible">Window.IsVisible(managevideoextras)</param>
+					<param name="width" value="252" />
+					<param name="legacy_width" value="252" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="26" />
 					<param name="label" value="$LOCALIZE[15015]" />
+					<param name="width" value="252" />
+					<param name="legacy_width" value="252" />
 				</include>
 				<include content="DefaultDialogButton">
 					<param name="id" value="25" />
 					<param name="label" value="$LOCALIZE[40023]" />
 					<param name="visible">Window.IsVisible(managevideoversions)</param>
+					<param name="width" value="252" />
+					<param name="legacy_width" value="252" />
 				</include>
 			</control>
 		</control>

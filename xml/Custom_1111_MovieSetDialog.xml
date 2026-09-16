@@ -16,25 +16,28 @@
 			<texture>colors/black.png</texture>
 		</control>
 
-		<!-- Retain the source movie fanart while the dynamic set list is loading,
-		     and whenever the selected movie has no fanart of its own. -->
-		<control type="image">
-			<include>FullScreenDimensions</include>
-			<aspectratio>scale</aspectratio>
-			<fadetime>400</fadetime>
-			<texture background="true" colordiffuse="artwork_movieset_background">$INFO[Window(Home).Property(MovieSetDialog.SourceFanart)]</texture>
-			<visible>!Skin.HasSetting(no_fanart) + !String.IsEmpty(Window(Home).Property(MovieSetDialog.SourceFanart))</visible>
-		</control>
-
-		<!-- Follow the focused poster with the same fanart treatment used by the
-		     existing media wall. -->
-		<control type="image">
-			<include>FullScreenDimensions</include>
-			<aspectratio>scale</aspectratio>
-			<fadetime>400</fadetime>
-			<animation effect="fade" time="400">VisibleChange</animation>
-			<texture background="true" colordiffuse="artwork_movieset_background">$INFO[Container(5100).ListItem.Art(fanart)]</texture>
-			<visible>!Skin.HasSetting(no_fanart) + !String.IsEmpty(Container(5100).ListItem.Art(fanart))</visible>
+		<control type="group" id="5190">
+			<width>1920</width>
+			<height>1080</height>
+			<include content="Animation_NaraFanartDetail">
+				<param name="source" value="movieset" />
+			</include>
+			<!-- Retain the source fanart while the set loads or the selected movie has none. -->
+			<control type="image">
+				<include>FullScreenDimensions</include>
+				<aspectratio align="right">scale</aspectratio>
+				<fadetime>400</fadetime>
+				<texture background="true" colordiffuse="artwork_movieset_background">$INFO[Window(Home).Property(MovieSetDialog.SourceFanart)]</texture>
+				<visible>!Skin.HasSetting(no_fanart) + !String.IsEmpty(Window(Home).Property(MovieSetDialog.SourceFanart))</visible>
+			</control>
+			<control type="image">
+				<include>FullScreenDimensions</include>
+				<aspectratio align="right">scale</aspectratio>
+				<fadetime>400</fadetime>
+				<animation effect="fade" time="400">VisibleChange</animation>
+				<texture background="true" colordiffuse="artwork_movieset_background">$INFO[Container(5100).ListItem.Art(fanart)]</texture>
+				<visible>!Skin.HasSetting(no_fanart) + !String.IsEmpty(Container(5100).ListItem.Art(fanart))</visible>
+			</control>
 		</control>
 
 		<control type="label">

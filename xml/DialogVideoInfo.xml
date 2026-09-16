@@ -4,6 +4,8 @@
 	<onload>ClearProperty(VideoInfo.More,home)</onload>
 	<onload>SetFocus(5000)</onload>
 	<onload>SetProperty(infobackground,$ESCINFO[ListItem.Art(fanart)],home)</onload>
+	<!-- Keep the backdrop owner stable while other modal dialogs are open. -->
+	<onload>SetProperty(VideoInfo.FanartSource,$VAR[NaraVideoInfoFanartSourceVar])</onload>
 	<onunload>ClearProperty(infobackground,home)</onunload>
 	<onunload>ClearProperty(VideoInfo.More,home)</onunload>
 	<controls>
@@ -54,7 +56,6 @@
 			<centertop>50%</centertop>
 			<width>1920</width>
 			<height>1080</height>
-			<animation effect="fade" start="0" end="100" time="260">WindowOpen</animation>
 			<animation effect="fade" start="100" end="0" time="180">WindowClose</animation>
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="Window.IsVisible(script-embuary-video.xml) | Window.IsVisible(script-embuary-person.xml) | Window.IsVisible(script-embuary-image.xml)">Conditional</animation>
 			<!-- Backdrop and layered scrims. -->
@@ -62,21 +63,28 @@
 				<width>1920</width>
 				<height>1080</height>
 				<texture>colors/black.png</texture>
+				<animation effect="fade" start="0" end="100" time="260">WindowOpen</animation>
+				<visible>Skin.HasSetting(no_fanart) | String.IsEmpty(ListItem.Art(fanart))</visible>
 			</control>
-			<control type="image">
+			<control type="image" id="5900">
 				<width>1920</width>
 				<height>1080</height>
 				<aspectratio align="right">scale</aspectratio>
 				<fadetime>250</fadetime>
 				<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+				<animation source="9090" sourcewindow="10000" animation="fanart-focus" condition="String.IsEqual(Window.Property(VideoInfo.FanartSource),home)">Follow</animation>
+				<animation source="16590" sourcewindow="10000" animation="fanart-detail" condition="String.IsEqual(Window.Property(VideoInfo.FanartSource),search)">Follow</animation>
+				<animation source="9490" sourcewindow="10025" animation="fanart-detail" condition="String.IsEqual(Window.Property(VideoInfo.FanartSource),library)">Follow</animation>
+				<animation source="5190" sourcewindow="11111" animation="fanart-detail" condition="String.IsEqual(Window.Property(VideoInfo.FanartSource),movieset)">Follow</animation>
+				<animation effect="zoom" start="100" end="104" center="80%,35%" time="500" tween="sine" easing="inout" condition="!Window.IsVisible(11111) + !$EXP[NaraVideoInfoFromHome] + !Window.IsVisible(videos)">WindowOpen</animation>
+				<!-- Preserve the completed entry zoom while the page fades out. -->
+				<animation effect="zoom" start="104" end="104" center="80%,35%" time="0" condition="String.IsEqual(Window.Property(VideoInfo.FanartSource),fallback)">WindowClose</animation>
 				<visible>!Skin.HasSetting(no_fanart) + !String.IsEmpty(ListItem.Art(fanart))</visible>
 			</control>
-			<control type="image">
-				<width>1920</width>
-				<height>1080</height>
-				<texture colordiffuse="14000000">colors/black.png</texture>
-				<visible>!Skin.HasSetting(no_fanart) + !String.IsEmpty(ListItem.Art(fanart))</visible>
-			</control>
+			<include content="NaraFanartReveal">
+				<param name="source" value="5900" />
+				<param name="visible" value="!Skin.HasSetting(no_fanart) + !String.IsEmpty(ListItem.Art(fanart))" />
+			</include>
 			<!-- Detail-only left reading scrim. A dedicated horizontal texture
 			     keeps its dark edge deterministic and lighter than Fuse. -->
 			<control type="image">
@@ -93,45 +101,51 @@
 				<aspectratio>stretch</aspectratio>
 				<texture colordiffuse="opacity_medium">overlays/overlayfade.png</texture>
 			</control>
-			<!-- Artwork fallback for media without fanart or when fanart is disabled. -->
 			<control type="group">
-				<left>1250</left>
-				<top>100</top>
-				<visible>Skin.HasSetting(no_fanart) | String.IsEmpty(ListItem.Art(fanart))</visible>
-				<control type="image">
-					<left>-24</left>
-					<top>-24</top>
-					<width>500</width>
-					<height>720</height>
-					<texture colordiffuse="shadow_hard" border="21">overlays/shadow.png</texture>
+				<animation effect="fade" start="0" end="100" time="260">WindowOpen</animation>
+				<!-- Artwork fallback for media without fanart or when fanart is disabled. -->
+				<control type="group">
+					<left>1250</left>
+					<top>100</top>
+					<visible>Skin.HasSetting(no_fanart) | String.IsEmpty(ListItem.Art(fanart))</visible>
+					<control type="image">
+						<left>-24</left>
+						<top>-24</top>
+						<width>500</width>
+						<height>720</height>
+						<texture colordiffuse="shadow_hard" border="21">overlays/shadow.png</texture>
+					</control>
+					<control type="image">
+						<width>452</width>
+						<height>672</height>
+						<aspectratio>scale</aspectratio>
+						<texture fallback="DefaultVideo.png" background="true">$VAR[InfoDialogPosterVar]</texture>
+					</control>
 				</control>
-				<control type="image">
-					<width>452</width>
-					<height>672</height>
-					<aspectratio>scale</aspectratio>
-					<texture fallback="DefaultVideo.png" background="true">$VAR[InfoDialogPosterVar]</texture>
+				<!-- Shared hero structure keeps the movie/TV metadata-row rhythm and a single
+				     set of focus IDs while the TV header moves upward above its anchored plot. -->
+				<control type="group">
+					<left>80</left>
+					<top>175</top>
+					<width>1180</width>
+					<height>640</height>
+					<animation effect="slide" start="-70,0" end="0,0" time="360" tween="cubic" easing="out">WindowOpen</animation>
+					<control type="group">
+						<top>-3</top>
+						<include content="VideoInfoHeroContent">
+							<param name="synopsis_focusable" value="true" />
+							<param name="synopsis_navigation" value="5000" />
+							<param name="synopsis_height" value="135" />
+							<param name="tv_synopsis_height" value="135" />
+						</include>
+					</control>
+					<include>VideoInfoActionBar</include>
 				</control>
+				<!-- TV seasons, episodes and playback-target preview remain in this
+				     viewport; the cast shelf becomes their final tab. -->
+				<include>VideoInfoTvContent</include>
+				<include>VideoInfoCastShelf</include>
 			</control>
-			<!-- Shared hero structure keeps the movie/TV metadata-row rhythm and a single
-			     set of focus IDs while the TV header moves upward above its anchored plot. -->
-			<control type="group">
-				<left>80</left>
-				<top>175</top>
-				<width>1180</width>
-				<height>640</height>
-				<animation effect="slide" start="-70,0" end="0,0" time="360" tween="cubic" easing="out">WindowOpen</animation>
-				<!-- The shared include anchors the synopsis while moving only the TV
-				     header rows upward. Movie geometry and this action row stay unchanged. -->
-				<include content="VideoInfoHeroContent">
-					<param name="synopsis_focusable" value="true" />
-					<param name="synopsis_navigation" value="5000" />
-				</include>
-				<include>VideoInfoActionBar</include>
-			</control>
-			<!-- TV seasons, episodes and playback-target preview remain in this
-			     viewport; the cast shelf becomes their final tab. -->
-			<include>VideoInfoTvContent</include>
-			<include>VideoInfoCastShelf</include>
 		</control>
 		<!-- Context-menu style More dialog. It exists only while explicitly opened;
 		     deferred focus makes the first click both open it and enter the list. -->
@@ -148,8 +162,8 @@
 				<width>1920</width>
 				<height>1080</height>
 				<label></label>
-				<texturefocus colordiffuse="overlay_medium">colors/black.png</texturefocus>
-				<texturenofocus colordiffuse="overlay_medium">colors/black.png</texturenofocus>
+				<texturefocus colordiffuse="4D000000">colors/black.png</texturefocus>
+				<texturenofocus colordiffuse="4D000000">colors/black.png</texturenofocus>
 				<onclick>ClearProperty(VideoInfo.More,home)</onclick>
 				<onclick>SetFocus(5003)</onclick>
 			</control>
@@ -160,7 +174,7 @@
 				<centertop>50%</centertop>
 				<width>480</width>
 				<height>349</height>
-				<texture material="glass" blurradius="20" glasstint="66666666" glasssaturation="1.08" glasscontrast="1.02" glassgrain="0.005" glassborder="0.75" glassbordercolor="0CFFFFFF" glasshighlight="0.30" glassrefraction="2.5" glassrefractionwidth="14" glassdispersion="0.12" glassdepth="0.55" glassbackdropbrightness="0.92" cornerradius="30">colors/white.png</texture>
+				<texture material="glass" glassstyle="regular" cornerradius="42">colors/white.png</texture>
 			</control>
 			<control type="list" id="5199">
 				<centerleft>50%</centerleft>
@@ -186,7 +200,7 @@
 					<control type="image">
 						<width>456</width>
 						<height>65</height>
-						<texture cornerradius="30" colordiffuse="focus_glass_surface">lists/focus.png</texture>
+						<texture cornerradius="30" colordiffuse="glass_focus_light">colors/white.png</texture>
 					</control>
 					<control type="label">
 						<width>456</width>

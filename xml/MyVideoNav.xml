@@ -6,18 +6,26 @@
 	<views>50,51,52,501,500</views>
 	<menucontrol>9000</menucontrol>
 	<controls>
-		<!-- Keep Home-to-library navigation responsive without changing shared animation defaults. -->
-		<include content="DefaultBackground">
-			<param name="transition_time" value="220" />
-			<param name="window_close_time" value="200" />
-			<!-- Cover Deck and Poster Row own opaque detail-style backdrops; do not
-			     process the hidden shared fanart and its second crossfade below them. -->
-			<param name="media_background_visible" value="!Control.IsVisible(51) + !Control.IsVisible(501)" />
-		</include>
-		<include>View_51_Poster_Background</include>
-		<!-- Keep the selected 501 artwork alive while the information foreground
-		     fades out, so playback Busy never exposes the primary fallback. -->
-		<include>View_501_Poster_Background</include>
+		<control type="group" id="9490">
+			<width>1920</width>
+			<height>1080</height>
+			<include content="Animation_NaraFanartDetail">
+				<param name="enabled" value="!Player.HasVideo" />
+			</include>
+			<!-- Keep Home-to-library navigation responsive without changing shared animation defaults. -->
+			<include content="DefaultBackground">
+				<param name="transition_time" value="220" />
+				<param name="fanart_align" value="right" />
+				<param name="window_close_time" value="200" />
+				<!-- Cover Deck and Poster Row own opaque detail-style backdrops; do not
+				     process the hidden shared fanart and its second crossfade below them. -->
+				<param name="media_background_visible" value="!Control.IsVisible(51) + !Control.IsVisible(501)" />
+			</include>
+			<include>View_51_Poster_Background</include>
+			<!-- Keep the selected 501 artwork alive while the information foreground
+			     fades out, so playback Busy never exposes the primary fallback. -->
+			<include>View_501_Poster_Background</include>
+		</control>
 		<control type="group">
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
 			<include>View_50_List</include>

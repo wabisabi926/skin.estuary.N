@@ -1300,3 +1300,28 @@ msgstr ""
 msgctxt "#31695"
 msgid "Lock background"
 msgstr ""
+
+#: /xml/MusicVisualisation.xml
+msgctxt "#31700"
+msgid "Loading lyrics…"
+msgstr ""
+
+#: /xml/MusicVisualisation.xml
+msgctxt "#31701"
+msgid "No lyrics for this track"
+msgstr ""
+
+#: /xml/MusicVisualisation.xml
+msgctxt "#31702"
+msgid "Embedded lyrics and .lrc files next to your music are supported."
+msgstr ""
+
+#: /xml/Custom_1113_MusicAudioDialog.xml
+msgctxt "#31703"
+msgid "Mute"
+msgstr ""
+
+#: /xml/Includes_Settings.xml
+msgctxt "#31704"
+msgid "More"
+msgstr ""

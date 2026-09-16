@@ -15,13 +15,13 @@
 				<param name="header_id" value="1" />
 			</include>
 			<control type="group">
-				<left>0</left>
+				<left>32</left>
 				<top>80</top>
 				<control type="label">
 					<description>name label</description>
 					<left>0</left>
 					<top>0</top>
-					<width>440</width>
+					<width>384</width>
 					<height>70</height>
 					<label>$LOCALIZE[31089]: [COLOR white]$INFO[Container(13).NumItems][/COLOR]</label>
 					<align>center</align>
@@ -31,14 +31,18 @@
 				<control type="image">
 					<left>0</left>
 					<top>55</top>
-					<width>440</width>
+					<width>384</width>
 					<height>855</height>
-					<texture border="40">buttons/dialogbutton-nofo.png</texture>
+					<include condition="$EXP[nara_dialog_glass]">NaraDialogInsetTexture</include>
+					<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+						<param name="texture" value="buttons/dialogbutton-nofo.png" />
+						<param name="border" value="40" />
+					</include>
 				</control>
 				<control type="list" id="13">
 					<left>20</left>
 					<top>75</top>
-					<width>400</width>
+					<width>344</width>
 					<height>815</height>
 					<onup>13</onup>
 					<ondown>13</ondown>
@@ -46,7 +50,7 @@
 					<onright>73</onright>
 					<pagecontrol>73</pagecontrol>
 					<scrolltime>200</scrolltime>
-					<itemlayout width="400" height="70">
+					<itemlayout width="344" height="70">
 						<control type="label">
 							<left>20</left>
 							<top>5</top>
@@ -79,13 +83,13 @@
 							<aspectratio>keep</aspectratio>
 						</control>
 					</itemlayout>
-					<focusedlayout width="400" height="70">
+					<focusedlayout width="344" height="70">
 						<control type="image">
 							<left>0</left>
 							<top>0</top>
 							<right>0</right>
 							<bottom>0</bottom>
-							<texture colordiffuse="focus_surface">lists/focus.png</texture>
+							<include content="NaraDialogFocusTexture" />
 							<visible>Control.HasFocus(13)</visible>
 						</control>
 						<control type="label">
@@ -96,8 +100,8 @@
 							<aligny>center</aligny>
 							<font>font12</font>
 							<label>$INFO[ListItem.Label]</label>
-							<textcolor>$VAR[FocusLayoutTextColor13Var]</textcolor>
-							<selectedcolor>$VAR[FocusLayoutTextColor13Var]</selectedcolor>
+							<textcolor>$VAR[NaraDialogFocusLayoutTextColor13Var]</textcolor>
+							<selectedcolor>$VAR[NaraDialogFocusLayoutTextColor13Var]</selectedcolor>
 							<scroll>true</scroll>
 						</control>
 						<control type="label">
@@ -108,8 +112,8 @@
 							<font>font10</font>
 							<aligny>center</aligny>
 							<label>[I]$INFO[ListItem.PVRGroupOrigin]$INFO[ListItem.Property(ClientName),: ,][/I]</label>
-							<textcolor>$VAR[FocusLayoutTextColor13Var]</textcolor>
-							<selectedcolor>$VAR[FocusLayoutTextColor13Var]</selectedcolor>
+							<textcolor>$VAR[NaraDialogFocusLayoutTextColor13Var]</textcolor>
+							<selectedcolor>$VAR[NaraDialogFocusLayoutTextColor13Var]</selectedcolor>
 							<scroll>true</scroll>
 						</control>
 						<control type="image">
@@ -125,7 +129,7 @@
 					</focusedlayout>
 				</control>
 				<control type="scrollbar" id="73">
-					<left>420</left>
+					<left>364</left>
 					<top>75</top>
 					<width>6</width>
 					<height>815</height>
@@ -143,7 +147,7 @@
 				<include content="ChannelManagerList">
 					<param name="header_id" value="21" />
 					<param name="list_id" value="11" />
-					<param name="focus_textcolor" value="$VAR[FocusLayoutTextColor11Var]" />
+					<param name="focus_textcolor" value="$VAR[NaraDialogFocusLayoutTextColor11Var]" />
 					<param name="scrollbar_id" value="71" />
 					<param name="onright" value="12" />
 					<param name="onleft" value="73" />
@@ -156,18 +160,21 @@
 				<include content="ChannelManagerList">
 					<param name="header_id" value="22" />
 					<param name="list_id" value="12" />
-					<param name="focus_textcolor" value="$VAR[FocusLayoutTextColor12Var]" />
+					<param name="focus_textcolor" value="$VAR[NaraDialogFocusLayoutTextColor12Var]" />
 					<param name="scrollbar_id" value="72" />
 					<param name="onright" value="9000" />
 					<param name="onleft" value="71" />
 				</include>
 			</control>
 			<control type="grouplist" id="9000">
-				<left>1450</left>
-				<top>70</top>
-				<width>370</width>
-				<height>715</height>
-				<itemgap>-20</itemgap>
+				<left>1474</left>
+				<top>100</top>
+				<width>314</width>
+				<height>600</height>
+				<include content="NaraDialogButtonSpacing">
+					<param name="value" value="8" />
+					<param name="legacy" value="-20" />
+				</include>
 				<align>center</align>
 				<orientation>vertical</orientation>
 				<onleft>12</onleft>
@@ -176,28 +183,28 @@
 				<ondown>9000</ondown>
 				<control type="button" id="29">
 					<description>OK</description>
-					<width>370</width>
+					<width>314</width>
 					<include>SettingsItemCommon</include>
 					<font>font25_title</font>
 					<label>$LOCALIZE[186]</label>
 				</control>
 				<control type="button" id="26">
 					<description>Add Group</description>
-					<width>370</width>
+					<width>314</width>
 					<include>SettingsItemCommon</include>
 					<font>font25_title</font>
 					<label>$LOCALIZE[31044]</label>
 				</control>
 				<control type="button" id="27">
 					<description>Rename Group</description>
-					<width>370</width>
+					<width>314</width>
 					<include>SettingsItemCommon</include>
 					<font>font25_title</font>
 					<label>$LOCALIZE[31045]</label>
 				</control>
 				<control type="radiobutton" id="25">
 					<description>Hide Group</description>
-					<width>370</width>
+					<width>314</width>
 					<include>SettingsItemCommon</include>
 					<font>font25_title</font>
 					<label>$LOCALIZE[19289]</label>
@@ -206,23 +213,23 @@
 				</control>
 				<control type="button" id="28">
 					<description>Delete Group</description>
-					<width>370</width>
+					<width>314</width>
 					<include>SettingsItemCommon</include>
 					<font>font25_title</font>
 					<label>$LOCALIZE[31046]</label>
 				</control>
 				<control type="button" id="35">
 					<description>Regenerate Group Thumbnail</description>
-					<width>370</width>
+					<width>314</width>
 					<include>SettingsItemCommon</include>
 					<font>font25_title</font>
 					<label>$LOCALIZE[13315]</label>
 				</control>
 			</control>
 			<control type="image">
-				<left>1450</left>
+				<left>1474</left>
 				<bottom>50</bottom>
-				<width>370</width>
+				<width>314</width>
 				<height>200</height>
 				<texture>$INFO[Container(13).ListItem.Icon]</texture>
 				<bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture>

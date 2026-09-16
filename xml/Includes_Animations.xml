@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
+	<variable name="NaraVideoInfoFanartSourceVar">
+		<value condition="Window.IsVisible(11111)">movieset</value>
+		<value condition="$EXP[NaraVideoInfoFromHome] + String.IsEqual(Window(home).Property(Home.Section),search)">search</value>
+		<value condition="$EXP[NaraVideoInfoFromHome]">home</value>
+		<value condition="Window.IsVisible(videos)">library</value>
+		<value>fallback</value>
+	</variable>
+	<include name="NaraFanartReveal">
+		<param name="source">0</param>
+		<param name="enabled">true</param>
+		<param name="visible">true</param>
+		<param name="resting_opacity">16</param>
+		<definition>
+			<control type="image">
+				<left>-960</left>
+				<top>-540</top>
+				<width>3840</width>
+				<height>2160</height>
+				<aspectratio>stretch</aspectratio>
+				<texture>overlays/fanart-stage-mask.png</texture>
+				<animation type="ImageChange" source="$PARAM[source]" condition="$PARAM[enabled]" reversible="false">
+					<effect type="fade" start="20" end="100" time="80" tween="sine" easing="out" />
+					<effect type="fade" start="100" end="$PARAM[resting_opacity]" delay="80" time="520" tween="sine" easing="inout" />
+					<!-- Expand across the beam axis while keeping the light source fixed. -->
+					<effect type="rotate" start="28.64789" end="28.64789" center="-160,1180" time="0" />
+					<effect type="zoom" start="100,100" end="100,600" center="-160,1180" time="600" tween="sine" easing="in" />
+					<effect type="rotate" start="-28.64789" end="-28.64789" center="-160,1180" time="0" />
+				</animation>
+				<visible>$PARAM[visible]</visible>
+			</control>
+		</definition>
+	</include>
+	<include name="Animation_NaraFanartFocus">
+		<param name="condition">true</param>
+		<definition>
+			<animation id="fanart-focus" effect="zoom" start="100" end="104" center="80%,35%" time="500" tween="sine" easing="inout" condition="$PARAM[condition]">Conditional</animation>
+		</definition>
+	</include>
+	<include name="Animation_NaraScrimFocus">
+		<param name="condition">true</param>
+		<definition>
+			<animation effect="zoom" start="100,100" end="94,100" center="0,0" time="600" tween="sine" easing="inout" condition="$PARAM[condition]">Conditional</animation>
+		</definition>
+	</include>
+	<include name="Animation_NaraFanartDetail">
+		<param name="source">library</param>
+		<param name="enabled">true</param>
+		<definition>
+			<animation id="fanart-detail" effect="zoom" start="100" end="104" center="80%,35%" time="500" tween="sine" easing="inout" condition="$PARAM[enabled] + !Skin.HasSetting(no_fanart) + [[Window.IsVisible(movieinformation) + String.IsEqual(Window(movieinformation).Property(VideoInfo.FanartSource),$PARAM[source])] | [Window.IsVisible(12016) + String.IsEqual(Window(12016).Property(VideoInfo.FanartSource),$PARAM[source])]]">Conditional</animation>
+		</definition>
+	</include>
 	<include name="Animation_FocusTextureFade">
 		<animation effect="fade" start="0" end="100" time="200" tween="sine">Focus</animation>
 		<animation effect="fade" start="100" end="0" time="0">UnFocus</animation>

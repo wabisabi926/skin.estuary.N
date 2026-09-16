@@ -5,14 +5,18 @@
 	<include file="Includes_Animations.xml" />
 	<include file="Includes_MediaMenu.xml" />
 	<include file="Includes_Buttons.xml" />
+	<include file="Includes_Settings.xml" />
+	<include file="Includes_DialogGlass.xml" />
+	<include file="Includes_SettingsOSD.xml" />
 	<include file="Includes_DialogSelect.xml" />
 	<include file="Includes_VideoTechnicalFlags.xml" />
 	<include file="Includes_DialogVideoInfo_Hero.xml" />
 	<include file="Includes_DialogVideoInfo_Actions.xml" />
 	<include file="Includes_DialogVideoInfo_Cast.xml" />
 	<include file="Includes_DialogVideoInfo_TvEpisodes.xml" />
-	<include file="Includes_InfoViewer.xml" />
 	<include file="Includes_MusicInfo.xml" />
+	<include file="Includes_MusicPlayer.xml" />
+	<include file="Includes_MusicBackground.xml" />
 	<include file="Includes_PlayerProcessInfo.xml" />
 	<include file="Includes_PVR.xml" />
 	<include file="Includes_SettingsDialog.xml" />
@@ -703,9 +707,9 @@
 					<include content="ImageWidget">
 						<param name="text_label" value="$LOCALIZE[31153]" />
 						<param name="button_label" value="$LOCALIZE[31144]" />
-						<param name="button_onclick" value="$PARAM[imagewidget_onclick]"/>
-						<param name="button_id" value="$PARAM[group_id]333"/>
-						<param name="visible" value="![Integer.IsGreater(Container($PARAM[group_id]50).NumItems,0) | Container($PARAM[group_id]50).IsUpdating]"/>
+						<param name="button_onclick" value="$PARAM[imagewidget_onclick]" />
+						<param name="button_id" value="$PARAM[group_id]333" />
+						<param name="visible" value="![Integer.IsGreater(Container($PARAM[group_id]50).NumItems,0) | Container($PARAM[group_id]50).IsUpdating]" />
 					</include>
 				</control>
 			</control>
@@ -863,92 +867,76 @@
 			</control>
 		</definition>
 	</include>
-	<include name="DialogHeaderButton">
+	<include name="DialogHeaderIcon">
 		<param name="right" default="10" />
 		<param name="top" default="11" />
 		<param name="size" default="48" />
 		<definition>
-			<control type="radiobutton">
+			<control type="image">
 				<right>$PARAM[right]</right>
 				<top>$PARAM[top]</top>
 				<width>$PARAM[size]</width>
 				<height>$PARAM[size]</height>
-				<radiowidth>$PARAM[size]</radiowidth>
-				<radioheight>$PARAM[size]</radioheight>
-				<texturefocus />
-				<texturenofocus />
-				<label></label>
-				<textureradioofffocus colordiffuse="focus_indicator">dialogs/close.png</textureradioofffocus>
-				<textureradiooffnofocus colordiffuse="text_primary">special://xbmc/media/vendor_icon.png</textureradiooffnofocus>
-				<textureradioonfocus colordiffuse="focus_indicator">dialogs/close.png</textureradioonfocus>
-				<textureradioonnofocus colordiffuse="text_primary">special://xbmc/media/vendor_icon.png</textureradioonnofocus>
-				<onclick>Action(close)</onclick>
+				<texture colordiffuse="text_primary">special://xbmc/media/vendor_icon.png</texture>
 			</control>
 		</definition>
 	</include>
 	<include name="DialogBackgroundCommons">
-		<control type="image">
-			<left>-2000</left>
-			<top>-2000</top>
-			<width>6000</width>
-			<height>6000</height>
-			<animation effect="fade" time="300">VisibleChange</animation>
-			<animation effect="fade" start="0" end="100" time="300">WindowOpen</animation>
-			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
-			<texture colordiffuse="overlay_medium">colors/black.png</texture>
-			<visible>$PARAM[darken_bg]</visible>
-		</control>
-		<control type="button">
-			<left>-2000</left>
-			<top>-2000</top>
-			<width>6000</width>
-			<height>6000</height>
-			<texturefocus />
-			<texturenofocus />
-			<onclick>Action(close)</onclick>
-		</control>
-		<control type="group">
-			<width>$PARAM[width]</width>
-			<height>$PARAM[height]</height>
+		<param name="glass_style">dialog</param>
+		<definition>
 			<control type="image">
-				<left>0</left>
-				<top>0</top>
-				<right>0</right>
-				<height>70</height>
-				<texture colordiffuse="surface_dialog_header">colors/white.png</texture>
+				<left>-2000</left>
+				<top>-2000</top>
+				<width>6000</width>
+				<height>6000</height>
+				<animation effect="fade" time="300">VisibleChange</animation>
+				<animation effect="fade" start="0" end="100" time="300">WindowOpen</animation>
+				<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+				<texture colordiffuse="overlay_medium">colors/black.png</texture>
+				<visible>$PARAM[darken_bg]</visible>
 			</control>
-			<control type="image">
-				<left>0</left>
-				<top>70</top>
-				<right>0</right>
-				<bottom>0</bottom>
-				<texture colordiffuse="surface_dialog">colors/white.png</texture>
-			</control>
-			<control type="label" id="$PARAM[header_id]">
-				<left>40</left>
-				<top>0</top>
-				<right>100</right>
-				<height>70</height>
-				<font>font32_title</font>
-				<label>$PARAM[header_label]</label>
-				<aligny>center</aligny>
-			</control>
-			<control type="button" id="22002">
-				<description>button overlay to avoid closing in dialog area</description>
-				<left>0</left>
-				<top>0</top>
-				<right>0</right>
-				<bottom>0</bottom>
+			<control type="button">
+				<left>-2000</left>
+				<top>-2000</top>
+				<width>6000</width>
+				<height>6000</height>
 				<texturefocus />
 				<texturenofocus />
-				<onclick>noop</onclick>
+				<onclick>Action(close)</onclick>
 			</control>
-			<include content="DialogHeaderButton">
-				<param name="right" value="$PARAM[header_icon_right]" />
-				<param name="top" value="$PARAM[header_icon_top]" />
-				<param name="size" value="$PARAM[header_icon_size]" />
-			</include>
-		</control>
+			<control type="group">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<include condition="$EXP[nara_dialog_glass]" content="NaraDialogGlassSurface">
+					<param name="style" value="$PARAM[glass_style]" />
+				</include>
+				<include condition="!$EXP[nara_dialog_glass]">NaraDialogSolidSurface</include>
+				<control type="label" id="$PARAM[header_id]">
+					<left>40</left>
+					<top>0</top>
+					<right>100</right>
+					<height>70</height>
+					<font>font32_title</font>
+					<label>$PARAM[header_label]</label>
+					<aligny>center</aligny>
+				</control>
+				<control type="button" id="22002">
+					<description>button overlay to avoid closing in dialog area</description>
+					<left>0</left>
+					<top>0</top>
+					<right>0</right>
+					<bottom>0</bottom>
+					<texturefocus />
+					<texturenofocus />
+					<onclick>noop</onclick>
+				</control>
+				<include content="DialogHeaderIcon">
+					<param name="right" value="$PARAM[header_icon_right]" />
+					<param name="top" value="$PARAM[header_icon_top]" />
+					<param name="size" value="$PARAM[header_icon_size]" />
+				</include>
+			</control>
+		</definition>
 	</include>
 	<include name="TopBar">
 		<param name="sublabel">$INFO[Container.CurrentItem,, / ]$INFO[Container.NumItems]</param>
@@ -1043,6 +1031,7 @@
 		<param name="transition_time">400</param>
 		<param name="window_close_time">300</param>
 		<param name="media_background_visible">true</param>
+		<param name="fanart_align">center</param>
 		<definition>
 			<control type="videowindow">
 				<depth>DepthBackground</depth>
@@ -1072,7 +1061,7 @@
 					<animation effect="fade" time="$PARAM[transition_time]">VisibleChange</animation>
 					<control type="image" id="32111">
 						<include>FullScreenDimensions</include>
-						<aspectratio>scale</aspectratio>
+						<aspectratio align="$PARAM[fanart_align]">scale</aspectratio>
 						<fadetime>$PARAM[transition_time]</fadetime>
 						<animation effect="fade" time="$PARAM[transition_time]">VisibleChange</animation>
 						<texture background="true" colordiffuse="artwork_background_opaque">$VAR[MediaFanartVar]</texture>
@@ -1198,6 +1187,7 @@
 				<width>900</width>
 				<height>380</height>
 				<include content="DialogBackgroundCommons">
+					<param name="glass_style" value="frosted" />
 					<param name="width" value="900" />
 					<param name="height" value="380" />
 					<param name="header_label" value="$PARAM[header_label]" />
@@ -1220,6 +1210,7 @@
 					<height>100</height>
 					<orientation>horizontal</orientation>
 					<align>center</align>
+					<include condition="$EXP[nara_dialog_glass]">NaraDialogButtonItemGap</include>
 					<include content="DefaultDialogButton">
 						<param name="id" value="$PARAM[button_id]" />
 						<param name="label" value="$LOCALIZE[15067]" />
@@ -1314,81 +1305,6 @@
 			</control>
 		</definition>
 	</include>
-	<include name="SettingsPanel">
-		<itemlayout height="260" width="400">
-			<control type="image">
-				<left>-5</left>
-				<width>410</width>
-				<height>270</height>
-				<texture>dialogs/dialog-bg-nobo.png</texture>
-				<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-				<bordersize>20</bordersize>
-			</control>
-			<control type="image">
-				<centerleft>50%</centerleft>
-				<top>30</top>
-				<width>240</width>
-				<height>160</height>
-				<texture>$INFO[ListItem.Icon]</texture>
-				<align>center</align>
-				<aspectratio>scale</aspectratio>
-			</control>
-			<control type="label">
-				<left>25</left>
-				<top>190</top>
-				<width>350</width>
-				<height>400</height>
-				<label>$INFO[ListItem.Label]</label>
-				<align>center</align>
-			</control>
-		</itemlayout>
-		<focusedlayout height="230" width="400">
-			<control type="group">
-				<depth>DepthContentPopout</depth>
-				<animation type="Focus" reversible="false">
-					<effect type="zoom" center="200,140" start="100" end="110" time="250" tween="sine" />
-				</animation>
-				<animation type="UnFocus" reversible="false">
-					<effect type="zoom" center="200,140" start="110" end="100" time="250" tween="sine" />
-				</animation>
-				<control type="image">
-					<left>-5</left>
-					<width>410</width>
-					<height>270</height>
-					<texture>dialogs/dialog-bg-nobo.png</texture>
-					<bordertexture border="21" infill="false">overlays/shadow.png</bordertexture>
-					<bordersize>20</bordersize>
-				</control>
-				<control type="image">
-					<left>-5</left>
-					<width>410</width>
-					<height>270</height>
-					<texture colordiffuse="focus_card_surface">colors/white.png</texture>
-					<bordersize>20</bordersize>
-					<include>Animation_FocusTextureFade</include>
-				</control>
-				<control type="image">
-					<centerleft>50%</centerleft>
-					<top>30</top>
-					<width>240</width>
-					<height>160</height>
-					<texture colordiffuse="focus_card_foreground">$INFO[ListItem.Icon]</texture>
-					<align>center</align>
-					<aspectratio>scale</aspectratio>
-				</control>
-				<control type="label">
-					<left>25</left>
-					<top>190</top>
-					<width>350</width>
-					<height>400</height>
-					<label>$INFO[ListItem.Label]</label>
-					<textcolor>focus_card_foreground</textcolor>
-					<selectedcolor>focus_card_foreground</selectedcolor>
-					<align>center</align>
-				</control>
-			</control>
-		</focusedlayout>
-	</include>
 	<include name="MediaInfoListLayout">
 		<param name="height">125</param>
 		<param name="width">1000</param>
@@ -1429,7 +1345,7 @@
 					<top>0</top>
 					<right>0</right>
 					<bottom>0</bottom>
-					<texture colordiffuse="focus_surface">lists/focus.png</texture>
+					<include content="NaraDialogFocusTexture" />
 					<animation effect="fade" start="100" end="50" time="0">UnFocus</animation>
 				</control>
 				<control type="image">
@@ -1448,8 +1364,8 @@
 					<aligny>center</aligny>
 					<scroll>true</scroll>
 					<label>$VAR[MediaInfoListLabelVar]</label>
-					<textcolor>focus_foreground</textcolor>
-					<selectedcolor>focus_foreground</selectedcolor>
+					<textcolor>$VAR[NaraDialogFocusForegroundVar]</textcolor>
+					<selectedcolor>$VAR[NaraDialogFocusForegroundVar]</selectedcolor>
 				</control>
 				<control type="label">
 					<left>135</left>
@@ -1459,8 +1375,8 @@
 					<font>font10</font>
 					<aligny>center</aligny>
 					<label>$INFO[ListItem.Duration,$LOCALIZE[180]: ][CR]$VAR[MediaInfoListLabel2Var]</label>
-					<textcolor>focus_foreground_muted</textcolor>
-					<selectedcolor>focus_foreground_muted</selectedcolor>
+					<textcolor>$VAR[NaraDialogFocusMutedVar]</textcolor>
+					<selectedcolor>$VAR[NaraDialogFocusMutedVar]</selectedcolor>
 				</control>
 			</focusedlayout>
 		</definition>

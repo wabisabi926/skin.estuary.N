@@ -2,7 +2,7 @@
 <window>
 	<defaultcontrol always="true">95</defaultcontrol>
 	<controls>
-		<include>DefaultBackground</include>
+		<include>NaraSettingsBackground</include>
 		<control type="group">
 			<left>40</left>
 			<top>103</top>
@@ -135,81 +135,84 @@
 			<top>0</top>
 			<depth>DepthContentPanel</depth>
 			<include>OpenClose_Left</include>
-			<include content="ContentPanel">
-				<param name="width" value="480" />
+			<include content="NaraSettingsSidebar">
+				<param name="left" value="40" />
+				<param name="top" value="125" />
+				<param name="width" value="380" />
+				<param name="height" value="850" />
 			</include>
 			<control type="grouplist" id="9000">
-				<left>0</left>
-				<top>100</top>
-				<width>420</width>
-				<height>100%</height>
 				<onup>9000</onup>
 				<ondown>9000</ondown>
 				<onright>60</onright>
 				<control type="button" id="95">
 					<description>Button Summary Values</description>
-					<include content="DefaultSettingButton">
+					<include content="NaraSettingsRow">
 						<param name="height" value="85" />
 					</include>
-					<width>420</width>
 					<label>$LOCALIZE[20037]</label>
+					<width>348</width>
 				</control>
 				<control type="button" id="94">
 					<description>Button Storage</description>
-					<include content="DefaultSettingButton">
+					<include content="NaraSettingsRow">
 						<param name="height" value="85" />
 					</include>
-					<width>420</width>
 					<label>$LOCALIZE[13277]</label>
+					<width>348</width>
 				</control>
 				<control type="button" id="96">
 					<description>Button Network</description>
-					<include content="DefaultSettingButton">
+					<include content="NaraSettingsRow">
 						<param name="height" value="85" />
 					</include>
-					<width>420</width>
 					<label>$LOCALIZE[13279]</label>
+					<width>348</width>
 				</control>
 				<control type="button" id="97">
 					<description>Button Video</description>
-					<include content="DefaultSettingButton">
+					<include content="NaraSettingsRow">
 						<param name="height" value="85" />
 					</include>
-					<width>420</width>
 					<label>$LOCALIZE[13280]</label>
+					<width>348</width>
 				</control>
 				<control type="button" id="98">
 					<description>Button Hardware</description>
-					<include content="DefaultSettingButton">
+					<include content="NaraSettingsRow">
 						<param name="height" value="85" />
 					</include>
-					<width>420</width>
 					<label>$LOCALIZE[13281]</label>
+					<width>348</width>
 				</control>
 				<control type="button" id="99">
 					<description>Button PVR</description>
-					<include content="DefaultSettingButton">
+					<include content="NaraSettingsRow">
 						<param name="height" value="85" />
 					</include>
-					<width>420</width>
 					<label>$LOCALIZE[19191]</label>
+					<width>348</width>
 				</control>
 				<control type="button" id="100">
 					<description>Button Privacy policy</description>
-					<include content="DefaultSettingButton">
+					<include content="NaraSettingsRow">
 						<param name="height" value="85" />
 					</include>
-					<width>420</width>
 					<label>$LOCALIZE[12389]</label>
+					<width>348</width>
 				</control>
 				<control type="button" id="101">
 					<description>Button "Thank you!"</description>
-					<include content="DefaultSettingButton">
+					<include content="NaraSettingsRow">
 						<param name="height" value="85" />
 					</include>
-					<width>420</width>
 					<label>$LOCALIZE[12396]</label>
+					<width>348</width>
 				</control>
+				<left>56</left>
+				<top>145</top>
+				<width>348</width>
+				<height>790</height>
 			</control>
 		</control>
 		<include content="TopBar">

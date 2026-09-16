@@ -22,11 +22,14 @@
 						<onright>150</onright>
 						<onleft>73</onleft>
 						<orientation>vertical</orientation>
+						<include condition="$EXP[nara_dialog_glass]">NaraDialogButtonItemGap</include>
 						<include content="DefaultDialogButton">
 							<param name="id" value="160" />
 							<param name="label" value="$LOCALIZE[24120]" />
-							<param name="width" value="420" />
-							<param name="height" value="150" />
+							<param name="width" value="380" />
+							<param name="legacy_width" value="420" />
+							<param name="height" value="110" />
+							<param name="legacy_height" value="150" />
 						</include>
 					</control>
 					<control type="label" id="140">
@@ -69,7 +72,11 @@
 					<top>-20</top>
 					<width>960</width>
 					<height>640</height>
-					<texture border="40">buttons/dialogbutton-nofo.png</texture>
+					<include condition="$EXP[nara_dialog_glass]">NaraDialogInsetTexture</include>
+					<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+						<param name="texture" value="buttons/dialogbutton-nofo.png" />
+						<param name="border" value="40" />
+					</include>
 				</control>
 				<control type="label">
 					<description>Video label</description>
@@ -150,7 +157,7 @@
 							<left>0</left>
 							<right>0</right>
 							<bottom>0</bottom>
-							<texture colordiffuse="focus_surface">lists/focus.png</texture>
+							<include content="NaraDialogFocusTexture" />
 							<visible>Control.HasFocus(120)</visible>
 						</control>
 						<control type="image">
@@ -167,8 +174,8 @@
 							<width>100</width>
 							<height>100</height>
 							<font>font12</font>
-							<textcolor>$VAR[FocusLayoutTextColor120Var]</textcolor>
-							<selectedcolor>$VAR[FocusLayoutTextColor120Var]</selectedcolor>
+							<textcolor>$VAR[NaraDialogFocusLayoutTextColor120Var]</textcolor>
+							<selectedcolor>$VAR[NaraDialogFocusLayoutTextColor120Var]</selectedcolor>
 							<align>center</align>
 							<aligny>center</aligny>
 							<label>$INFO[ListItem.Label]</label>
@@ -179,7 +186,7 @@
 							<width>30</width>
 							<height>20</height>
 							<texture>windows/subtitles/icon_close_caption.png</texture>
-							<colordiffuse>$VAR[FocusLayoutTextColor120Var]</colordiffuse>
+							<colordiffuse>$VAR[NaraDialogFocusLayoutTextColor120Var]</colordiffuse>
 							<visible>ListItem.property(hearing_imp)</visible>
 						</control>
 						<control type="image">
@@ -188,7 +195,7 @@
 							<width>60</width>
 							<height>20</height>
 							<texture>windows/subtitles/icon_sync.png</texture>
-							<colordiffuse>$VAR[FocusLayoutTextColor120Var]</colordiffuse>
+							<colordiffuse>$VAR[NaraDialogFocusLayoutTextColor120Var]</colordiffuse>
 							<visible>ListItem.property(sync)</visible>
 						</control>
 						<control type="textbox">
@@ -198,7 +205,7 @@
 							<aligny>center</aligny>
 							<font>font12</font>
 							<label>$INFO[ListItem.Label2]</label>
-							<textcolor>$VAR[FocusLayoutTextColor120Var]</textcolor>
+							<textcolor>$VAR[NaraDialogFocusLayoutTextColor120Var]</textcolor>
 						</control>
 						<control type="image">
 							<left>810</left>
@@ -229,7 +236,11 @@
 					<top>-20</top>
 					<width>360</width>
 					<height>520</height>
-					<texture border="40">buttons/dialogbutton-nofo.png</texture>
+					<include condition="$EXP[nara_dialog_glass]">NaraDialogInsetTexture</include>
+					<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+						<param name="texture" value="buttons/dialogbutton-nofo.png" />
+						<param name="border" value="40" />
+					</include>
 				</control>
 				<control type="label">
 					<left>0</left>
@@ -259,7 +270,15 @@
 					<onup>150</onup>
 					<ondown>150</ondown>
 					<scrolltime>200</scrolltime>
-					<include content="DefaultSimpleListLayout">
+					<include content="NaraSettingsSimpleListLayout" condition="$EXP[nara_dialog_glass]">
+						<param name="width" value="320" />
+						<param name="height" value="80" />
+						<param name="list_id" value="150" />
+						<param name="align" value="center" />
+						<param name="focuscolor" value="glass_focus_medium" />
+						<param name="focusedselectedcolor" value="text_primary" />
+					</include>
+					<include content="DefaultSimpleListLayout" condition="!$EXP[nara_dialog_glass]">
 						<param name="width" value="320" />
 						<param name="height" value="80" />
 						<param name="list_id" value="150" />

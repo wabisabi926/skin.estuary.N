@@ -24,7 +24,10 @@
 					<top>0</top>
 					<width>100%</width>
 					<height>100%</height>
-					<texture>dialogs/dialog-bg-nobo.png</texture>
+					<include condition="$EXP[nara_dialog_glass]">NaraDialogGlassTexture</include>
+					<include condition="!$EXP[nara_dialog_glass]" content="NaraDialogLegacyTexture">
+						<param name="texture" value="dialogs/dialog-bg-nobo.png" />
+					</include>
 				</control>
 				<control type="group">
 					<left>20</left>
@@ -38,7 +41,7 @@
 					</control>
 					<control type="grouplist" id="201">
 						<top>54</top>
-						<height>135</height>
+						<height>76</height>
 						<align>center</align>
 						<itemgap>20</itemgap>
 						<scrolltime tween="sine">200</scrolltime>
@@ -48,18 +51,24 @@
 						<control type="radiobutton" id="600">
 							<include content="OSDButton">
 								<param name="texture" value="osd/fullscreen/buttons/previous.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<onclick>PVR.EpgGridControl(FirstProgramme)</onclick>
 						</control>
 						<control type="radiobutton" id="601">
 							<include content="OSDButton">
 								<param name="texture" value="osd/fullscreen/buttons/rewind.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<onclick>PVR.EpgGridControl(-12)</onclick>
 						</control>
 						<control type="radiobutton" id="602">
 							<include content="OSDButton">
 								<param name="texture" value="osd/fullscreen/buttons/play.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<animation effect="rotate" start="0" end="-90" center="auto" condition="true">Conditional</animation>
 							<onclick>PVR.EpgGridControl(CurrentProgramme)</onclick>
@@ -67,18 +76,24 @@
 						<control type="radiobutton" id="603">
 							<include content="OSDButton">
 								<param name="texture" value="osd/fullscreen/buttons/forward.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<onclick>PVR.EpgGridControl(+12)</onclick>
 						</control>
 						<control type="radiobutton" id="604">
 							<include content="OSDButton">
 								<param name="texture" value="osd/fullscreen/buttons/next.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<onclick>PVR.EpgGridControl(LastProgramme)</onclick>
 						</control>
 						<control type="radiobutton" id="605">
 							<include content="OSDButton">
 								<param name="texture" value="osd/fullscreen/buttons/calendar.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<onclick>PVR.EpgGridControl(SelectDate)</onclick>
 						</control>
@@ -105,7 +120,7 @@
 					</control>
 					<control type="grouplist" id="202">
 						<top>54</top>
-						<height>135</height>
+						<height>76</height>
 						<align>center</align>
 						<itemgap>20</itemgap>
 						<scrolltime tween="sine">200</scrolltime>
@@ -115,12 +130,16 @@
 						<control type="radiobutton" id="70040">
 							<include content="OSDButton">
 								<param name="texture" value="osd/fullscreen/buttons/previous.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<onclick>PVR.EpgGridControl(FirstChannel)</onclick>
 						</control>
 						<control type="radiobutton" id="70041">
 							<include content="OSDButton">
 								<param name="texture" value="osd/fullscreen/buttons/play.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<animation effect="rotate" start="0" end="-90" center="auto" condition="true">Conditional</animation>
 							<onclick>PVR.EpgGridControl(PlayingChannel)</onclick>
@@ -129,6 +148,8 @@
 						<control type="radiobutton" id="70042">
 							<include content="OSDButton">
 								<param name="texture" value="osd/fullscreen/buttons/next.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<onclick>PVR.EpgGridControl(LastChannel)</onclick>
 						</control>
@@ -146,7 +167,7 @@
 					</control>
 					<control type="grouplist" id="203">
 						<top>54</top>
-						<height>135</height>
+						<height>76</height>
 						<align>center</align>
 						<itemgap>20</itemgap>
 						<scrolltime tween="sine">200</scrolltime>
@@ -156,6 +177,8 @@
 						<control type="radiobutton" id="70043">
 							<include content="OSDButton">
 								<param name="texture" value="osd/fullscreen/buttons/play.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<animation effect="rotate" start="0" end="180" center="auto" condition="true">Conditional</animation>
 							<onclick>PVR.EpgGridControl(PreviousGroup)</onclick>
@@ -163,12 +186,16 @@
 						<control type="radiobutton" id="70044">
 							<include content="OSDButton">
 								<param name="texture" value="osd/fullscreen/buttons/play.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<onclick>PVR.EpgGridControl(NextGroup)</onclick>
 						</control>
 						<control type="radiobutton" id="70045">
 							<include content="OSDButton">
 								<param name="texture" value="DefaultPlaylist.png"/>
+								<param name="focuscolor" value="$VAR[NaraDialogFocusSurfaceVar]" />
+								<param name="foreground" value="$VAR[NaraDialogFocusForegroundVar]" />
 							</include>
 							<onclick>PVR.EpgGridControl(SelectGroup)</onclick>
 						</control>
