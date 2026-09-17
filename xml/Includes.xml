@@ -981,6 +981,7 @@
 					<width>300</width>
 					<align>right</align>
 					<aligny>center</aligny>
+					<visible>!Window.IsVisible(extendedprogressdialog)</visible>
 					<animation effect="fade" start="0" end="100" time="$PARAM[window_open_time]">WindowOpen</animation>
 					<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 				</control>
