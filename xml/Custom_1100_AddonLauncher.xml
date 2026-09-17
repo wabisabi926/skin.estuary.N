@@ -89,7 +89,7 @@
 							<left>0</left>
 							<right>0</right>
 							<bottom>0</bottom>
-							<texture colordiffuse="focus_surface">lists/focus.png</texture>
+							<texture cornerradius="16" colordiffuse="glass_focus_medium">colors/white.png</texture>
 							<animation effect="fade" start="100" end="0" time="0" condition="!Control.HasFocus(9000)">Conditional</animation>
 						</control>
 						<control type="image">
@@ -121,8 +121,8 @@
 							<aligny>center</aligny>
 							<font>font14</font>
 							<label>$INFO[ListItem.Label]</label>
-							<textcolor>$VAR[FocusLayoutTextColor9000Var]</textcolor>
-							<selectedcolor>$VAR[FocusLayoutTextColor9000Var]</selectedcolor>
+							<textcolor>$VAR[NaraDialogFocusLayoutTextColor9000Var]</textcolor>
+							<selectedcolor>$VAR[NaraDialogFocusLayoutTextColor9000Var]</selectedcolor>
 						</control>
 					</focusedlayout>
 					<itemlayout height="95" width="462">
@@ -223,7 +223,7 @@
 					<label/>
 					<textoffsetx>40</textoffsetx>
 					<textwidth>230</textwidth>
-					<texturefocus colordiffuse="focus_surface">buttons/roundbutton-fo.png</texturefocus>
+					<texturefocus colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/roundbutton-fo.png</texturefocus>
 					<texturenofocus />
 					<radioposx>39</radioposx>
 					<radioposy>0</radioposy>
@@ -245,7 +245,7 @@
 					<label/>
 					<textoffsetx>40</textoffsetx>
 					<textwidth>230</textwidth>
-					<texturefocus border="30" colordiffuse="focus_surface">buttons/dialogbutton-fo.png</texturefocus>
+					<texturefocus border="30" colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/dialogbutton-fo.png</texturefocus>
 					<texturenofocus />
 					<radioposx>35</radioposx>
 					<radioposy>0</radioposy>
@@ -269,7 +269,7 @@
 					<label/>
 					<textoffsetx>40</textoffsetx>
 					<textwidth>230</textwidth>
-					<texturefocus colordiffuse="focus_surface">buttons/roundbutton-fo.png</texturefocus>
+					<texturefocus colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/roundbutton-fo.png</texturefocus>
 					<texturenofocus />
 					<radioposx>40</radioposx>
 					<radioposy>0</radioposy>
