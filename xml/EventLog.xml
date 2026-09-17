@@ -141,33 +141,67 @@
 						<texturefocus colordiffuse="glass_focus_light" cornerradius="18">colors/white.png</texturefocus>
 						<alttexturenofocus />
 						<alttexturefocus colordiffuse="glass_focus_light" cornerradius="18">colors/white.png</alttexturefocus>
-						<textoffsety>35</textoffsety>
-						<label>$LOCALIZE[31032]: $LOCALIZE[584]</label>
+								<textcolor>text_primary</textcolor>
+								<focusedcolor>text_primary</focusedcolor>
+								<textoffsety>35</textoffsety>
+								<label>$LOCALIZE[31032]: $LOCALIZE[584]</label>
 						<altlabel>$LOCALIZE[31032]: $LOCALIZE[585]</altlabel>
 					</control>
-					<include content="PlaylistWindowButton">
-						<param name="control_id" value="21" />
-						<param name="onclick" value="" />
-						<param name="label" value="" />
-					</include>
-					<control type="radiobutton" id="22">
+					<control type="button" id="21">
+						<width>100%</width>
 						<height>110</height>
+						<align>left</align>
 						<aligny>top</aligny>
-						<texturenofocus />
-						<texturefocus colordiffuse="glass_focus_light" cornerradius="18">colors/white.png</texturefocus>
 						<textoffsetx>40</textoffsetx>
 						<textoffsety>35</textoffsety>
-					</control>
-					<include content="PlaylistWindowButton">
-						<param name="control_id" value="20" />
-						<param name="onclick" value="" />
-						<param name="label" value="$LOCALIZE[192]" />
-					</include>
-					<include content="PlaylistWindowButton">
-						<param name="control_id" value="501" />
-						<param name="onclick" value="ActivateWindow(systemsettings,logging)" />
-						<param name="label" value="$LOCALIZE[5]" />
-					</include>
+						<texturenofocus />
+						<texturefocus colordiffuse="glass_focus_light" cornerradius="18">colors/white.png</texturefocus>
+							<textcolor>text_primary</textcolor>
+							<focusedcolor>text_primary</focusedcolor>
+							<label></label>
+							<onclick></onclick>
+							<selectedcolor>selection_foreground</selectedcolor>
+						</control>
+						<control type="radiobutton" id="22">
+							<height>110</height>
+							<aligny>top</aligny>
+							<texturenofocus />
+							<texturefocus colordiffuse="glass_focus_light" cornerradius="18">colors/white.png</texturefocus>
+							<textcolor>text_primary</textcolor>
+							<focusedcolor>text_primary</focusedcolor>
+							<textoffsetx>40</textoffsetx>
+							<textoffsety>35</textoffsety>
+						</control>
+						<control type="button" id="20">
+							<width>100%</width>
+							<height>110</height>
+							<align>left</align>
+							<aligny>top</aligny>
+							<textoffsetx>40</textoffsetx>
+							<textoffsety>35</textoffsety>
+							<texturenofocus />
+							<texturefocus colordiffuse="glass_focus_light" cornerradius="18">colors/white.png</texturefocus>
+							<textcolor>text_primary</textcolor>
+							<focusedcolor>text_primary</focusedcolor>
+							<label>$LOCALIZE[192]</label>
+							<onclick></onclick>
+							<selectedcolor>selection_foreground</selectedcolor>
+						</control>
+						<control type="button" id="501">
+							<width>100%</width>
+							<height>110</height>
+							<align>left</align>
+							<aligny>top</aligny>
+							<textoffsetx>40</textoffsetx>
+							<textoffsety>35</textoffsety>
+							<texturenofocus />
+							<texturefocus colordiffuse="glass_focus_light" cornerradius="18">colors/white.png</texturefocus>
+							<textcolor>text_primary</textcolor>
+							<focusedcolor>text_primary</focusedcolor>
+							<label>$LOCALIZE[5]</label>
+							<onclick>ActivateWindow(systemsettings,logging)</onclick>
+							<selectedcolor>selection_foreground</selectedcolor>
+						</control>
 					<left>56</left>
 					<top>145</top>
 					<width>418</width>
