@@ -254,6 +254,10 @@
 		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
 		<value>$VAR[FocusLayoutTextColor451Var]</value>
 	</variable>
+	<variable name="NaraDialogFocusLayoutTextColor50Var">
+		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
+		<value>$VAR[FocusLayoutTextColor451Var]</value>
+	</variable>
 	<variable name="NaraDialogFocusLayoutTextColor6Var">
 		<value condition="$EXP[nara_dialog_glass]">text_primary</value>
 		<value>$VAR[FocusLayoutTextColor6Var]</value>
