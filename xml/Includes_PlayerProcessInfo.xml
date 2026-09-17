@@ -78,7 +78,6 @@
 					<left>$PARAM[label_width]</left>
 					<width>64</width>
 					<height>30</height>
-					<align>right</align>
 					<aligny>center</aligny>
 					<font>font_nara_process_info</font>
 					<label>$PARAM[value]</label>
@@ -175,6 +174,36 @@
 					<height>24</height>
 					<texture colordiffuse="status_error">osd/nara/process-info/circle-xmark.png</texture>
 					<visible>!String.IsEqual($PARAM[info],true)</visible>
+				</control>
+			</control>
+		</definition>
+	</include>
+
+	<include name="NaraProcessChannelLayout">
+		<definition>
+			<control type="group">
+				<width>$PARAM[width]</width>
+				<height>$PARAM[height]</height>
+				<visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible>
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>$PARAM[width]</width>
+					<height>$PARAM[height]</height>
+					<aspectratio>keep</aspectratio>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture colordiffuse="text_secondary">osd/nara/process-info/channels/layer.png</texture>
+				</control>
+				<control type="image">
+					<left>0</left>
+					<top>0</top>
+					<width>$PARAM[width]</width>
+					<height>$PARAM[height]</height>
+					<aspectratio>keep</aspectratio>
+					<align>center</align>
+					<aligny>center</aligny>
+					<texture colordiffuse="text_primary">$VAR[NaraChannelLayoutVar]</texture>
 				</control>
 			</control>
 		</definition>

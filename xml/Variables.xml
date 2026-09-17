@@ -1129,11 +1129,24 @@
 		<value>$INFO[ListItem.AudioCodec]</value>
 	</variable>
 	<variable name="AudioChannelsVar">
-		<value condition="Window.IsActive(fullscreenvideo)">$INFO[VideoPlayer.AudioChannels(DefaultLayout)]</value>
-		<value condition="Window.IsActive(visualisation)">$INFO[MusicPlayer.Channels(DefaultLayout)]</value>
-		<value condition="Container.Content(albums) | Window.IsActive(10502)">$INFO[ListItem.MusicChannels(DefaultLayout)]</value>
-		<value>$INFO[ListItem.AudioChannels(DefaultLayout)]</value>
-	</variable>
+			<value condition="Window.IsActive(fullscreenvideo)">$INFO[VideoPlayer.AudioChannels(DefaultLayout)]</value>
+			<value condition="Window.IsActive(visualisation)">$INFO[MusicPlayer.Channels(DefaultLayout)]</value>
+			<value condition="Container.Content(albums) | Window.IsActive(10502)">$INFO[ListItem.MusicChannels(DefaultLayout)]</value>
+			<value>$INFO[ListItem.AudioChannels(DefaultLayout)]</value>
+		</variable>
+		<variable name="NaraChannelLayoutVar">
+			<value condition="[String.IsEqual(VideoPlayer.AudioCodec,eac3_ddp_atmos) | String.IsEqual(VideoPlayer.AudioCodec,truehd_atmos) | String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma_x) | String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma_x_imax)] + String.IsEqual(VideoPlayer.AudioChannels,6)">osd/nara/process-info/channels/5.1.2.png</value>
+			<value condition="[String.IsEqual(VideoPlayer.AudioCodec,eac3_ddp_atmos) | String.IsEqual(VideoPlayer.AudioCodec,truehd_atmos) | String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma_x) | String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma_x_imax)] + String.IsEqual(VideoPlayer.AudioChannels,8)">osd/nara/process-info/channels/7.1.2.png</value>
+			<value condition="String.IsEqual(VideoPlayer.AudioChannels,1)">osd/nara/process-info/channels/1.0.png</value>
+			<value condition="String.IsEqual(VideoPlayer.AudioChannels,2)">osd/nara/process-info/channels/2.0.png</value>
+			<value condition="String.IsEqual(VideoPlayer.AudioChannels,3)">osd/nara/process-info/channels/2.1.png</value>
+			<value condition="String.IsEqual(VideoPlayer.AudioChannels,4)">osd/nara/process-info/channels/3.1.png</value>
+			<value condition="String.IsEqual(VideoPlayer.AudioChannels,5)">osd/nara/process-info/channels/4.1.png</value>
+			<value condition="String.IsEqual(VideoPlayer.AudioChannels,6)">osd/nara/process-info/channels/5.1.png</value>
+			<value condition="String.IsEqual(VideoPlayer.AudioChannels,7)">osd/nara/process-info/channels/6.1.png</value>
+			<value condition="String.IsEqual(VideoPlayer.AudioChannels,8)">osd/nara/process-info/channels/7.1.png</value>
+			<value></value>
+		</variable>
 	<variable name="SubtitleCodecVar">
 		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, ass)">ASS</value>
 		<value condition="Window.IsActive(fullscreenvideo) + String.IsEqual(VideoPlayer.SubtitleCodec, dvb_subtitle)">DVB-SUB</value>
