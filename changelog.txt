@@ -1,18 +1,35 @@
 Unreleased
-- Reworked the home screen around a horizontal top bar, contextual full-screen fanart, media-library rows, and capped widgets with dedicated browse-all playlists
-- Added recently updated TV-show shelves, movie and TV library fanart fallbacks, and ten-image library fanart rotation without preloading image data
-- Redesigned video information and movie-set browsing with nested movie details, favourite controls, cast and media layouts, and focused artwork, rating, and refresh actions
-- Refined focus frames, overlays, typography, dialogs, PVR layouts, and list, poster, banner, wall, and info-wall views
-- Added skin-opted-in core handling for hybrid video-version folders and favourite artwork while preserving the native behavior of other skins
-- Added query-aware Android HTTP video-database matching behind the existing Enhanced HTTP setting
+[魔改]
+- 设置-插件界面全面玻璃化：启动器焦点样式、浏览器设置式布局改单一列表、详情页浮动面板对齐截图网格
+- 设置-事件日志：侧边栏玻璃焦点统一，文字保持白色
+- 音乐播放器：歌词与歌词插件融合（放大、当前行突出、滑入动画、互斥），动态艺术家 Fanart 背景并自动压暗
+- 媒体库：扩展进度对话框显示时隐藏右上角计数
+- 媒体处理信息窗口：新增声道示意图，DV/HDR 行紧凑
 
-4.1.0 (Estuary N initial release)
-- Packaged Estuary N as an independent skin while retaining the original Estuary as a safe fallback
-- Added consistent poster titles and years and tuned the 1080p poster wall for seven columns
-- Added a lightweight high-transparency fallback card for missing poster artwork
-- Replaced the playback OSD information and stream buttons with direct subtitle and audio-track selectors
-- Increased media backdrop visibility consistently across the skin
-- Standardised the skin on the Arial typeface and limited maintained localisations to English and Simplified Chinese
-- Removed skin navigation and presentation for weather, radio and games while retaining compatibility placeholders for external window calls
-- Retained Kodi's system-level game settings entry
-- Removed alternate themes and colours, custom background selection, slideshow and touch options, unused artwork, and inherited screenshots
+[新增]
+- 最近更新电视剧架、电影与电视剧 Fanart 兜底、十图 Fanart 轮播（不预载图片）
+- 混合视频版本文件夹与收藏美术的皮肤级处理（不影响其他皮肤原生行为）
+- 增强 HTTP 设置下新增按查询匹配的安卓 HTTP 视频库
+
+[优化]
+- 首页重构：横向顶栏、全屏艺术家背景、媒体库行、专属浏览播放列表的窗口组件
+- 影视信息与电影套装浏览重构：嵌套影片详情、收藏、演职员与媒体布局、聚焦美术与评分刷新
+
+[美化]
+- 优化焦点框、遮罩、排版、对话框、PVR 布局及列表/海报/横幅/墙/信息墙视图
+
+4.1.0 (Estuary N 初始发布)
+[新增]
+- Estuary N 打包为独立皮肤，保留原 Estuary 作安全回退
+- 高透明度兜底卡，用于缺失的海报
+- 播放 OSD 信息与流按钮改为直接选择字幕与音轨
+- 保留 Kodi 系统级游戏设置入口
+
+[优化]
+- 统一海报标题与年份，1080p 海报墙调整为七列
+- 全皮肤统一提升媒体背景可见度
+
+[精简]
+- 移除天气、电台与游戏的皮肤导航与展示，保留外部窗口调用兼容占位
+- 移除备用主题与配色、自定义背景选择、幻灯片与触控选项、未使用美术与继承截图
+- 统一使用 Arial 字体，本地化仅保留英文与简体中文
