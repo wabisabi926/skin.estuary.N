@@ -279,7 +279,7 @@
 						<include content="NaraProcessInfoRow">
 							<param name="width" value="584" />
 							<param name="label" value="RPU / BL / EL" />
-							<param name="value" value="$INFO[Player.Process(dovirpupresent),✓ / ]$INFO[Player.Process(doviblpresent),✓ / ]$INFO[Player.Process(dovielpresent),✓]" />
+							<param name="value" value="$EXP[String.IsEqual(Player.Process(dovirpupresent),true) ? ✓ : ×]/$EXP[String.IsEqual(Player.Process(doviblpresent),true) ? ✓ : ×]/$EXP[String.IsEqual(Player.Process(dovielpresent),true) ? ✓ : ×]" />
 						</include>
 					</control>
 					<control type="group">
