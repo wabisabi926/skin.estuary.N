@@ -299,21 +299,24 @@
 		</definition>
 	</include>
 	<include name="InfoDialogButton">
-		<param name="width">264</param>
-		<param name="onclick_1_condition">true</param>
-		<param name="onclick_2_condition">true</param>
-		<param name="onclick_3_condition">true</param>
-		<definition>
-			<control type="radiobutton" id="$PARAM[id]">
-				<width>$PARAM[width]</width>
-				<height>142</height>
-				<align>center</align>
-				<aligny>top</aligny>
-				<texturefocus border="21" colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/button-fo.png</texturefocus>
-				<texturenofocus border="21">buttons/button-nofo.png</texturenofocus>
-				<textoffsetx>22</textoffsetx>
+			<param name="width">264</param>
+			<param name="radioposx">108</param>
+			<param name="textoffsetx">22</param>
+			<param name="onclick_1_condition">true</param>
+			<param name="onclick_2_condition">true</param>
+			<param name="onclick_3_condition">true</param>
+			<definition>
+				<control type="radiobutton" id="$PARAM[id]">
+					<width>$PARAM[width]</width>
+					<height>142</height>
+					<align>center</align>
+					<aligny>top</aligny>
+					<texturefocus cornerradius="18" cornerinset="8" colordiffuse="glass_focus_light">colors/white.png</texturefocus>
+					<texturenofocus condition="$EXP[nara_dialog_glass]" />
+					<texturenofocus border="21" condition="!$EXP[nara_dialog_glass]">buttons/button-nofo.png</texturenofocus>
+				<textoffsetx>$PARAM[textoffsetx]</textoffsetx>
 				<textoffsety>78</textoffsety>
-				<radioposx>108</radioposx>
+				<radioposx>$PARAM[radioposx]</radioposx>
 				<radioposy>16</radioposy>
 				<radiowidth>48</radiowidth>
 				<font>font12</font>
@@ -335,18 +338,21 @@
 		</definition>
 	</include>
 	<include name="InfoDialogToggleButton">
-		<param name="width">264</param>
-		<definition>
-			<control type="radiobutton" id="$PARAM[id]">
-				<width>$PARAM[width]</width>
-				<height>142</height>
-				<align>center</align>
-				<aligny>top</aligny>
-				<texturefocus border="21" colordiffuse="$VAR[NaraDialogFocusSurfaceVar]">buttons/button-fo.png</texturefocus>
-				<texturenofocus border="21">buttons/button-nofo.png</texturenofocus>
-				<textoffsetx>35</textoffsetx>
+			<param name="width">264</param>
+			<param name="radioposx">108</param>
+			<param name="textoffsetx">35</param>
+			<definition>
+				<control type="radiobutton" id="$PARAM[id]">
+					<width>$PARAM[width]</width>
+					<height>142</height>
+					<align>center</align>
+					<aligny>top</aligny>
+					<texturefocus cornerradius="18" cornerinset="8" colordiffuse="glass_focus_light">colors/white.png</texturefocus>
+					<texturenofocus condition="$EXP[nara_dialog_glass]" />
+					<texturenofocus border="21" condition="!$EXP[nara_dialog_glass]">buttons/button-nofo.png</texturenofocus>
+				<textoffsetx>$PARAM[textoffsetx]</textoffsetx>
 				<textoffsety>78</textoffsety>
-				<radioposx>108</radioposx>
+				<radioposx>$PARAM[radioposx]</radioposx>
 				<radioposy>16</radioposy>
 				<radiowidth>48</radiowidth>
 				<font>font12</font>
