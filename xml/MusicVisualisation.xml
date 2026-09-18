@@ -41,18 +41,18 @@
 				<label>$INFO[System.Time]</label>
 			</control>
 			<control type="image">
-				<left>201</left>
+				<left>158</left>
 				<top>136</top>
-				<width>578</width>
-				<height>578</height>
+				<width>493</width>
+				<height>493</height>
 				<texture border="40" colordiffuse="60000000">overlays/shadow.png</texture>
 				<visible>!String.IsEmpty(MusicPlayer.Cover) + !String.IsEqual(MusicPlayer.Cover,DefaultAlbumCover.png)</visible>
 			</control>
 			<control type="image">
-				<left>225</left>
-				<top>160</top>
-				<width>530</width>
-				<height>530</height>
+				<left>180</left>
+				<top>157</top>
+				<width>450</width>
+				<height>450</height>
 				<aspectratio>keep</aspectratio>
 				<fadetime>250</fadetime>
 				<texture background="true" fallback="osd/nara/music-cover.png">$VAR[NaraMusicCoverVar]</texture>
@@ -87,8 +87,8 @@
 				<scroll>true</scroll>
 			</control>
 			<control type="fixedlist" id="420">
-				<left>1040</left>
-				<top>222</top>
+				<left>980</left>
+			<top>135</top>
 				<width>720</width>
 				<height>560</height>
 				<focusposition>3</focusposition>
@@ -99,7 +99,7 @@
 				<onup>420</onup>
 				<ondown>420</ondown>
 				<onclick>SetFocus(602)</onclick>
-				<visible>String.IsEqual(Window(visualisation).Property(NaraMusic.LyricsTimed),true)</visible>
+				<visible>String.IsEqual(Window(visualisation).Property(NaraMusic.LyricsTimed),true) + !Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
 				<itemlayout width="720" height="80">
 					<control type="label">
 						<width>710</width>
@@ -123,30 +123,30 @@
 				</focusedlayout>
 			</control>
 			<control type="textbox" id="421">
-				<left>1040</left>
-				<top>230</top>
+				<left>980</left>
+			<top>143</top>
 				<width>690</width>
 				<height>552</height>
-				<font>font27</font>
+				<font>font40_title</font>
 				<textcolor>CFFFFFFF</textcolor>
 				<label>$INFO[Window(visualisation).Property(NaraMusic.LyricsText)]</label>
 				<pagecontrol>422</pagecontrol>
-				<visible>!String.IsEmpty(Window(visualisation).Property(NaraMusic.LyricsText))</visible>
+				<visible>!String.IsEmpty(Window(visualisation).Property(NaraMusic.LyricsText)) + !Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
 			</control>
 			<control type="scrollbar" id="422">
-				<left>1760</left>
-				<top>230</top>
+				<left>1700</left>
+				<top>143</top>
 				<width>6</width>
 				<height>552</height>
 				<orientation>vertical</orientation>
 				<onleft>602</onleft>
 				<onright>602</onright>
-				<visible>!String.IsEmpty(Window(visualisation).Property(NaraMusic.LyricsText))</visible>
+				<visible>!String.IsEmpty(Window(visualisation).Property(NaraMusic.LyricsText)) + !Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
 			</control>
 			<control type="group">
-				<left>1040</left>
-				<top>360</top>
-				<visible>!String.IsEqual(Window(visualisation).Property(NaraMusic.LyricsTimed),true) + String.IsEmpty(Window(visualisation).Property(NaraMusic.LyricsText))</visible>
+				<left>980</left>
+				<top>273</top>
+				<visible>!String.IsEqual(Window(visualisation).Property(NaraMusic.LyricsTimed),true) + String.IsEmpty(Window(visualisation).Property(NaraMusic.LyricsText)) + !Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
 				<control type="image">
 					<width>56</width>
 					<height>56</height>

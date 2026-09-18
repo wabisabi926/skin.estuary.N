@@ -4,6 +4,11 @@
 		<value condition="String.IsEmpty(MusicPlayer.Cover) | String.IsEqual(MusicPlayer.Cover,DefaultAlbumCover.png)">osd/nara/music-cover.png</value>
 		<value>$INFO[MusicPlayer.Cover]</value>
 	</variable>
+	<variable name="NaraMusicFanartVis">
+		<value condition="System.HasAddon(script.artistslideshow) + !String.IsEmpty(Window(Visualisation).Property(ArtistSlideshow.Image))">$INFO[Window(Visualisation).Property(ArtistSlideshow.Image)]</value>
+		<value condition="!String.IsEmpty(Player.Art(fanart))">$INFO[Player.Art(fanart)]</value>
+		<value>osd/nara/music-background.png</value>
+	</variable>
 	<variable name="NaraMusicMuteLabelVar">
 		<value condition="Player.Muted">$LOCALIZE[16041]</value>
 		<value>$LOCALIZE[16039]</value>

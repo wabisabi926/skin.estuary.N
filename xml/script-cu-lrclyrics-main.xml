@@ -4,33 +4,35 @@
 	<controls>
 		<!-- CU LRC needs its list for initialization; Nara renders the published lyrics. -->
 		<control type="list" id="110">
-			<left>1040</left>
-			<top>222</top>
+			<left>980</left>
+			<top>135</top>
 			<width>720</width>
 			<height>560</height>
 			<animation effect="slide" end="0,-10000" time="0" condition="String.IsEqual(Window.Property(NaraMusic.IntegratedLyrics),true)">Conditional</animation>
-			<scrolltime tween="sine">300</scrolltime>
+			<animation type="WindowOpen" reversible="false">
+				<effect type="slide" end="0" start="560" time="400" delay="400" tween="cubic" easing="out" />
+				<effect type="fade" start="0" end="100" time="300" delay="400" tween="sine" easing="out" />
+			</animation>
+			<scrolltime tween="sine">200</scrolltime>
 			<onup>110</onup>
 			<ondown>110</ondown>
-			<itemlayout width="720" height="80">
+			<itemlayout width="720" height="90">
 				<control type="label">
-					<width>710</width>
-					<height>80</height>
-					<font>font27</font>
+					<width>710</width><height>90</height>
+					<font>font40_title</font>
 					<aligny>center</aligny>
 					<label>$INFO[ListItem.Label]</label>
-					<textcolor>70FFFFFF</textcolor>
+					<textcolor>40FFFFFF</textcolor>
 				</control>
 			</itemlayout>
-			<focusedlayout width="720" height="80">
-				<control type="label">
-					<width>710</width>
-					<height>80</height>
-					<font>font32_title</font>
+			<focusedlayout width="720" height="180">
+				<control type="textbox">
+					<width>710</width><height>180</height>
+					<font>font45_title</font>
 					<aligny>center</aligny>
 					<label>$INFO[ListItem.Label]</label>
 					<textcolor>FFFFFFFF</textcolor>
-					<scroll>true</scroll>
+					<animation effect="fade" start="0" end="100" delay="0" time="1000" tween="sine" easing="out" reversible="false">Focus</animation>
 				</control>
 			</focusedlayout>
 		</control>

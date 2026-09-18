@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 	<include name="NaraMusicPlayerBackground">
-		<control type="image">
+		<control type="multiimage">
 			<include>FullScreenDimensions</include>
 			<aspectratio>scale</aspectratio>
-			<texture>osd/nara/music-background.png</texture>
+			<randomize>true</randomize>
+			<fadetime>600</fadetime>
+			<loop>true</loop>
+			<imagepath background="true">$VAR[NaraMusicFanartVis]</imagepath>
+			<animation effect="fade" start="100" end="65" condition="Visualisation.Enabled">Conditional</animation>
+			<animation effect="zoom" start="110" end="130" center="auto" time="10000" tween="sine" easing="inout" pulse="true">Conditional</animation>
+			<animation effect="slide" start="-30,-30" end="30,30" time="6000" tween="sine" easing="inout" pulse="true">Conditional</animation>
+		</control>
+		<control type="image">
+			<include>FullScreenDimensions</include>
+			<texture colordiffuse="66000000">colors/white.png</texture>
+			<visible>Window.IsVisible(script-cu-lrclyrics-main.xml)</visible>
 		</control>
 	</include>
 </includes>
