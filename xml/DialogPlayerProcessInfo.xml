@@ -55,7 +55,7 @@
 			<control type="grouplist">
 				<left>28</left>
 				<top>72</top>
-				<width>600</width>
+				<width>592</width>
 				<height>470</height>
 				<orientation>vertical</orientation>
 				<itemgap>0</itemgap>
@@ -149,9 +149,9 @@
 			</control>
 
 			<control type="grouplist">
-				<left>648</left>
+				<left>644</left>
 				<top>72</top>
-				<width>600</width>
+				<width>592</width>
 				<height>470</height>
 				<orientation>vertical</orientation>
 				<itemgap>0</itemgap>
@@ -244,9 +244,9 @@
 			</control>
 
 			<control type="group">
-				<left>1268</left>
+				<left>1260</left>
 				<top>72</top>
-				<width>584</width>
+				<width>592</width>
 				<height>470</height>
 				<control type="grouplist">
 					<width>584</width>
@@ -276,11 +276,83 @@
 							<param name="value" value="$INFO[Player.Process(dovicmversion)]" />
 							<param name="visible" value="!String.IsEmpty(Player.Process(dovicmversion))" />
 						</include>
-						<include content="NaraProcessInfoRow">
-							<param name="width" value="584" />
-							<param name="label" value="RPU / BL / EL" />
-							<param name="value" value="$EXP[String.IsEqual(Player.Process(dovirpupresent),true) ? ✓ : ×]/$EXP[String.IsEqual(Player.Process(doviblpresent),true) ? ✓ : ×]/$EXP[String.IsEqual(Player.Process(dovielpresent),true) ? ✓ : ×]" />
-						</include>
+						<control type="group">
+							<width>584</width>
+							<height>30</height>
+							<control type="label">
+								<left>0</left>
+								<width>230</width>
+								<height>30</height>
+								<aligny>center</aligny>
+								<font>font_nara_process_info</font>
+								<textcolor>text_secondary</textcolor>
+								<label>RPU / BL / EL:</label>
+							</control>
+							<control type="image">
+								<left>232</left>
+								<top>3</top>
+								<width>24</width>
+								<height>24</height>
+								<texture colordiffuse="progress_watched">osd/nara/process-info/check-circle.png</texture>
+								<visible>String.IsEqual(Player.Process(dovirpupresent),true)</visible>
+							</control>
+							<control type="image">
+								<left>232</left>
+								<top>3</top>
+								<width>24</width>
+								<height>24</height>
+								<texture colordiffuse="status_error">osd/nara/process-info/circle-xmark.png</texture>
+								<visible>!String.IsEqual(Player.Process(dovirpupresent),true)</visible>
+							</control>
+							<control type="label">
+								<left>262</left>
+								<width>8</width>
+								<height>30</height>
+								<aligny>center</aligny>
+								<font>font_nara_process_info</font>
+								<label>/</label>
+							</control>
+							<control type="image">
+								<left>276</left>
+								<top>3</top>
+								<width>24</width>
+								<height>24</height>
+								<texture colordiffuse="progress_watched">osd/nara/process-info/check-circle.png</texture>
+								<visible>String.IsEqual(Player.Process(doviblpresent),true)</visible>
+							</control>
+							<control type="image">
+								<left>276</left>
+								<top>3</top>
+								<width>24</width>
+								<height>24</height>
+								<texture colordiffuse="status_error">osd/nara/process-info/circle-xmark.png</texture>
+								<visible>!String.IsEqual(Player.Process(doviblpresent),true)</visible>
+							</control>
+							<control type="label">
+								<left>306</left>
+								<width>8</width>
+								<height>30</height>
+								<aligny>center</aligny>
+								<font>font_nara_process_info</font>
+								<label>/</label>
+							</control>
+							<control type="image">
+								<left>320</left>
+								<top>3</top>
+								<width>24</width>
+								<height>24</height>
+								<texture colordiffuse="progress_watched">osd/nara/process-info/check-circle.png</texture>
+								<visible>String.IsEqual(Player.Process(dovielpresent),true)</visible>
+							</control>
+							<control type="image">
+								<left>320</left>
+								<top>3</top>
+								<width>24</width>
+								<height>24</height>
+								<texture colordiffuse="status_error">osd/nara/process-info/circle-xmark.png</texture>
+								<visible>!String.IsEqual(Player.Process(dovielpresent),true)</visible>
+							</control>
+						</control>
 					</control>
 					<control type="group">
 						<width>584</width>
