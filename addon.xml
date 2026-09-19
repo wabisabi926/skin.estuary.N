@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="skin.estuary.glass" version="1.0.0" name="Estuary Glass" provider-name="phil65, Ichabod Fletchman, nara, wabisabi926">
+<addon id="skin.estuary.nara" version="4.1.0" name="Estuary N" provider-name="phil65, Ichabod Fletchman">
 	<requires>
 		<import addon="xbmc.gui" version="5.18.0"/>
 	</requires>
